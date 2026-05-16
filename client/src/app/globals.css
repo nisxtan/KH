@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-gold: #c9a84c;        /* Rich Antique Gold */
+  --color-gold-light: #f0d080;
+  --color-gold-dark: #a07830;
+  --color-bronze: #7a4f2d;
+  --color-ivory: #e8dbca;       /* Deeper, more aged Ivory for that "Original" feel */
+  --color-ivory-dark: #dfcfb8;  
+  --color-sacred: #f0e6d6;      /* Lighter ivory for cards */
+  --color-espresso: #1e0f05;    /* Deep, dark coffee/wood brown */
+  --color-espresso-light: #3d2010;
+
+  --font-premium: "Playfair Display", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+}
+
+@layer base {
+  body {
+    color: var(--color-espresso);
+    background-color: var(--color-ivory);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .glass-divine {
+    background: rgba(240, 230, 214, 0.95); /* Matched to sacred ivory */
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    box-shadow: 0 10px 40px rgba(30, 15, 5, 0.1);
+  }
+
+  .text-divine-gold {
+    background: linear-gradient(135deg, #a07830, #f0d080, #a07830);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-divine {
+    box-shadow: 0 20px 60px -15px rgba(30, 15, 5, 0.15);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: var(--color-espresso);
+    color: var(--color-sacred);
+    border-radius: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.65rem;
+    padding: 1rem 1.5rem;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    line-height: 1.4;
+  }
+  @media (min-width: 768px) {
+    .btn-primary {
+      padding: 1.4rem 3.5rem;
+      letter-spacing: 0.25em;
+      font-size: 0.75rem;
+    }
+  }
+  .btn-primary:hover {
+    background: var(--color-gold);
+    color: var(--color-espresso);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(201, 168, 76, 0.4);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: transparent;
+    color: var(--color-espresso);
+    border-radius: 1.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.65rem;
+    padding: 1rem 1.5rem;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 2px solid rgba(30, 15, 5, 0.2);
+    line-height: 1.4;
+  }
+  @media (min-width: 768px) {
+    .btn-secondary {
+      padding: 1.4rem 3.5rem;
+      letter-spacing: 0.25em;
+      font-size: 0.75rem;
+    }
+  }
+  .btn-secondary:hover {
+    background: var(--color-sacred);
+    border-color: var(--color-gold);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(30, 15, 5, 0.1);
+  }
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-ivory); }
+::-webkit-scrollbar-thumb { background: var(--color-gold-dark); border-radius: 10px; border: 2px solid var(--color-ivory); }
