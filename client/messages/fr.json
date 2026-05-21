@@ -1,0 +1,102 @@
+{
+  "Navbar": {
+    "gallery": "Galerie",
+    "about": "À Propos de Nous",
+    "contact": "Contact",
+    "inquire": "Demander Maintenant",
+    "commission": "Commencer une Commande"
+  },
+  "Common": {
+    "welcome": "Bienvenue",
+    "cart": "Panier",
+    "search": "Rechercher"
+  },
+  "Hero": {
+    "trusted": "Approuvé par les Collectionneurs",
+    "since": "Depuis {year}"
+  },
+  "Home": {
+    "lostWax": "La technique de la cire perdue",
+    "secret": "Un secret vieux de 2 500 ans",
+    "handHammered": "Martelé à la main",
+    "traditional": "Techniques traditionnelles",
+    "goldGilded": "Doré à l'or 24 carats",
+    "genuineLeaf": "Véritable feuille d'or",
+    "museumQuality": "Qualité musée",
+    "artisanCrafts": "Artisanat d'art de maître",
+    "exportGrade": "Qualité export",
+    "worldwideCertified": "Certifié mondialement",
+    "enterWorkshop": "Entrer dans l'atelier",
+    "curated": "Sélectionné pour les chercheurs",
+    "heritage": "Héritage",
+    "masterpieces": "Chefs-d'œuvre",
+    "fullGallery": "La galerie complète",
+    "exploreCollection": "Explorer la collection complète",
+    "startCommission": "Commencer un projet",
+    "browseGallery": "Parcourir la galerie"
+  },
+  "Footer": {
+    "desc": "Préservation de l'art sacré de l'artisanat népalais depuis {year}. Chaque statue est un pont entre l'humain et le divin.",
+    "gallery": "Galerie",
+    "allStatues": "Toutes les statues",
+    "collection": "Collection {name}",
+    "company": "Entreprise",
+    "about": "À propos de nous",
+    "artisans": "Les artisans",
+    "commission": "Commander une œuvre",
+    "showroom": "Visite du showroom",
+    "rights": "Tous droits réservés.",
+    "devotion": "Fabriqué à la main avec dévotion"
+  },
+  "About": {
+    "essence": "Notre Essence",
+    "soulChisel": "L'âme du ciseau",
+    "divinityQuote": "Nous ne créons pas de statues ; nous révélons la divinité déjà présente dans le métal.",
+    "legacyTitle": "Un héritage sculpté dans la tradition",
+    "whyChooseUs": "Pourquoi nous choisir",
+    "differenceTitle": "La différence Kiran",
+    "certifiedAuthentic": "Certifié authentique",
+    "certifiedDesc": "Chaque pièce est accompagnée d'un certificat d'authenticité et de provenance de notre atelier.",
+    "museumPackaging": "Emballage de qualité musée",
+    "museumDesc": "Un emballage de protection triple couche garantit que votre statue arrive en parfait état.",
+    "worldwideShipping": "Livraison internationale",
+    "shippingDesc": "Nous livrons dans plus de 40 pays avec assurance complète et documents de douane inclus.",
+    "lifetimeSupport": "Assistance à vie",
+    "supportDesc": "Notre équipe vous offre des conseils d'entretien à vie pour votre statue, y compris le nettoyage.",
+    "beginSacred": "Commencez votre voyage sacré",
+    "showroomDesc": "Visitez notre showroom à Boudha ou commandez un chef-d'œuvre sur mesure selon votre vision exacte.",
+    "browseGallery": "Parcourir la galerie",
+    "commissionPiece": "Commander une œuvre"
+  },
+  "Products": {
+    "divineGallery": "Galerie Divine",
+    "sacred": "Sacré",
+    "collection": "Collection",
+    "registered": "{count} chefs-d'œuvre enregistrés",
+    "searchPlaceholder": "Rechercher des statues...",
+    "curating": "Galerie en cours de sélection",
+    "noPieces": "Aucune œuvre trouvée. Essayez une autre catégorie ou un autre terme de recherche.",
+    "resetFilters": "Réinitialiser les filtres",
+    "all": "Tout",
+    "recommendedTitle": "Chefs-d'œuvre Recommandés",
+    "suggestionsTitle": "Suggestions",
+    "noResultsText": "Aucun résultat trouvé"
+  },
+  "Contact": {
+    "getInTouch": "Entrer en contact",
+    "follow": "Suivre notre art",
+    "sendInquiry": "Envoyer une demande",
+    "fullName": "Nom complet *",
+    "email": "E-mail *",
+    "subject": "Sujet",
+    "message": "Message *",
+    "sending": "Envoi en cours...",
+    "submit": "Envoyer la demande",
+    "responseGrace": "Notre équipe répond généralement sous 24 à 48 heures.",
+    "successMsg": "Votre demande a été envoyée avec succès. Nous vous répondrons très bientôt.",
+    "errorMsg": "Échec de l'envoi de la demande. Veuillez réessayer ou nous contacter via WhatsApp.",
+    "showroom": "Showroom",
+    "directLine": "Ligne directe",
+    "emailUs": "Écrivez-nous"
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "Navbar": {
+    "gallery": "画廊",
+    "about": "关于我们",
+    "contact": "联系",
+    "inquire": "立即咨询",
+    "commission": "开始定制"
+  },
+  "Common": {
+    "welcome": "欢迎",
+    "cart": "购物车",
+    "search": "搜索"
+  },
+  "Hero": {
+    "trusted": "收藏家信赖之选",
+    "since": "始于 {year} 年"
+  },
+  "Home": {
+    "lostWax": "失蜡浇铸工艺",
+    "secret": "传袭 2500 年的技艺奥秘",
+    "handHammered": "手工锻打",
+    "traditional": "传统工法",
+    "goldGilded": "24K 纯金贴金",
+    "genuineLeaf": "真金金箔",
+    "museumQuality": "博物馆级品质",
+    "artisanCrafts": "大师级匠心手作",
+    "exportGrade": "出口臻品级",
+    "worldwideCertified": "全球资质认证",
+    "enterWorkshop": "步入工坊",
+    "curated": "为寻道者臻选",
+    "heritage": "世代传承",
+    "masterpieces": "传世巨作",
+    "fullGallery": "完整画廊",
+    "exploreCollection": "探索完整系列",
+    "startCommission": "开启专属定制",
+    "browseGallery": "浏览画廊"
+  },
+  "Footer": {
+    "desc": "自 {year} 年以来，致力于传承尼泊尔手工艺的神圣艺术。每一尊佛像皆是连结凡尘与神圣的桥梁。",
+    "gallery": "画廊",
+    "allStatues": "所有佛像",
+    "collection": "{name} 系列",
+    "company": "公司",
+    "about": "关于我们",
+    "artisans": "匠人传承",
+    "commission": "定制佛像",
+    "showroom": "展厅预约",
+    "rights": "保留所有权利。",
+    "devotion": "虔心手作"
+  },
+  "About": {
+    "essence": "艺术底蕴",
+    "soulChisel": "匠心之魂",
+    "divinityQuote": "我们并非凭空创造佛像，我们只是唤醒隐藏于金属深处的庄严神性。",
+    "legacyTitle": "世袭手作的匠心传承",
+    "whyChooseUs": "我们的优势",
+    "differenceTitle": "吉兰 (Kiran) 的卓越追求",
+    "certifiedAuthentic": "正品权威认证",
+    "certifiedDesc": "每一尊佛像均附带工坊出具的正品原产地及真实性认证证书。",
+    "museumPackaging": "博物馆级严密包装",
+    "museumDesc": "采用三层专业防震及防损保护包装，确保佛像完好无损地送达您的手中。",
+    "worldwideShipping": "全球安全配送",
+    "shippingDesc": "配送服务覆盖全球 40 多个国家，包含全额保险与专业的清关代理文件。",
+    "lifetimeSupport": "终身保养顾问",
+    "supportDesc": "我们提供终身佛像清洁与专业保养咨询指导服务。",
+    "beginSacred": "开启您的圣洁之旅",
+    "showroomDesc": "欢迎莅临我们位于博达（Boudha）的展厅，或开启专属大师级佛像定制。",
+    "browseGallery": "浏览画廊",
+    "commissionPiece": "定制佛像"
+  },
+  "Products": {
+    "divineGallery": "神圣画廊",
+    "sacred": "圣洁",
+    "collection": "系列",
+    "registered": "已登记 {count} 尊大师传世珍品",
+    "searchPlaceholder": "搜索佛像...",
+    "curating": "画廊臻选筹备中",
+    "noPieces": "未找到匹配作品。请尝试切换分类或搜索其他词条。",
+    "resetFilters": "重置筛选",
+    "all": "全部",
+    "recommendedTitle": "推荐大师作品",
+    "suggestionsTitle": "搜索建议",
+    "noResultsText": "未找到匹配结果"
+  },
+  "Contact": {
+    "getInTouch": "与我们联络",
+    "follow": "关注我们的手工艺术",
+    "sendInquiry": "提交定制与咨询",
+    "fullName": "姓名 *",
+    "email": "电子邮箱 *",
+    "subject": "咨询主题",
+    "message": "咨询详情 *",
+    "sending": "发送中...",
+    "submit": "提交咨询",
+    "responseGrace": "我们的团队通常会在 24-48 小时内予以答复。",
+    "successMsg": "您的咨询已成功发送，我们将尽快与您取得联系。",
+    "errorMsg": "发送失败，请重试或通过 WhatsApp 直接与我们取得联系。",
+    "showroom": "博达展厅",
+    "directLine": "服务热线",
+    "emailUs": "发送邮件"
+  }
+}

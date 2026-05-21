@@ -8,7 +8,7 @@ import { RootState } from '@/store';
 import { 
   Save, Settings, HelpCircle, Image as ImageIcon, X, Loader2, 
   CheckCircle, Upload, Trash2, Home, Info, BookOpen, Phone, 
-  Globe, LayoutGrid, Plus, Search 
+  Globe, LayoutGrid, Plus, Search, Coins
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -38,6 +38,7 @@ const sectionMeta: Record<string, { label: string; icon: any; color: string; des
   categories: { label: 'Categories',      icon: <LayoutGrid size={28} />, color: 'from-bronze/20 to-bronze/5', desc: 'Add or delete product categories like Buddha, Ganesh, etc.' },
   about:      { label: 'About Us',       icon: <BookOpen size={28} />, color: 'from-ivory-dark to-ivory', desc: 'Edit your brand story, legacy paragraphs, and the story hero image.' },
   contact:    { label: 'Contact',        icon: <Phone size={28} />,    color: 'from-gold/20 to-gold/5', desc: 'Update addresses, phones, emails, and all social media links.' },
+  currency:   { label: 'Currency Settings', icon: <Coins size={28} />,    color: 'from-gold/20 to-gold/5', desc: 'Manage exchange rates for dynamic currency conversion (Base: NPR).' },
   general:    { label: 'General',        icon: <Settings size={28} />, color: 'from-espresso/20 to-espresso/5', desc: 'Global settings like site name, tagline, and meta descriptions.' },
 };
 

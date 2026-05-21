@@ -1,16 +1,19 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from "next/link";
-import { ChevronRight, Award, ShieldCheck, Truck, Sparkles, Hammer, MapPin } from "lucide-react";
+import { ChevronRight, Award, ShieldCheck, Truck, Sparkles, Hammer } from "lucide-react";
 import axiosInstance from "@/api/axios";
 import Hero from "@/components/home/Hero";
 import ProductCard from "@/components/products/ProductCard";
+import { Link } from '@/i18n/routing';
+import { useTranslations, useLocale } from 'next-intl';
 
 type Settings = Record<string, string>;
 const def = (s: Settings, key: string, fb: string) => s[key] || fb;
 
 export default function Home() {
+  const t = useTranslations('Home');
+  const locale = useLocale();
   const [settings, setSettings] = useState<Settings>({});
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -19,8 +22,8 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const [settingsRes, productsRes] = await Promise.all([
-          axiosInstance.get('/settings'),
-          axiosInstance.get('/products?featured=true')
+          axiosInstance.get(`/settings?lang=${locale}`),
+          axiosInstance.get(`/products?featured=true&lang=${locale}`)
         ]);
         setSettings(settingsRes.data);
         setFeaturedProducts(productsRes.data.items.slice(0, 4));
@@ -31,7 +34,7 @@ export default function Home() {
       }
     };
     fetchData();
-  }, []);
+  }, [locale]);
 
   const features = [
     {
@@ -52,16 +55,17 @@ export default function Home() {
   ];
 
   const philosophyItems = [
-    { icon: <Hammer size={20} />, label: "Hand-Hammered", sub: "Traditional Techniques" },
-    { icon: <Sparkles size={20} />, label: "24K Gold Gilded", sub: "Genuine Gold Leaf" },
-    { icon: <Award size={20} />, label: "Museum Quality", sub: "Master Artisan Crafts" },
-    { icon: <ShieldCheck size={20} />, label: "Export Grade", sub: "Worldwide Certified" },
+    { icon: <Hammer size={20} />, label: t('handHammered'), sub: t('traditional') },
+    { icon: <Sparkles size={20} />, label: t('goldGilded'), sub: t('genuineLeaf') },
+    { icon: <Award size={20} />, label: t('museumQuality'), sub: t('artisanCrafts') },
+    { icon: <ShieldCheck size={20} />, label: t('exportGrade'), sub: t('worldwideCertified') },
   ];
 
   return (
-    <div className="bg-ivory">
-      {/* ─── HERO ─── */}
-      <Hero />
+    <div className="relative min-h-screen overflow-x-hidden">
+      <div className="relative z-10">
+        {/* ─── HERO ─── */}
+        <Hero />
 
       {/* ─── FEATURES STRIP ─── */}
       <section className="py-12 md:py-24 bg-espresso border-y border-gold/10">
@@ -81,7 +85,7 @@ export default function Home() {
       </section>
 
       {/* ─── ABOUT US SECTION ─── */}
-      <section className="py-24 md:py-40 overflow-hidden bg-ivory">
+      <section className="py-12 md:py-24 overflow-hidden bg-transparent">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
             <div className="w-full lg:w-1/2 relative order-2 lg:order-1">
@@ -93,9 +97,9 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-espresso/40 via-transparent to-transparent" />
                 <div className="absolute bottom-6 md:bottom-10 left-6 md:left-10 right-6 md:right-10">
-                  <div className="bg-sacred/95 backdrop-blur-md rounded-2xl px-6 md:px-8 py-4 md:py-6 border border-gold/20 shadow-xl">
-                    <p className="text-espresso text-[8px] md:text-[10px] font-black uppercase tracking-widest">The Lost-Wax Technique</p>
-                    <p className="text-espresso/60 text-xs md:text-sm font-medium mt-1 italic">A 2,500 year old secret</p>
+                  <div className="bg-black/70 backdrop-blur-md rounded-2xl px-6 md:px-8 py-4 md:py-6 border border-gold/20 shadow-xl">
+                    <p className="text-ivory text-[8px] md:text-[10px] font-black uppercase tracking-widest">{t('lostWax')}</p>
+                    <p className="text-ivory/60 text-xs md:text-sm font-medium mt-1 italic">{t('secret')}</p>
                   </div>
                 </div>
               </div>
@@ -106,26 +110,26 @@ export default function Home() {
                 <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-gold">
                   <span className="h-px w-8 md:w-12 bg-gold" /> {def(settings, 'philosophy_badge', 'About Us')}
                 </span>
-                <h2 className="text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-espresso leading-[0.9] md:leading-[0.85] uppercase">
+                <h2 className="text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-ivory leading-[0.9] md:leading-[0.85] uppercase">
                   {def(settings, 'philosophy_title_line1', 'Where Faith')} <br/>
                   {def(settings, 'philosophy_title_line2', 'Meets')}<br />
                   <span className="text-divine-gold">{def(settings, 'philosophy_title_line3', 'the Chisel')}</span>
                 </h2>
               </div>
 
-              <p className="text-espresso/60 text-lg md:text-xl font-medium leading-relaxed max-w-lg mx-auto lg:mx-0 border-l-4 border-gold/20 pl-6 md:pl-8 italic">
+              <p className="text-ivory/60 text-lg md:text-xl font-medium leading-relaxed max-w-lg mx-auto lg:mx-0 border-l-4 border-gold/30 pl-6 md:pl-8 italic">
                 {def(settings, 'philosophy_desc', 'In the sacred air of Boudha, our artisans don\'t just carve metal—they transmit devotion into physical form. Every statue begins with a day of meditation.')}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 {philosophyItems.map((item) => (
-                  <div key={item.label} className="flex items-center gap-4 p-5 md:p-6 rounded-2xl bg-sacred border border-gold/10 shadow-sm hover:border-gold/30 hover:shadow-divine transition-all group text-left">
-                    <div className="p-2.5 md:p-3 rounded-xl bg-ivory text-gold group-hover:bg-gold group-hover:text-espresso transition-all">
+                  <div key={item.label} className="flex items-center gap-4 p-5 md:p-6 rounded-2xl bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 transition-all group text-left">
+                    <div className="p-2.5 md:p-3 rounded-xl bg-gold/20 text-gold group-hover:bg-gold group-hover:text-espresso transition-all">
                       {item.icon}
                     </div>
                     <div>
-                      <p className="text-xs md:text-sm font-black text-espresso">{item.label}</p>
-                      <p className="text-[9px] md:text-[10px] text-espresso/40 font-bold uppercase tracking-widest">{item.sub}</p>
+                      <p className="text-xs md:text-sm font-black text-ivory">{item.label}</p>
+                      <p className="text-[9px] md:text-[10px] text-ivory/40 font-bold uppercase tracking-widest">{item.sub}</p>
                     </div>
                   </div>
                 ))}
@@ -133,10 +137,10 @@ export default function Home() {
 
               <Link
                 href="/about"
-                className="inline-flex items-center gap-4 group font-black uppercase tracking-widest text-[10px] md:text-xs text-espresso hover:text-gold transition-colors"
+                className="inline-flex items-center gap-4 group font-black uppercase tracking-widest text-[10px] md:text-xs text-ivory/70 hover:text-gold transition-colors"
               >
-                Enter the Workshop
-                <span className="h-px w-8 md:w-12 bg-espresso/20 group-hover:w-24 group-hover:bg-gold transition-all duration-500" />
+                {t('enterWorkshop')}
+                <span className="h-px w-8 md:w-12 bg-ivory/20 group-hover:w-24 group-hover:bg-gold transition-all duration-500" />
               </Link>
             </div>
           </div>
@@ -144,26 +148,26 @@ export default function Home() {
       </section>
 
       {/* ─── FEATURED COLLECTION ─── */}
-      <section className="py-24 md:py-40 bg-sacred border-y border-gold/10">
+      <section className="py-12 md:py-24 bg-transparent border-y border-gold/10">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-16 md:mb-24 text-center md:text-left gap-8">
+          <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-10 md:mb-24 text-center md:text-left gap-6">
             <div className="space-y-4">
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gold">Curated for Seekers</span>
-              <h2 className="text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-espresso uppercase leading-[0.9] md:leading-[0.85]">
-                Heritage <br />
-                <span className="text-divine-gold">Masterpieces</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gold">{t('curated')}</span>
+              <h2 className="text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
+                {t('heritage')} <br />
+                <span className="text-divine-gold">{t('masterpieces')}</span>
               </h2>
             </div>
             <Link
               href="/products"
               className="flex items-center gap-3 group font-black uppercase tracking-widest text-[9px] md:text-[10px] text-espresso/40 hover:text-gold transition-colors"
             >
-              The Full Gallery
+              {t('fullGallery')}
               <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10">
             {featuredProducts.length > 0 ? (
               featuredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
@@ -180,23 +184,23 @@ export default function Home() {
               href="/products"
               className="btn-primary w-full sm:w-auto"
             >
-              Explore Full Collection
+              {t('exploreCollection')}
             </Link>
           </div>
         </div>
       </section>
 
       {/* ─── FINAL CTA ─── */}
-      <section className="py-24 md:py-40 bg-ivory relative overflow-hidden">
+      <section className="py-12 md:py-24 bg-transparent relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-bronze/10 pointer-events-none" />
         <div className="container mx-auto px-6 text-center relative z-10">
           <div className="max-w-4xl mx-auto space-y-10 md:space-y-12">
             <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] text-gold">{def(settings, 'cta_badge', 'Commission a Masterpiece')}</p>
-            <h2 className="text-4xl sm:text-5xl md:text-7xl xl:text-9xl font-black tracking-tighter text-espresso uppercase leading-[0.9] md:leading-[0.85]">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl xl:text-9xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
               {def(settings, 'cta_title_line1', 'Bring a God')} <br />
               <span className="text-divine-gold">{def(settings, 'cta_title_line2', 'Into Your Home')}</span>
             </h2>
-            <p className="text-espresso/50 text-lg md:text-2xl font-medium leading-relaxed italic max-w-2xl mx-auto">
+            <p className="text-ivory/50 text-lg md:text-2xl font-medium leading-relaxed italic max-w-2xl mx-auto">
               {def(settings, 'cta_desc', 'Each statue is a one-of-a-kind creation. Commission a bespoke piece crafted to your exact spiritual vision.')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 pt-6 md:pt-8">
@@ -204,18 +208,19 @@ export default function Home() {
                 href="/contact"
                 className="btn-primary w-full sm:w-auto shadow-2xl"
               >
-                Start a Commission
+                {t('startCommission')}
               </Link>
               <Link
                 href="/products"
                 className="btn-secondary w-full sm:w-auto"
               >
-                Browse Gallery
+                {t('browseGallery')}
               </Link>
             </div>
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }

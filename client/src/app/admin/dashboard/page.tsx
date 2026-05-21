@@ -7,7 +7,7 @@ import { RootState } from '@/store';
 import axiosInstance from '@/api/axios';
 import { logout } from '@/store/authSlice';
 import { toast } from 'react-hot-toast';
-import { Plus, Edit, Trash2, LogOut, Package, Image as ImageIcon, Settings } from 'lucide-react';
+import { Plus, Edit, Trash2, LogOut, Package, Image as ImageIcon, Settings, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 import ProductForm from '@/components/admin/ProductForm';
 

@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import { 
     getAllProducts, 
+    getProductSuggestions,
     getProductBySlug, 
     createProduct, 
     updateProduct, 
@@ -15,6 +16,7 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 // Public routes
 router.get('/', getAllProducts);
+router.get('/search/suggestions', getProductSuggestions);
 router.get('/:slug', getProductBySlug);
 
 // Admin routes

@@ -2,9 +2,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #c9a84c;        /* Rich Antique Gold */
-  --color-gold-light: #f0d080;
-  --color-gold-dark: #a07830;
+  --color-gold: #d4af37;        /* Vibrant Dark Yellow/Gold (Excellent visibility and premium look) */
+  --color-gold-light: #f3c64f;  /* Glowing Gold */
+  --color-gold-dark: #c9a84c;   /* Rich Antique Gold (Highly readable on dark backgrounds) */
   --color-bronze: #7a4f2d;
   --color-ivory: #e8dbca;       /* Deeper, more aged Ivory for that "Original" feel */
   --color-ivory-dark: #dfcfb8;  
@@ -27,16 +27,29 @@
 }
 
 @layer components {
+  .section-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    font-size: 0.65rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-gold-dark);
+    margin-bottom: 0.75rem;
+  }
+
   .glass-divine {
     background: rgba(240, 230, 214, 0.95); /* Matched to sacred ivory */
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(201, 168, 76, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.2);
     box-shadow: 0 10px 40px rgba(30, 15, 5, 0.1);
   }
 
   .text-divine-gold {
-    background: linear-gradient(135deg, #a07830, #f0d080, #a07830);
+    background: linear-gradient(135deg, #c9a84c, #f3c64f, #c9a84c);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -60,7 +73,7 @@
     font-size: 0.65rem;
     padding: 1rem 1.5rem;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    border: 1px solid rgba(201, 168, 76, 0.3);
+    border: 1px solid rgba(212, 175, 55, 0.3);
     line-height: 1.4;
   }
   @media (min-width: 768px) {
@@ -74,7 +87,7 @@
     background: var(--color-gold);
     color: var(--color-espresso);
     transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(201, 168, 76, 0.4);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
   }
 
   .btn-secondary {

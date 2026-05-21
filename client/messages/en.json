@@ -1,0 +1,102 @@
+{
+  "Navbar": {
+    "gallery": "Gallery",
+    "about": "About Us",
+    "contact": "Contact",
+    "inquire": "Inquire Now",
+    "commission": "Start a Commission"
+  },
+  "Common": {
+    "welcome": "Welcome",
+    "cart": "Cart",
+    "search": "Search"
+  },
+  "Hero": {
+    "trusted": "Trusted by Collectors",
+    "since": "Since {year}"
+  },
+  "Home": {
+    "lostWax": "The Lost-Wax Technique",
+    "secret": "A 2,500 year old secret",
+    "handHammered": "Hand-Hammered",
+    "traditional": "Traditional Techniques",
+    "goldGilded": "24K Gold Gilded",
+    "genuineLeaf": "Genuine Gold Leaf",
+    "museumQuality": "Museum Quality",
+    "artisanCrafts": "Master Artisan Crafts",
+    "exportGrade": "Export Grade",
+    "worldwideCertified": "Worldwide Certified",
+    "enterWorkshop": "Enter the Workshop",
+    "curated": "Curated for Seekers",
+    "heritage": "Heritage",
+    "masterpieces": "Masterpieces",
+    "fullGallery": "The Full Gallery",
+    "exploreCollection": "Explore Full Collection",
+    "startCommission": "Start a Commission",
+    "browseGallery": "Browse Gallery"
+  },
+  "Footer": {
+    "desc": "Preserving the sacred art of Nepalese craftsmanship since {year}. Every statue is a bridge between the human and the divine.",
+    "gallery": "Gallery",
+    "allStatues": "All Statues",
+    "collection": "{name} Collection",
+    "company": "Company",
+    "about": "About Us",
+    "artisans": "The Artisans",
+    "commission": "Commission a Piece",
+    "showroom": "Showroom Visit",
+    "rights": "All Rights Reserved.",
+    "devotion": "Handcrafted with Devotion"
+  },
+  "About": {
+    "essence": "Our Essence",
+    "soulChisel": "The Soul of the Chisel",
+    "divinityQuote": "We don't create statues; we uncover the divinity already present within the metal.",
+    "legacyTitle": "A Legacy Carved in Tradition",
+    "whyChooseUs": "Why Choose Us",
+    "differenceTitle": "The Kiran Difference",
+    "certifiedAuthentic": "Certified Authentic",
+    "certifiedDesc": "Every piece comes with a certificate of authenticity and provenance from our workshop.",
+    "museumPackaging": "Museum-Grade Packaging",
+    "museumDesc": "Triple-layered protective packaging ensures your statue arrives in perfect condition.",
+    "worldwideShipping": "Worldwide Shipping",
+    "shippingDesc": "We ship to 40+ countries with full insurance and customs documentation included.",
+    "lifetimeSupport": "Lifetime Support",
+    "supportDesc": "Our team offers lifetime care advice for your statue, including cleaning guidance.",
+    "beginSacred": "Begin Your Sacred Journey",
+    "showroomDesc": "Visit our showroom in Boudha or commission a bespoke masterpiece designed to your exact vision.",
+    "browseGallery": "Browse Gallery",
+    "commissionPiece": "Commission a Piece"
+  },
+  "Products": {
+    "divineGallery": "Divine Gallery",
+    "sacred": "Sacred",
+    "collection": "Collection",
+    "registered": "{count} Masterpieces Registered",
+    "searchPlaceholder": "Search statues...",
+    "curating": "Gallery Being Curated",
+    "noPieces": "No pieces found. Try a different category or search term.",
+    "resetFilters": "Reset Filters",
+    "all": "All",
+    "recommendedTitle": "Recommended Masterpieces",
+    "suggestionsTitle": "Suggestions",
+    "noResultsText": "No matches found"
+  },
+  "Contact": {
+    "getInTouch": "Get in Touch",
+    "follow": "Follow Our Artistry",
+    "sendInquiry": "Send an Inquiry",
+    "fullName": "Full Name *",
+    "email": "Email *",
+    "subject": "Subject",
+    "message": "Message *",
+    "sending": "Sending...",
+    "submit": "Send Inquiry",
+    "responseGrace": "Our team typically responds within 24-48 hours.",
+    "successMsg": "Your inquiry has been sent successfully. We will get back to you soon.",
+    "errorMsg": "Failed to send inquiry. Please try again or contact us via WhatsApp.",
+    "showroom": "Showroom",
+    "directLine": "Direct Line",
+    "emailUs": "Email Us"
+  }
+}

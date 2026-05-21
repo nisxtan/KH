@@ -1,0 +1,102 @@
+{
+  "Navbar": {
+    "gallery": "Galería",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto",
+    "inquire": "Inquirir Ahora",
+    "commission": "Iniciar un Encargo"
+  },
+  "Common": {
+    "welcome": "Bienvenido",
+    "cart": "Carrito",
+    "search": "Buscar"
+  },
+  "Hero": {
+    "trusted": "Valorado por Coleccionistas",
+    "since": "Desde {year}"
+  },
+  "Home": {
+    "lostWax": "La técnica de la cire perdida",
+    "secret": "Un secreto de 2.500 años",
+    "handHammered": "Martillado a mano",
+    "traditional": "Técnicas tradicionales",
+    "goldGilded": "Dorado en oro de 24K",
+    "genuineLeaf": "Pan de oro genuino",
+    "museumQuality": "Calidad de museo",
+    "artisanCrafts": "Artesanía de maestro",
+    "exportGrade": "Grado de exportación",
+    "worldwideCertified": "Certificado mundialmente",
+    "enterWorkshop": "Entrar al taller",
+    "curated": "Curado para buscadores",
+    "heritage": "Herencia",
+    "masterpieces": "Obras maestras",
+    "fullGallery": "La galería completa",
+    "exploreCollection": "Explorar colección completa",
+    "startCommission": "Iniciar un encargo",
+    "browseGallery": "Explorar galería"
+  },
+  "Footer": {
+    "desc": "Preservando el arte sagrado de la artesanía nepalesa desde {year}. Cada estatua es un puente entre lo humano y lo divino.",
+    "gallery": "Galería",
+    "allStatues": "Todas las estatuas",
+    "collection": "Colección {name}",
+    "company": "Compañía",
+    "about": "Sobre nosotros",
+    "artisans": "Los artesanos",
+    "commission": "Encargar una obra",
+    "showroom": "Visita al showroom",
+    "rights": "Todos los derechos reservados.",
+    "devotion": "Hecho a mano con devoción"
+  },
+  "About": {
+    "essence": "Nuestra Esencia",
+    "soulChisel": "El alma del cincel",
+    "divinityQuote": "No creamos estatuas; descubrimos la divinidad que ya está presente dentro del metal.",
+    "legacyTitle": "Un legado tallado en la tradición",
+    "whyChooseUs": "Por qué elegirnos",
+    "differenceTitle": "La diferencia Kiran",
+    "certifiedAuthentic": "Certificado Auténtico",
+    "certifiedDesc": "Cada pieza viene con un certificado de autenticidad y origen de nuestro taller.",
+    "museumPackaging": "Embalaje de grado de museo",
+    "museumDesc": "El embalaje protector de triple capa garantiza que su estatua llegue en perfectas condiciones.",
+    "worldwideShipping": "Envío internacional",
+    "shippingDesc": "Realizamos envíos a más de 40 países con seguro completo y documentación aduanera incluida.",
+    "lifetimeSupport": "Soporte de por vida",
+    "supportDesc": "Nuestro equipo ofrece consejos de cuidado de por vida para su estatua, incluida la guía de limpieza.",
+    "beginSacred": "Comience su viaje sagrado",
+    "showroomDesc": "Visite nuestra sala de exposición en Boudha o encargue una obra maestra personalizada adaptada a su visión.",
+    "browseGallery": "Explorar galería",
+    "commissionPiece": "Encargar una obra"
+  },
+  "Products": {
+    "divineGallery": "Galería Divina",
+    "sacred": "Sagrada",
+    "collection": "Colección",
+    "registered": "{count} Obras maestras registradas",
+    "searchPlaceholder": "Buscar estatuas...",
+    "curating": "Galería siendo curada",
+    "noPieces": "No se encontraron piezas. Intente con una categoría o término de búsqueda diferente.",
+    "resetFilters": "Restablecer filtros",
+    "all": "Todo",
+    "recommendedTitle": "Obras Maestras Recomendadas",
+    "suggestionsTitle": "Sugerencias",
+    "noResultsText": "No se encontraron coincidencias"
+  },
+  "Contact": {
+    "getInTouch": "Ponerse en contacto",
+    "follow": "Siga nuestro arte",
+    "sendInquiry": "Enviar una consulta",
+    "fullName": "Nombre completo *",
+    "email": "Correo electrónico *",
+    "subject": "Asunto",
+    "message": "Mensaje *",
+    "sending": "Enviando...",
+    "submit": "Enviar consulta",
+    "responseGrace": "Nuestro equipo responde típicamente dentro de 24-48 horas.",
+    "successMsg": "Su consulta ha sido enviada con éxito. Nos pondremos en contacto con usted pronto.",
+    "errorMsg": "Error al enviar la consulta. Inténtelo de nuevo o contáctenos por WhatsApp.",
+    "showroom": "Showroom",
+    "directLine": "Línea directa",
+    "emailUs": "Escríbanos"
+  }
+}

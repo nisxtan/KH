@@ -1,12 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
 import { MapPin, Phone, Mail } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import axiosInstance from '@/api/axios';
+import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 
 export default function Footer() {
+  const t = useTranslations('Footer');
   const [settings, setSettings] = useState<Record<string, string>>({});
   const [categories, setCategories] = useState<any[]>([]);
 
@@ -34,7 +36,7 @@ export default function Footer() {
   const instagram = settings['contact_instagram'] || 'https://instagram.com/kiranhandicraft';
 
   return (
-    <footer className="bg-sacred text-espresso border-t border-gold/10">
+    <footer className="bg-transparent text-espresso border-t border-gold/10">
       <div className="container mx-auto px-6 pt-20 md:pt-24 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 pb-20 border-b border-gold/10">
 
@@ -50,26 +52,26 @@ export default function Footer() {
               </div>
             </Link>
 
-            <p className="text-espresso/50 text-sm md:text-base font-medium leading-relaxed max-w-sm text-center md:text-left mx-auto md:mx-0">
-              Preserving the sacred art of Nepalese craftsmanship since {settings['general_founded'] || '1988'}. Every statue is a bridge between the human and the divine.
+            <p className="text-ivory/50 text-sm md:text-base font-medium leading-relaxed max-w-sm text-center md:text-left mx-auto md:mx-0">
+              {t('desc', { year: settings['general_founded'] || '1988' })}
             </p>
 
             <div className="space-y-4 max-w-md mx-auto md:mx-0">
-              <a href={`https://maps.google.com/?q=${encodeURIComponent(address)}`} target="_blank" className="flex items-center gap-5 text-espresso/60 hover:text-gold transition-colors group">
-                <div className="p-3 rounded-xl bg-ivory group-hover:bg-gold/10 transition-colors shrink-0 shadow-sm border border-gold/5">
-                  <MapPin size={16} />
+              <a href={`https://maps.google.com/?q=${encodeURIComponent(address)}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-5 text-ivory/60 hover:text-gold transition-colors group">
+                <div className="p-3 rounded-xl bg-black/40 backdrop-blur-md group-hover:bg-gold/20 transition-colors shrink-0 border border-gold/20">
+                  <MapPin size={16} className="text-gold" />
                 </div>
                 <span className="text-xs md:text-sm font-bold leading-tight">{address}</span>
               </a>
-              <a href={`tel:${phone}`} className="flex items-center gap-5 text-espresso/60 hover:text-gold transition-colors group">
-                <div className="p-3 rounded-xl bg-ivory group-hover:bg-gold/10 transition-colors shrink-0 shadow-sm border border-gold/5">
-                  <Phone size={16} />
+              <a href={`tel:${phone}`} className="flex items-center gap-5 text-ivory/60 hover:text-gold transition-colors group">
+                <div className="p-3 rounded-xl bg-black/40 backdrop-blur-md group-hover:bg-gold/20 transition-colors shrink-0 border border-gold/20">
+                  <Phone size={16} className="text-gold" />
                 </div>
                 <span className="text-xs md:text-sm font-bold">{phone}</span>
               </a>
-              <a href={`mailto:${email}`} className="flex items-center gap-5 text-espresso/60 hover:text-gold transition-colors group">
-                <div className="p-3 rounded-xl bg-ivory group-hover:bg-gold/10 transition-colors shrink-0 shadow-sm border border-gold/5">
-                  <Mail size={16} />
+              <a href={`mailto:${email}`} className="flex items-center gap-5 text-ivory/60 hover:text-gold transition-colors group">
+                <div className="p-3 rounded-xl bg-black/40 backdrop-blur-md group-hover:bg-gold/20 transition-colors shrink-0 border border-gold/20">
+                  <Mail size={16} className="text-gold" />
                 </div>
                 <span className="text-xs md:text-sm font-bold">{email}</span>
               </a>
@@ -86,7 +88,7 @@ export default function Footer() {
                   href={s.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-2xl bg-ivory border border-gold/10 text-espresso/40 hover:bg-gold hover:text-sacred hover:border-gold transition-all hover:scale-110 active:scale-95 shadow-sm"
+                  className="p-4 rounded-2xl bg-black/40 backdrop-blur-md border border-gold/20 text-gold hover:bg-gold hover:text-espresso hover:border-gold transition-all hover:scale-110 active:scale-95"
                 >
                   {s.icon}
                 </a>
@@ -99,13 +101,13 @@ export default function Footer() {
             
             {/* Dynamic Gallery Links */}
             <div className="md:text-left text-center">
-                <h4 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gold mb-8 md:mb-10">Gallery</h4>
+                <h4 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gold mb-8 md:mb-10">{t('gallery')}</h4>
                 <ul className="space-y-4 md:space-y-6">
-                    <li><Link href="/products" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">All Statues</Link></li>
+                    <li><Link href="/products" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('allStatues')}</Link></li>
                     {categories.slice(0, 4).map(cat => (
                         <li key={cat.id}>
                             <Link href={`/products?category=${cat.slug}`} className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">
-                                {cat.name} Collection
+                                {t('collection', { name: cat.name })}
                             </Link>
                         </li>
                     ))}
@@ -114,21 +116,21 @@ export default function Footer() {
 
             {/* Static Company Links */}
             <div className="md:text-left text-center">
-                <h4 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gold mb-8 md:mb-10">Company</h4>
+                <h4 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gold mb-8 md:mb-10">{t('company')}</h4>
                 <ul className="space-y-4 md:space-y-6">
-                    <li><Link href="/about" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">About Us</Link></li>
-                    <li><Link href="/about" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">The Artisans</Link></li>
-                    <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">Commission a Piece</Link></li>
-                    <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">Showroom Visit</Link></li>
+                    <li><Link href="/about" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('about')}</Link></li>
+                    <li><Link href="/about" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('artisans')}</Link></li>
+                    <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('commission')}</Link></li>
+                    <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('showroom')}</Link></li>
                 </ul>
             </div>
 
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-12 text-[8px] md:text-[10px] font-black uppercase tracking-widest text-espresso/30 text-center">
-          <p>&copy; {new Date().getFullYear()} {siteName}. All Rights Reserved.</p>
-          <p>Handcrafted with Devotion · {settings['general_location'] || 'Boudha, Kathmandu'}</p>
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-12 text-[8px] md:text-[10px] font-black uppercase tracking-widest text-ivory/30 text-center">
+          <p>&copy; {new Date().getFullYear()} {siteName}. {t('rights')}</p>
+          <p>{t('devotion')} · {settings['general_location'] || 'Boudha, Kathmandu'}</p>
         </div>
       </div>
     </footer>

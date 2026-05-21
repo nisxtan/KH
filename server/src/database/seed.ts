@@ -54,6 +54,12 @@ const defaultSettings = [
     // ─── General / SEO ───
     { key: 'general_site_name', value: 'KIRAN HANDICRAFT ENTERPRISES', section: 'general', label: 'Site Name', type: 'text' },
     { key: 'general_tagline', value: 'Wholesaler, Retailer & Manufacturer of Metalcrafts', section: 'general', label: 'Tagline', type: 'text' },
+
+    // ─── Currency Exchange Rates (Base: NPR) ───
+    { key: 'currency_usd_rate', value: '133.50', section: 'currency', label: 'USD Exchange Rate (1 USD = X NPR)', type: 'text' },
+    { key: 'currency_eur_rate', value: '144.20', section: 'currency', label: 'EUR Exchange Rate (1 EUR = X NPR)', type: 'text' },
+    { key: 'currency_aud_rate', value: '88.50', section: 'currency', label: 'AUD Exchange Rate (1 AUD = X NPR)', type: 'text' },
+    { key: 'currency_gbp_rate', value: '168.10', section: 'currency', label: 'GBP Exchange Rate (1 GBP = X NPR)', type: 'text' },
 ];
 
 const seed = async () => {

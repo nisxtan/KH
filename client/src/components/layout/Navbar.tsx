@@ -1,23 +1,33 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import axiosInstance from '@/api/axios';
-import { X, Menu, ChevronRight } from 'lucide-react';
+import { X, Menu, ChevronRight, Globe } from 'lucide-react';
 
-const navLinks = [
-  { name: 'Gallery', href: '/products' },
-  { name: 'About Us', href: '/about' },
-  { name: 'Contact', href: '/contact' },
-];
+import { useTranslations, useLocale } from 'next-intl';
+import { Link, usePathname, useRouter } from '@/i18n/routing';
 
 export default function Navbar() {
+  const t = useTranslations('Navbar');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenu, setMobileMenu] = useState(false);
   const [settings, setSettings] = useState<Record<string, string>>({});
-  const pathname = usePathname();
+  const [langDropdown, setLangDropdown] = useState(false);
+
+  const navLinks = [
+    { name: t('gallery'), href: '/products' },
+    { name: t('about'), href: '/about' },
+    { name: t('contact'), href: '/contact' },
+  ];
+
+  const handleLocaleChange = (nextLocale: string) => {
+    router.replace(pathname, { locale: nextLocale });
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,7 +54,7 @@ export default function Navbar() {
   return (
     <>
       <nav className={`fixed w-full z-50 transition-all duration-500 px-4 md:px-6 pointer-events-none ${scrolled ? 'py-3 md:py-4' : 'py-5 md:py-6'}`}>
-        <div className={`container mx-auto px-4 md:px-10 h-16 md:h-20 flex justify-between items-center transition-all duration-500 rounded-2xl md:rounded-[2rem] pointer-events-auto ${scrolled ? 'bg-sacred/95 shadow-2xl border border-gold/20' : 'bg-transparent border-transparent'}`}>
+        <div className={`container mx-auto px-4 md:px-10 h-16 md:h-20 flex justify-between items-center transition-all duration-500 rounded-2xl md:rounded-[2rem] pointer-events-auto ${scrolled ? 'bg-black/60 backdrop-blur-xl shadow-2xl border border-gold/20' : 'bg-transparent border-transparent'}`}>
           
           {/* Brand Identity */}
           <Link href="/" className="flex items-center gap-3 md:gap-4 group">
@@ -52,19 +62,19 @@ export default function Navbar() {
               <span className="text-sacred font-black text-sm md:text-lg">{siteName.charAt(0)}</span>
             </div>
             <div className="flex flex-col max-w-[110px] xs:max-w-[130px] sm:max-w-none">
-              <h1 className="text-[8px] sm:text-sm md:text-lg font-black tracking-tighter uppercase leading-tight text-espresso line-clamp-2 sm:line-clamp-none">{siteName}</h1>
-              <p className="text-[6px] md:text-[7.5px] text-gold font-black uppercase tracking-[0.2em] leading-none mt-0.5 sm:block hidden">{tagline}</p>
+              <h1 className="text-[8px] sm:text-sm md:text-lg font-black tracking-tighter uppercase leading-tight line-clamp-2 sm:line-clamp-none text-ivory">{siteName}</h1>
+              <p className="text-[6px] md:text-[7.5px] font-black uppercase tracking-[0.2em] leading-none mt-0.5 sm:block hidden text-gold">{tagline}</p>
             </div>
           </Link>
 
           {/* Desktop Nav Links */}
-          <div className="hidden md:flex items-center gap-8 bg-sacred/40 backdrop-blur-xl px-8 py-3 rounded-full border border-gold/10 shadow-sm">
+          <div className="hidden md:flex items-center gap-8 bg-black/30 backdrop-blur-xl px-8 py-3 rounded-full border border-gold/20 shadow-sm">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
                 className={`text-[9px] uppercase tracking-[0.2em] font-black transition-all relative group ${
-                  pathname === link.href ? 'text-gold' : 'text-espresso/60 hover:text-espresso'
+                  pathname === link.href ? 'text-gold' : 'text-ivory/70 hover:text-ivory'
                 }`}
               >
                 {link.name}
@@ -76,11 +86,50 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-4 md:gap-6">
+            {/* Language Switcher */}
+            <div className="relative pointer-events-auto hidden md:block">
+              <button
+                onClick={() => setLangDropdown(!langDropdown)}
+                className="flex items-center gap-2 bg-gold/15 text-espresso px-4 py-3 rounded-xl text-[9px] font-black uppercase tracking-widest border border-gold/20 hover:bg-gold/20 transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-md"
+              >
+                <Globe size={11} className="text-gold" />
+                {locale.toUpperCase()}
+              </button>
+              <AnimatePresence>
+                {langDropdown && (
+                  <>
+                    <div className="fixed inset-0 z-10" onClick={() => setLangDropdown(false)} />
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute right-0 mt-2 w-32 bg-sacred border border-gold/20 rounded-xl shadow-xl z-20 py-1 overflow-hidden"
+                    >
+                      {['en', 'fr', 'zh', 'de', 'es', 'ne'].map((loc) => (
+                        <button
+                          key={loc}
+                          onClick={() => {
+                            handleLocaleChange(loc);
+                            setLangDropdown(false);
+                          }}
+                          className={`w-full text-left px-4 py-2.5 text-[9px] font-black uppercase tracking-widest hover:bg-gold/10 transition-all ${
+                            locale === loc ? 'text-gold' : 'text-espresso/75'
+                          }`}
+                        >
+                          {loc === 'en' ? 'English' : loc === 'fr' ? 'Français' : loc === 'zh' ? '中文' : loc === 'de' ? 'Deutsch' : loc === 'es' ? 'Español' : 'नेपाली'}
+                        </button>
+                      ))}
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
+            </div>
+
             <Link
               href="/contact"
               className="hidden md:block bg-espresso text-sacred px-8 py-3.5 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-gold transition-all hover:scale-105 active:scale-95 shadow-xl"
             >
-              Inquire Now
+              {t('inquire')}
             </Link>
             
             {/* Mobile Toggle */}
@@ -113,18 +162,18 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-ivory z-[101] md:hidden shadow-2xl flex flex-col"
+              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black/90 backdrop-blur-xl z-[101] md:hidden shadow-2xl flex flex-col border-l border-gold/20"
             >
-              <div className="p-8 flex items-center justify-between border-b border-gold/10">
+              <div className="p-8 flex items-center justify-between border-b border-gold/20">
                 <div className="flex items-center gap-3">
                   <div className="bg-espresso w-10 h-10 flex items-center justify-center rounded-xl text-sacred font-black">
                     {siteName.charAt(0)}
                   </div>
-                  <h2 className="text-[10px] font-black uppercase tracking-tighter leading-tight text-espresso">{siteName}</h2>
+                  <h2 className="text-[10px] font-black uppercase tracking-tighter leading-tight text-ivory">{siteName}</h2>
                 </div>
                 <button 
                   onClick={() => setMobileMenu(false)}
-                  className="p-3 rounded-xl bg-sacred border border-gold/10 text-espresso hover:bg-gold transition-all shadow-sm"
+                  className="p-3 rounded-xl bg-black/40 border border-gold/20 text-gold hover:bg-gold hover:text-espresso transition-all"
                 >
                   <X size={20} />
                 </button>
@@ -139,26 +188,49 @@ export default function Navbar() {
                     onClick={() => setMobileMenu(false)}
                     className={`flex items-center justify-between w-full p-6 rounded-2xl text-sm font-black uppercase tracking-widest transition-all ${
                       pathname === link.href 
-                        ? 'bg-espresso text-sacred shadow-xl' 
-                        : 'text-espresso/60 hover:bg-sacred hover:text-espresso'
+                        ? 'bg-gold text-espresso shadow-xl' 
+                        : 'text-ivory/60 hover:bg-white/10 hover:text-ivory'
                     }`}
                   >
                     {link.name}
-                    <ChevronRight size={16} className={pathname === link.href ? 'text-gold' : 'text-espresso/20'} />
+                    <ChevronRight size={16} className={pathname === link.href ? 'text-espresso' : 'text-ivory/20'} />
                   </Link>
                 ))}
               </div>
 
               <div className="p-8 space-y-6">
+                {/* Mobile Language Selection */}
+                <div className="space-y-2">
+                  <p className="text-[8px] font-black uppercase tracking-[0.3em] text-gold mb-3">Language</p>
+                  <div className="flex gap-2 flex-wrap">
+                    {['en', 'fr', 'zh', 'de', 'es', 'ne'].map((loc) => (
+                      <button
+                        key={loc}
+                        onClick={() => {
+                          handleLocaleChange(loc);
+                          setMobileMenu(false);
+                        }}
+                        className={`min-w-[calc(33.33%-6px)] flex-grow py-3.5 rounded-xl text-[9px] font-black uppercase tracking-widest transition-all ${
+                          locale === loc 
+                            ? 'bg-gold text-espresso border border-gold shadow-md' 
+                            : 'bg-white/10 text-ivory/60 border border-gold/20'
+                        }`}
+                      >
+                        {loc.toUpperCase()}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
                 <Link
                   href="/contact"
                   onClick={() => setMobileMenu(false)}
                   className="block w-full text-center bg-gold text-espresso py-6 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] active:scale-95 transition-all"
                 >
-                  Start a Commission
+                  {t('commission')}
                 </Link>
                 <div className="text-center">
-                  <p className="text-[8px] font-black uppercase tracking-widest text-espresso/30">
+                  <p className="text-[8px] font-black uppercase tracking-widest text-ivory/30">
                     Handcrafted in Nepal Since 1988
                   </p>
                 </div>

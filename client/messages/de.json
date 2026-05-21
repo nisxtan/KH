@@ -1,0 +1,102 @@
+{
+  "Navbar": {
+    "gallery": "Galerie",
+    "about": "Über Uns",
+    "contact": "Kontakt",
+    "inquire": "Jetzt Anfragen",
+    "commission": "Auftrag Starten"
+  },
+  "Common": {
+    "welcome": "Willkommen",
+    "cart": "Warenkorb",
+    "search": "Suche"
+  },
+  "Hero": {
+    "trusted": "Von Sammlern geschätzt",
+    "since": "Seit {year}"
+  },
+  "Home": {
+    "lostWax": "Die Wachsausschmelztechnik",
+    "secret": "Ein 2.500 Jahre altes Geheimnis",
+    "handHammered": "Handgehämmert",
+    "traditional": "Traditionelle Techniken",
+    "goldGilded": "24K vergoldet",
+    "genuineLeaf": "Echtes Blattgold",
+    "museumQuality": "Museumsqualität",
+    "artisanCrafts": "Meisterhafte Handwerkskunst",
+    "exportGrade": "Exportqualität",
+    "worldwideCertified": "Weltweit zertifiziert",
+    "enterWorkshop": "Werkstatt betreten",
+    "curated": "Kuratiert für Suchende",
+    "heritage": "Kulturerbe",
+    "masterpieces": "Meisterwerke",
+    "fullGallery": "Die vollständige Galerie",
+    "exploreCollection": "Ganze Kollektion erkunden",
+    "startCommission": "Auftrag starten",
+    "browseGallery": "Galerie durchsuchen"
+  },
+  "Footer": {
+    "desc": "Bewahrung der heiligen Kunst des nepalesischen Handwerks seit {year}. Jede Statue ist eine Brücke zwischen dem Menschlichen und dem Göttlichen.",
+    "gallery": "Galerie",
+    "allStatues": "Alle Statuen",
+    "collection": "{name} Kollektion",
+    "company": "Unternehmen",
+    "about": "Über uns",
+    "artisans": "Die Handwerker",
+    "commission": "Statue in Auftrag geben",
+    "showroom": "Showroom-Besuch",
+    "rights": "Alle Rechte vorbehalten.",
+    "devotion": "Mit Hingabe handgefertigt"
+  },
+  "About": {
+    "essence": "Unsere Essenz",
+    "soulChisel": "Die Seele des Meißels",
+    "divinityQuote": "Wir erschaffen keine Statuen; wir enthüllen die Göttlichkeit, die bereits im Metall vorhanden ist.",
+    "legacyTitle": "Ein in Tradition gemeißeltes Erbe",
+    "whyChooseUs": "Warum uns wählen",
+    "differenceTitle": "Der Kiran-Unterschied",
+    "certifiedAuthentic": "Zertifiziert Authentisch",
+    "certifiedDesc": "Jedes Stück wird mit einem Echtheits- und Herkunftszertifikat aus unserer Werkstatt geliefert.",
+    "museumPackaging": "Verpackung in Museumsqualität",
+    "museumDesc": "Die dreischichtige Schutzverpackung sorgt dafür, dass Ihre Statue in einwandfreiem Zustand ankommt.",
+    "worldwideShipping": "Weltweiter Versand",
+    "shippingDesc": "Wir versenden in über 40 Länder, inklusive Vollversicherung und Zollpapieren.",
+    "lifetimeSupport": "Lebenslanger Support",
+    "supportDesc": "Unser Team bietet lebenslange Pflegehinweise für Ihre Statue, einschließlich Reinigungsanleitungen.",
+    "beginSacred": "Beginnen Sie Ihre heilige Reise",
+    "showroomDesc": "Besuchen Sie unseren Showroom in Boudha oder geben Sie ein maßgeschneidertes Meisterwerk in Auftrag.",
+    "browseGallery": "Galerie durchsuchen",
+    "commissionPiece": "Statue in Auftrag geben"
+  },
+  "Products": {
+    "divineGallery": "Göttliche Galerie",
+    "sacred": "Heilige",
+    "collection": "Kollektion",
+    "registered": "{count} Meisterwerke registriert",
+    "searchPlaceholder": "Statuen suchen...",
+    "curating": "Galerie wird kuratiert",
+    "noPieces": "Keine Statuen gefunden. Versuchen Sie eine andere Kategorie oder einen anderen Suchbegriff.",
+    "resetFilters": "Filter zurücksetzen",
+    "all": "Alle",
+    "recommendedTitle": "Empfohlene Meisterwerke",
+    "suggestionsTitle": "Vorschläge",
+    "noResultsText": "Keine Treffer gefunden"
+  },
+  "Contact": {
+    "getInTouch": "Kontaktieren Sie uns",
+    "follow": "Folgen Sie unserer Kunst",
+    "sendInquiry": "Anfrage senden",
+    "fullName": "Vollständiger Name *",
+    "email": "E-mail *",
+    "subject": "Betreff",
+    "message": "Nachricht *",
+    "sending": "Wird gesendet...",
+    "submit": "Anfrage senden",
+    "responseGrace": "Unser Team antwortet in der Regel innerhalb von 24–48 Stunden.",
+    "successMsg": "Ihre Anfrage wurde erfolgreich gesendet. Wir werden uns in Kürze bei Ihnen melden.",
+    "errorMsg": "Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut oder kontaktieren Sie uns über WhatsApp.",
+    "showroom": "Showroom",
+    "directLine": "Direktverbindung",
+    "emailUs": "Schreiben Sie uns"
+  }
+}
