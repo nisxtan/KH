@@ -7,10 +7,23 @@ import apiRoutes from './routes/apiRoutes';
 
 const app = express();
 
+// Parse multiple comma-separated frontend URLs (e.g. localhost + Vercel URL)
+const allowedOrigins = ENV.FRONTEND_URL
+    ? ENV.FRONTEND_URL.split(',').map((url: string) => url.trim())
+    : [];
+
 // Middlewares
 app.use(helmet());
 app.use(cors({
-    origin: ENV.FRONTEND_URL,
+    origin: (origin, callback) => {
+        // Allow requests with no origin (e.g. curl, Render health checks)
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error(`CORS blocked: ${origin}`));
+        }
+    },
     credentials: true,
 }));
 app.use(express.json({ limit: '50mb' }));
