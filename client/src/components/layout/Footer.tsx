@@ -5,10 +5,11 @@ import { MapPin, Phone, Mail } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import axiosInstance from '@/api/axios';
 import { Link } from '@/i18n/routing';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 export default function Footer() {
   const t = useTranslations('Footer');
+  const locale = useLocale();
   const [settings, setSettings] = useState<Record<string, string>>({});
   const [categories, setCategories] = useState<any[]>([]);
 
@@ -16,15 +17,15 @@ export default function Footer() {
     const fetchData = async () => {
         try {
             const [settRes, catRes] = await Promise.all([
-                axiosInstance.get('/settings'),
-                axiosInstance.get('/categories')
+                axiosInstance.get(`/settings?lang=${locale}`),
+                axiosInstance.get(`/categories?lang=${locale}`)
             ]);
             setSettings(settRes.data);
             setCategories(catRes.data);
         } catch {}
     };
     fetchData();
-  }, []);
+  }, [locale]);
 
   const siteName = settings['general_site_name'] || 'Kiran Handicraft Enterprises';
   const tagline = settings['general_tagline'] || 'Wholesaler, Retailer & Manufacturer';

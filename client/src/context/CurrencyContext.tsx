@@ -21,7 +21,7 @@ export function CurrencyProvider({ children }: { children: React.ReactNode }) {
     axiosInstance.get('/settings')
       .then(res => setSettings(res.data))
       .catch(() => {});
-  }, []);
+  }, [locale]);
 
   // Determine currency symbol, code, and rate based on active locale
   let currencyCode = 'NPR';

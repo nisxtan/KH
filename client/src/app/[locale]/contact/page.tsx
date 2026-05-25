@@ -4,21 +4,22 @@ import { useEffect, useState } from 'react';
 import { MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import axiosInstance from '@/api/axios';
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 
 type Settings = Record<string, string>;
 const def = (s: Settings, key: string, fb: string) => s[key] || fb;
 
 export default function ContactPage() {
   const t = useTranslations('Contact');
+  const locale = useLocale();
   const [settings, setSettings] = useState<Settings>({});
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error', msg: string } | null>(null);
 
   useEffect(() => {
-    axiosInstance.get('/settings').then(r => setSettings(r.data)).catch(() => {});
-  }, []);
+    axiosInstance.get(`/settings?lang=${locale}`).then(r => setSettings(r.data)).catch(() => {});
+  }, [locale]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

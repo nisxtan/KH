@@ -6,6 +6,7 @@ import axiosInstance from '@/api/axios';
 import { motion } from 'framer-motion';
 import { MessageCircle, Ruler, Info, Box, ArrowLeft, Share2, Loader2 } from 'lucide-react';
 import { Link } from '@/i18n/routing';
+import { useLocale } from 'next-intl';
 import { useCurrency } from '@/context/CurrencyContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Thumbs, EffectFade } from 'swiper/modules';
@@ -18,6 +19,7 @@ import 'swiper/css/effect-fade';
 
 export default function ProductDetails() {
   const { slug } = useParams();
+  const locale = useLocale();
   const { formatPrice } = useCurrency();
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -28,8 +30,8 @@ export default function ProductDetails() {
     const fetchData = async () => {
       try {
         const [prodRes, settRes] = await Promise.all([
-          axiosInstance.get(`/products/${slug}`),
-          axiosInstance.get('/settings')
+          axiosInstance.get(`/products/${slug}?lang=${locale}`),
+          axiosInstance.get(`/settings?lang=${locale}`)
         ]);
         setProduct(prodRes.data);
         setSettings(settRes.data);
@@ -40,7 +42,7 @@ export default function ProductDetails() {
       }
     };
     fetchData();
-  }, [slug]);
+  }, [slug, locale]);
 
   if (loading) return (
     <div className="h-screen flex items-center justify-center bg-transparent">

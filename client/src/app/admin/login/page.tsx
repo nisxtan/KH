@@ -24,7 +24,16 @@ export default function AdminLogin() {
       toast.success('Login successful');
       router.push('/admin/dashboard');
     } catch (error: any) {
-      toast.error(error.response?.data?.message || 'Login failed');
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      if (!error.response) {
+        toast.error(
+          apiUrl
+            ? 'Cannot reach API. Check Render is running and FRONTEND_URL includes your Vercel domain.'
+            : 'NEXT_PUBLIC_API_URL is not set on Vercel. Add your Render API URL and redeploy.'
+        );
+      } else {
+        toast.error(error.response?.data?.message || 'Login failed');
+      }
     } finally {
       setLoading(false);
     }

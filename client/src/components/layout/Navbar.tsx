@@ -35,10 +35,10 @@ export default function Navbar() {
     };
     window.addEventListener('scroll', handleScroll);
     
-    axiosInstance.get('/settings').then(res => setSettings(res.data)).catch(() => {});
+    axiosInstance.get(`/settings?lang=${locale}`).then(res => setSettings(res.data)).catch(() => {});
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [locale]);
 
   useEffect(() => {
     if (mobileMenu) {

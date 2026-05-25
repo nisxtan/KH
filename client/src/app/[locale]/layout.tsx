@@ -27,9 +27,12 @@ export default async function LocaleLayout({
   // Providing all messages to the client-side component tree
   const messages = await getMessages();
 
+  const fontClass =
+    locale === 'ne' ? 'font-devanagari' : locale === 'zh' ? 'font-cjk' : '';
+
   return (
     <html lang={locale}>
-      <body className="antialiased">
+      <body className={`antialiased ${fontClass}`}>
         <NextIntlClientProvider messages={messages}>
           <ReduxProvider>
             <CurrencyProvider>
