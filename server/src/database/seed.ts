@@ -13,7 +13,15 @@ const defaultSettings = [
     { key: 'hero_subtitle', value: 'Elite hand-carved statues and ritual art created by master artisans in the ancient tradition of Himalayan craftsmanship.', section: 'hero', label: 'Subtitle', type: 'textarea' },
     { key: 'hero_btn_primary', value: 'Browse Gallery', section: 'hero', label: 'Primary Button Text', type: 'text' },
     { key: 'hero_btn_secondary', value: 'Custom Order', section: 'hero', label: 'Secondary Button Text', type: 'text' },
-    
+    { key: 'hero_stat1_value', value: '35+', section: 'hero', label: 'Stat 1 Value', type: 'text' },
+    { key: 'hero_stat1_label', value: 'Years of Mastery', section: 'hero', label: 'Stat 1 Label', type: 'text' },
+    { key: 'hero_stat2_value', value: '3,200+', section: 'hero', label: 'Stat 2 Value', type: 'text' },
+    { key: 'hero_stat2_label', value: 'Statues Delivered', section: 'hero', label: 'Stat 2 Label', type: 'text' },
+    { key: 'hero_stat3_value', value: '12', section: 'hero', label: 'Stat 3 Value', type: 'text' },
+    { key: 'hero_stat3_label', value: 'Master Artisans', section: 'hero', label: 'Stat 3 Label', type: 'text' },
+    { key: 'hero_stat4_value', value: '40+', section: 'hero', label: 'Stat 4 Value', type: 'text' },
+    { key: 'hero_stat4_label', value: 'Countries Shipped', section: 'hero', label: 'Stat 4 Label', type: 'text' },
+
     // ─── Hero Images ───
     { key: 'hero_img_1', value: 'https://images.unsplash.com/photo-1616423641454-e6992925345b?q=80&w=700', section: 'hero', label: 'Hero Image 1 (Top Left)', type: 'image' },
     { key: 'hero_img_2', value: 'https://images.unsplash.com/photo-1590650213165-c1fef80648c4?q=80&w=700', section: 'hero', label: 'Hero Image 2 (Bottom Left)', type: 'image' },
@@ -33,6 +41,14 @@ const defaultSettings = [
 
     // ─── About Section ───
     { key: 'philosophy_badge', value: 'About Us', section: 'home', label: 'Home Page Badge', type: 'text' },
+    { key: 'philosophy_title_line1', value: 'Where Faith', section: 'home', label: 'Philosophy Title Line 1', type: 'text' },
+    { key: 'philosophy_title_line2', value: 'Meets', section: 'home', label: 'Philosophy Title Line 2', type: 'text' },
+    { key: 'philosophy_title_line3', value: 'the Chisel', section: 'home', label: 'Philosophy Title Line 3', type: 'text' },
+    { key: 'philosophy_desc', value: 'In the sacred air of Boudha, our artisans don\'t just carve metal—they transmit devotion into physical form. Every statue begins with a day of meditation.', section: 'home', label: 'Philosophy Description', type: 'textarea' },
+    { key: 'cta_badge', value: 'Commission a Masterpiece', section: 'home', label: 'CTA Badge', type: 'text' },
+    { key: 'cta_title_line1', value: 'Bring a God', section: 'home', label: 'CTA Title Line 1', type: 'text' },
+    { key: 'cta_title_line2', value: 'Into Your Home', section: 'home', label: 'CTA Title Line 2', type: 'text' },
+    { key: 'cta_desc', value: 'Each statue is a one-of-a-kind creation. Commission a bespoke piece crafted to your exact spiritual vision.', section: 'home', label: 'CTA Description', type: 'textarea' },
     { key: 'about_hero_badge', value: 'Our Essence', section: 'about', label: 'Page Badge Text', type: 'text' },
     { key: 'about_hero_title', value: 'The Soul of the Chisel', section: 'about', label: 'Hero Title', type: 'text' },
     { key: 'about_hero_quote', value: 'We don\'t create statues; we uncover the divinity already present within the metal.', section: 'about', label: 'Hero Quote', type: 'textarea' },
@@ -83,7 +99,7 @@ const seed = async () => {
         for (const setting of defaultSettings) {
             const existing = await settingsRepo.findOne({ where: { key: setting.key } });
             if (existing) {
-                existing.value = setting.value; 
+                existing.value = setting.value;
                 existing.type = setting.type;
                 existing.label = setting.label;
                 existing.section = setting.section;

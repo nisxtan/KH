@@ -13,7 +13,22 @@
   },
   "Hero": {
     "trusted": "收藏家信赖之选",
-    "since": "始于 {year} 年"
+    "since": "始于 {year} 年",
+    "badge": "成立于 1988 年 · 博达，加德满都",
+    "titleLine1": "神圣",
+    "titleLine2": "佛像",
+    "titleLine3": "来自尼泊尔",
+    "subtitle": "由大师工匠按照喜马拉雅传统工艺手工雕刻的精英佛像和仪式艺术品。",
+    "btnPrimary": "浏览画廊",
+    "btnSecondary": "定制订单",
+    "stat1Value": "35+",
+    "stat1Label": "年精湛技艺",
+    "stat2Value": "3,200+",
+    "stat2Label": "已交付佛像",
+    "stat3Value": "12",
+    "stat3Label": "大师级工匠",
+    "stat4Value": "40+",
+    "stat4Label": "配送国家"
   },
   "Home": {
     "lostWax": "失蜡浇铸工艺",
@@ -33,7 +48,22 @@
     "fullGallery": "完整画廊",
     "exploreCollection": "探索完整系列",
     "startCommission": "开启专属定制",
-    "browseGallery": "浏览画廊"
+    "browseGallery": "浏览画廊",
+    "philosophyBadge": "关于我们",
+    "philosophyTitleLine1": "信仰与",
+    "philosophyTitleLine2": "匠心",
+    "philosophyTitleLine3": "相遇",
+    "philosophyDesc": "在博达的神圣空气中，我们的工匠不只是雕刻金属——他们将虔诚转化为有形的形态。每一尊佛像都始于一天的冥想。",
+    "ctaBadge": "定制传世巨作",
+    "ctaTitleLine1": "将神明",
+    "ctaTitleLine2": "请入家中",
+    "ctaDesc": "每一尊佛像都是独一无二的艺术品。定制专属佛像，精准呈现您的精神愿景。",
+    "featuresTitle1": "神圣材料",
+    "featuresDesc1": "来自认证供应商的纯铜、黄铜和真金24K金箔。",
+    "featuresTitle2": "100% 手工制作",
+    "featuresDesc2": "每一尊佛像都采用数百年历史的尼泊尔传统工艺手工制作。",
+    "featuresTitle3": "全球配送",
+    "featuresDesc3": "精心包装，安全配送到全球40多个国家。"
   },
   "Footer": {
     "desc": "自 {year} 年以来，致力于传承尼泊尔手工艺的神圣艺术。每一尊佛像皆是连结凡尘与神圣的桥梁。",
@@ -97,6 +127,8 @@
     "errorMsg": "发送失败，请重试或通过 WhatsApp 直接与我们取得联系。",
     "showroom": "博达展厅",
     "directLine": "服务热线",
-    "emailUs": "发送邮件"
+    "emailUs": "发送邮件",
+    "title": "咨询与\n定制",
+    "subtitle": "无论您是收藏家还是室内设计师，我们都邀请您与我们联系。"
   }
 }

@@ -13,7 +13,22 @@
   },
   "Hero": {
     "trusted": "Trusted by Collectors",
-    "since": "Since {year}"
+    "since": "Since {year}",
+    "badge": "Est. 1988 · Boudha, Kathmandu",
+    "titleLine1": "Divine",
+    "titleLine2": "Statues",
+    "titleLine3": "of Nepal",
+    "subtitle": "Elite hand-carved statues and ritual art created by master artisans in the ancient tradition of Himalayan craftsmanship.",
+    "btnPrimary": "Browse Gallery",
+    "btnSecondary": "Custom Order",
+    "stat1Value": "35+",
+    "stat1Label": "Years of Mastery",
+    "stat2Value": "3,200+",
+    "stat2Label": "Statues Delivered",
+    "stat3Value": "12",
+    "stat3Label": "Master Artisans",
+    "stat4Value": "40+",
+    "stat4Label": "Countries Shipped"
   },
   "Home": {
     "lostWax": "The Lost-Wax Technique",
@@ -33,7 +48,22 @@
     "fullGallery": "The Full Gallery",
     "exploreCollection": "Explore Full Collection",
     "startCommission": "Start a Commission",
-    "browseGallery": "Browse Gallery"
+    "browseGallery": "Browse Gallery",
+    "philosophyBadge": "About Us",
+    "philosophyTitleLine1": "Where Faith",
+    "philosophyTitleLine2": "Meets",
+    "philosophyTitleLine3": "the Chisel",
+    "philosophyDesc": "In the sacred air of Boudha, our artisans don't just carve metal—they transmit devotion into physical form. Every statue begins with a day of meditation.",
+    "ctaBadge": "Commission a Masterpiece",
+    "ctaTitleLine1": "Bring a God",
+    "ctaTitleLine2": "Into Your Home",
+    "ctaDesc": "Each statue is a one-of-a-kind creation. Commission a bespoke piece crafted to your exact spiritual vision.",
+    "featuresTitle1": "Sacred Materials",
+    "featuresDesc1": "Pure copper, brass, and genuine 24K gold leaf sourced from certified suppliers.",
+    "featuresTitle2": "100% Hand-Crafted",
+    "featuresDesc2": "Every statue is shaped by hand using centuries-old Nepalese techniques.",
+    "featuresTitle3": "Worldwide Shipping",
+    "featuresDesc3": "Carefully packed and securely shipped to over 40 countries worldwide."
   },
   "Footer": {
     "desc": "Preserving the sacred art of Nepalese craftsmanship since {year}. Every statue is a bridge between the human and the divine.",
@@ -97,6 +127,8 @@
     "errorMsg": "Failed to send inquiry. Please try again or contact us via WhatsApp.",
     "showroom": "Showroom",
     "directLine": "Direct Line",
-    "emailUs": "Email Us"
+    "emailUs": "Email Us",
+    "title": "Inquiries &\nCommissions",
+    "subtitle": "Whether you are a collector or an interior visionary, we invite you to connect with us."
   }
 }

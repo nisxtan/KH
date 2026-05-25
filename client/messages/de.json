@@ -13,7 +13,22 @@
   },
   "Hero": {
     "trusted": "Von Sammlern geschätzt",
-    "since": "Seit {year}"
+    "since": "Seit {year}",
+    "badge": "Seit 1988 · Boudha, Kathmandu",
+    "titleLine1": "Göttliche",
+    "titleLine2": "Statuen",
+    "titleLine3": "aus Nepal",
+    "subtitle": "Von Meisterhandwerkern gefertigte handgeschnitzte Statuen und rituelle Kunst in der alten Tradition des Himalaya-Handwerks.",
+    "btnPrimary": "Galerie durchsuchen",
+    "btnSecondary": "Individuelle Bestellung",
+    "stat1Value": "35+",
+    "stat1Label": "Jahre Meisterschaft",
+    "stat2Value": "3.200+",
+    "stat2Label": "Statuen geliefert",
+    "stat3Value": "12",
+    "stat3Label": "Meisterhandwerker",
+    "stat4Value": "40+",
+    "stat4Label": "Länder versendet"
   },
   "Home": {
     "lostWax": "Die Wachsausschmelztechnik",
@@ -33,7 +48,22 @@
     "fullGallery": "Die vollständige Galerie",
     "exploreCollection": "Ganze Kollektion erkunden",
     "startCommission": "Auftrag starten",
-    "browseGallery": "Galerie durchsuchen"
+    "browseGallery": "Galerie durchsuchen",
+    "philosophyBadge": "Über Uns",
+    "philosophyTitleLine1": "Wo Glaube",
+    "philosophyTitleLine2": "dem Meißel",
+    "philosophyTitleLine3": "begegnet",
+    "philosophyDesc": "In der heiligen Luft von Boudha formen unsere Handwerker nicht nur Metall – sie übertragen Hingabe in physische Form. Jede Statue beginnt mit einem Tag der Meditation.",
+    "ctaBadge": "Ein Meisterwerk in Auftrag geben",
+    "ctaTitleLine1": "Bringen Sie einen Gott",
+    "ctaTitleLine2": "in Ihr Zuhause",
+    "ctaDesc": "Jede Statue ist ein Unikat. Lassen Sie ein maßgeschneidertes Stück nach Ihrer genauen spirituellen Vision fertigen.",
+    "featuresTitle1": "Heilige Materialien",
+    "featuresDesc1": "Reines Kupfer, Messing und echtes 24K Blattgold von zertifizierten Lieferanten.",
+    "featuresTitle2": "100% Handgefertigt",
+    "featuresDesc2": "Jede Statue wird von Hand unter Verwendung jahrhundertealter nepalesischer Techniken geformt.",
+    "featuresTitle3": "Weltweiter Versand",
+    "featuresDesc3": "Sorgfältig verpackt und sicher in über 40 Länder weltweit versandt."
   },
   "Footer": {
     "desc": "Bewahrung der heiligen Kunst des nepalesischen Handwerks seit {year}. Jede Statue ist eine Brücke zwischen dem Menschlichen und dem Göttlichen.",
@@ -97,6 +127,8 @@
     "errorMsg": "Fehler beim Senden der Anfrage. Bitte versuchen Sie es erneut oder kontaktieren Sie uns über WhatsApp.",
     "showroom": "Showroom",
     "directLine": "Direktverbindung",
-    "emailUs": "Schreiben Sie uns"
+    "emailUs": "Schreiben Sie uns",
+    "title": "Anfragen &\nAufträge",
+    "subtitle": "Ob Sie Sammler oder Interior-Visionär sind, wir laden Sie ein, sich mit uns zu verbinden."
   }
 }

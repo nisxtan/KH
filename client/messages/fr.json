@@ -13,7 +13,22 @@
   },
   "Hero": {
     "trusted": "Approuvé par les Collectionneurs",
-    "since": "Depuis {year}"
+    "since": "Depuis {year}",
+    "badge": "Est. 1988 · Boudha, Katmandou",
+    "titleLine1": "Statues",
+    "titleLine2": "Divines",
+    "titleLine3": "du Népal",
+    "subtitle": "Statues et art rituel sculptés à la main d'élite créés par des maîtres artisans dans la tradition ancienne de l'artisanat de l'Himalaya.",
+    "btnPrimary": "Parcourir la Galerie",
+    "btnSecondary": "Commande Personnalisée",
+    "stat1Value": "35+",
+    "stat1Label": "Années de Maîtrise",
+    "stat2Value": "3 200+",
+    "stat2Label": "Statues Livrées",
+    "stat3Value": "12",
+    "stat3Label": "Maîtres Artisans",
+    "stat4Value": "40+",
+    "stat4Label": "Pays Livrés"
   },
   "Home": {
     "lostWax": "La technique de la cire perdue",
@@ -33,7 +48,22 @@
     "fullGallery": "La galerie complète",
     "exploreCollection": "Explorer la collection complète",
     "startCommission": "Commencer un projet",
-    "browseGallery": "Parcourir la galerie"
+    "browseGallery": "Parcourir la galerie",
+    "philosophyBadge": "À Propos de Nous",
+    "philosophyTitleLine1": "Où la Foi",
+    "philosophyTitleLine2": "Rencontre le",
+    "philosophyTitleLine3": "Ciseau",
+    "philosophyDesc": "Dans l'air sacré de Boudha, nos artisans ne sculptent pas seulement le métal—Ils transmettent la dévotion sous forme physique. Chaque statue commence par une journée de méditation.",
+    "ctaBadge": "Commander un Chef-d'œuvre",
+    "ctaTitleLine1": "Apportez un Dieu",
+    "ctaTitleLine2": "Chez Vous",
+    "ctaDesc": "Chaque statue est une création unique. Commandez une pièce sur mesure façonnée selon votre vision spirituelle exacte.",
+    "featuresTitle1": "Matériaux Sacrés",
+    "featuresDesc1": "Cuivre pur, laiton et véritable feuille d'or 24 carats provenant de fournisseurs certifiés.",
+    "featuresTitle2": "100% Fait à la Main",
+    "featuresDesc2": "Chaque statue est façonnée à la main en utilisant des techniques népalaises séculaires.",
+    "featuresTitle3": "Livraison Internationale",
+    "featuresDesc3": "Emballé avec soin et expédié en toute sécurité dans plus de 40 pays dans le monde."
   },
   "Footer": {
     "desc": "Préservation de l'art sacré de l'artisanat népalais depuis {year}. Chaque statue est un pont entre l'humain et le divin.",
@@ -97,6 +127,8 @@
     "errorMsg": "Échec de l'envoi de la demande. Veuillez réessayer ou nous contacter via WhatsApp.",
     "showroom": "Showroom",
     "directLine": "Ligne directe",
-    "emailUs": "Écrivez-nous"
+    "emailUs": "Écrivez-nous",
+    "title": "Demandes &\nCommandes",
+    "subtitle": "Que vous soyez collectionneur ou visionnaire d'intérieur, nous vous invitons à nous contacter."
   }
 }

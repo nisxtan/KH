@@ -13,7 +13,22 @@
   },
   "Hero": {
     "trusted": "Valorado por Coleccionistas",
-    "since": "Desde {year}"
+    "since": "Desde {year}",
+    "badge": "Est. 1988 · Boudha, Katmandú",
+    "titleLine1": "Estatuas",
+    "titleLine2": "Divinas",
+    "titleLine3": "de Nepal",
+    "subtitle": "Estatuas y arte ritual talladas a mano de élite creadas por maestros artesanos en la antigua tradición de la artesanía del Himalaya.",
+    "btnPrimary": "Explorar Galería",
+    "btnSecondary": "Pedido Personalizado",
+    "stat1Value": "35+",
+    "stat1Label": "Años de Maestría",
+    "stat2Value": "3.200+",
+    "stat2Label": "Estatuas Entregadas",
+    "stat3Value": "12",
+    "stat3Label": "Maestros Artesanos",
+    "stat4Value": "40+",
+    "stat4Label": "Países Enviados"
   },
   "Home": {
     "lostWax": "La técnica de la cire perdida",
@@ -33,7 +48,22 @@
     "fullGallery": "La galería completa",
     "exploreCollection": "Explorar colección completa",
     "startCommission": "Iniciar un encargo",
-    "browseGallery": "Explorar galería"
+    "browseGallery": "Explorar galería",
+    "philosophyBadge": "Sobre Nosotros",
+    "philosophyTitleLine1": "Donde la Fe",
+    "philosophyTitleLine2": "Encuentra al",
+    "philosophyTitleLine3": "Cincel",
+    "philosophyDesc": "En el aire sagrado de Boudha, nuestros artesanos no solo tallan metal—transmiten devoción en forma física. Cada estatua comienza con un día de meditación.",
+    "ctaBadge": "Encargar una Obra Maestra",
+    "ctaTitleLine1": "Trae un Dios",
+    "ctaTitleLine2": "a Tu Hogar",
+    "ctaDesc": "Cada estatua es una creación única. Encarga una pieza personalizada hecha según tu visión espiritual exacta.",
+    "featuresTitle1": "Materiales Sagrados",
+    "featuresDesc1": "Cobre puro, latón y pan de oro de 24K genuino de proveedores certificados.",
+    "featuresTitle2": "100% Hecho a Mano",
+    "featuresDesc2": "Cada estatua es moldeada a mano utilizando técnicas nepalesas centenarias.",
+    "featuresTitle3": "Envío Internacional",
+    "featuresDesc3": "Empaquetado con cuidado y enviado de forma segura a más de 40 países de todo el mundo."
   },
   "Footer": {
     "desc": "Preservando el arte sagrado de la artesanía nepalesa desde {year}. Cada estatua es un puente entre lo humano y lo divino.",
@@ -97,6 +127,8 @@
     "errorMsg": "Error al enviar la consulta. Inténtelo de nuevo o contáctenos por WhatsApp.",
     "showroom": "Showroom",
     "directLine": "Línea directa",
-    "emailUs": "Escríbanos"
+    "emailUs": "Escríbanos",
+    "title": "Consultas y\nEncargos",
+    "subtitle": "Ya sea coleccionista o visionario de interiores, lo invitamos a conectarse con nosotros."
   }
 }
