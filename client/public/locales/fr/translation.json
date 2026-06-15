@@ -1,0 +1,23 @@
+﻿{
+  "common": {
+    "gallery": "GALERIE",
+    "about": "À PROPOS DE NOUS",
+    "contact": "CONTACT",
+    "inquireNow": "DEMANDER MAINTENANT"
+  },
+  "hero": {
+    "title": "ENTREPRISES D'ARTISANAT KIRAN",
+    "subtitle": "GROSSISTE, DÉTAILLANT ET FABRICANT D'OBJETS MÉTALLIQUES",
+    "faithMessage": "LÀ OÙ LA FOI RENCONTRE LE CISEAU",
+    "masterArtisan": "Maître Artisan"
+  },
+  "techniques": {
+    "handHammered": "Martelé à la main",
+    "traditionalTechniques": "TECHNIQUES TRADITIONNELLES",
+    "goldPlated": "Doré à l'or 24 carats",
+    "realGoldLeaf": "VÉRITABLE FEUILLE D'OR"
+  },
+  "description": {
+    "boudha": "Dans l'air sacré de Boudha, nos artisans ne se contentent pas de sculpter le métal—ils transmettent la dévotion sous forme physique. Chaque statue commence par une journée de méditation."
+  }
+}

@@ -12,8 +12,14 @@ async function getSettings(locale: string) {
   }
 }
 
-const s = (settings: Record<string, string>, key: string, fallback: string) =>
-  settings[key] || fallback;
+const englishDefaults: Record<string, string> = {
+  about_hero_badge: 'Our Essence',
+  about_hero_title: 'The Soul of the Chisel',
+  about_hero_quote: 'We don\'t create statues; we uncover the divinity already present within the metal.',
+  about_story_title: 'A Legacy Carved in Tradition',
+  about_story_para1: 'Born in the sacred atmosphere of Boudha Stupa, KIRAN HANDICRAFT ENTERPRISES was founded in 1988 by Kiran Kumar Shakya.',
+  about_story_para2: 'Our workshop is a place of silence and focus. As leading wholesalers and manufacturers, every piece we produce is the result of hundreds of hours of manual labor.',
+};
 
 export default async function AboutPage({
   params
@@ -24,6 +30,15 @@ export default async function AboutPage({
   const t = await getTranslations('About');
   const tHero = await getTranslations('Hero');
   const settings = await getSettings(locale);
+
+  const s = (settings: Record<string, string>, key: string, fallback: string) => {
+    const val = settings[key];
+    if (!val) return fallback;
+    if (locale !== 'en' && val === englishDefaults[key]) {
+      return fallback;
+    }
+    return val;
+  };
 
   return (
     <div className="bg-transparent">

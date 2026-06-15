@@ -7,7 +7,6 @@ import axiosInstance from '@/api/axios';
 import { useTranslations, useLocale } from 'next-intl';
 
 type Settings = Record<string, string>;
-const def = (s: Settings, key: string, fb: string) => s[key] || fb;
 
 export default function ContactPage() {
   const t = useTranslations('Contact');
@@ -16,6 +15,33 @@ export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [submitting, setSubmitting] = useState(false);
   const [status, setStatus] = useState<{ type: 'success' | 'error', msg: string } | null>(null);
+
+  const toCamelCase = (str: string) => {
+    const stripped = str.startsWith('contact_') ? str.slice(8) : str;
+    return stripped.replace(/_([a-z0-9])/g, (_, g) => g.toUpperCase());
+  };
+
+  const def = (s: Settings, key: string, fb: string) => {
+    const val = s[key];
+    if (!val) {
+      if (locale !== 'en') {
+        try {
+          const tKey = toCamelCase(key);
+          return t(tKey);
+        } catch {
+          return fb;
+        }
+      }
+      return fb;
+    }
+    if (locale !== 'en' && val === fb) {
+      try {
+        const tKey = toCamelCase(key);
+        return t(tKey);
+      } catch {}
+    }
+    return val;
+  };
 
   useEffect(() => {
     axiosInstance.get(`/settings?lang=${locale}`).then(r => setSettings(r.data)).catch(() => {});

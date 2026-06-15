@@ -1,0 +1,23 @@
+﻿{
+  "common": {
+    "gallery": "GALLERY",
+    "about": "ABOUT US",
+    "contact": "CONTACT",
+    "inquireNow": "INQUIRE NOW"
+  },
+  "hero": {
+    "title": "KIRAN HANDICRAFT ENTERPRISES",
+    "subtitle": "WHOLESALER, RETAILER AND MANUFACTURER OF METAL ARTIFACTS",
+    "faithMessage": "WHERE FAITH MEETS THE CHISEL",
+    "masterArtisan": "Master Artisan"
+  },
+  "techniques": {
+    "handHammered": "Hand hammered",
+    "traditionalTechniques": "TRADITIONAL TECHNIQUES",
+    "goldPlated": "24k gold plated",
+    "realGoldLeaf": "REAL GOLD LEAF"
+  },
+  "description": {
+    "boudha": "In the sacred air of Boudha, our artisans don't just carve metal—they transmit devotion into physical form. Every statue begins with a day of meditation."
+  }
+}

@@ -9,7 +9,6 @@ import { Link } from '@/i18n/routing';
 import { useTranslations, useLocale } from 'next-intl';
 
 type Settings = Record<string, string>;
-const def = (s: Settings, key: string, fb: string) => s[key] || fb;
 
 export default function Home() {
   const t = useTranslations('Home');
@@ -18,6 +17,32 @@ export default function Home() {
   const [featuredProducts, setFeaturedProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const toCamelCase = (str: string) => {
+    return str.replace(/_([a-z0-9])/g, (_, g) => g.toUpperCase());
+  };
+
+  const def = (s: Settings, key: string, fb: string) => {
+    const val = s[key];
+    if (!val) {
+      if (locale !== 'en') {
+        try {
+          const tKey = toCamelCase(key);
+          return t(tKey);
+        } catch {
+          return fb;
+        }
+      }
+      return fb;
+    }
+    if (locale !== 'en' && val === fb) {
+      try {
+        const tKey = toCamelCase(key);
+        return t(tKey);
+      } catch {}
+    }
+    return val;
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -25,6 +50,7 @@ export default function Home() {
           axiosInstance.get(`/settings?lang=${locale}`),
           axiosInstance.get(`/products?featured=true&lang=${locale}`)
         ]);
+        console.log('Settings fetched for locale', locale, ':', settingsRes.data);
         setSettings(settingsRes.data);
         setFeaturedProducts(productsRes.data.items.slice(0, 4));
       } catch (err) {

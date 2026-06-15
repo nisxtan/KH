@@ -9,7 +9,23 @@ export class SiteSetting {
     key!: string;
 
     @Column({ type: 'text' })
-    value!: string;
+    value!: string; // English (default)
+
+    // Add language-specific columns
+    @Column({ type: 'text', nullable: true })
+    value_fr!: string; // French
+
+    @Column({ type: 'text', nullable: true })
+    value_ne!: string; // Nepali
+
+    @Column({ type: 'text', nullable: true })
+    value_zh!: string; // Chinese
+
+    @Column({ type: 'text', nullable: true })
+    value_de!: string; // German
+
+    @Column({ type: 'text', nullable: true })
+    value_es!: string; // Spanish
 
     @Column()
     section!: string; // 'hero' | 'about' | 'contact' | 'general'

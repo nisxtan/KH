@@ -10,16 +10,44 @@ import ThreeDCarousel from './ThreeDCarousel';
 
 type Settings = Record<string, string>;
 
-const def = (s: Settings, key: string, fb: string) => s[key] || fb;
-
 export default function Hero() {
   const t = useTranslations('Hero');
   const locale = useLocale();
   const [settings, setSettings] = useState<Settings>({});
 
+  const toCamelCase = (str: string) => {
+    const stripped = str.startsWith('hero_') ? str.slice(5) : str;
+    return stripped.replace(/_([a-z0-9])/g, (_, g) => g.toUpperCase());
+  };
+
+  const def = (s: Settings, key: string, fb: string) => {
+    const val = s[key];
+    if (!val) {
+      if (locale !== 'en') {
+        try {
+          const tKey = toCamelCase(key);
+          return t(tKey);
+        } catch {
+          return fb;
+        }
+      }
+      return fb;
+    }
+    if (locale !== 'en' && val === fb) {
+      try {
+        const tKey = toCamelCase(key);
+        return t(tKey);
+      } catch {}
+    }
+    return val;
+  };
+
   useEffect(() => {
     axiosInstance.get(`/settings?lang=${locale}`)
-      .then(res => setSettings(res.data))
+      .then(res => {
+        console.log('Hero settings fetched for locale', locale, ':', res.data);
+        setSettings(res.data);
+      })
       .catch(() => {});
   }, [locale]);
 
@@ -58,11 +86,11 @@ export default function Hero() {
                 ? 'text-3xl sm:text-4xl md:text-6xl xl:text-7xl leading-[1.3] md:leading-[1.2]'
                 : 'text-4xl sm:text-5xl md:text-7xl xl:text-[6.5rem] 2xl:text-[7.5rem] leading-[0.9] md:leading-[0.8]'
             } font-black tracking-tighter text-espresso uppercase`}>
-              {locale === 'ne' ? 'नेपालको' : def(settings, 'hero_title_line1', 'Divine')}<br />
+              {def(settings, 'hero_title_line1', 'Divine')}<br />
               <span className="text-divine-gold">
-                {locale === 'ne' ? 'दिव्य' : def(settings, 'hero_title_line2', 'Statues')}
+                {def(settings, 'hero_title_line2', 'Statues')}
               </span><br />
-              {locale === 'ne' ? 'मूर्तिहरू' : def(settings, 'hero_title_line3', 'of Nepal')}
+              {def(settings, 'hero_title_line3', 'of Nepal')}
             </h1>
 
             {/* Subtitle */}
