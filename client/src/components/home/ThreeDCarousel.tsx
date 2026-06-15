@@ -153,11 +153,11 @@ export default function ThreeDCarousel() {
                   damping: 18
                 }}
                 drag={isCenter ? "x" : false}
-                dragConstraints={{ left: 0, right: 0 }}
-                dragElastic={isCenter ? 0.35 : 0}
+                dragConstraints={{ left: -100, right: 100 }}
+                dragElastic={0.08}
                 onDragEnd={(e, info) => {
                   if (!isCenter) return;
-                  const swipeThreshold = 50;
+                  const swipeThreshold = 30;
                   if (info.offset.x < -swipeThreshold) {
                     handleNext();
                   } else if (info.offset.x > swipeThreshold) {

@@ -153,7 +153,7 @@ export default function Home() {
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 {philosophyItems.map((item) => (
                   <div key={item.label} className="flex items-center gap-4 p-5 md:p-6 rounded-2xl bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 hover:-translate-y-2 transition-all duration-300 group text-left shadow-lg hover:shadow-xl">
-                    <div className="p-2.5 md:p-3 rounded-xl bg-gold/20 text-gold group-hover:bg-gold group-hover:text-espresso transition-all">
+                    <div className="p-2.5 md:p-3 rounded-xl bg-gold/20 text-gold transition-all">
                       {item.icon}
                     </div>
                     <div>
