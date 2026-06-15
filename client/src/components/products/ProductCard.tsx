@@ -20,7 +20,7 @@ interface ProductCardProps {
   hoverUp?: boolean;
 }
 
-export default function ProductCard({ product, hoverUp = true }: ProductCardProps) {
+export default function ProductCard({ product, hoverUp = false }: ProductCardProps) {
   const { formatPrice } = useCurrency();
 
   return (

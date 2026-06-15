@@ -5,6 +5,9 @@ import { MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import axiosInstance from '@/api/axios';
 import { useTranslations, useLocale } from 'next-intl';
+import { motion } from 'framer-motion';
+import AnimatedText from "@/components/ui/AnimatedText";
+import SacredGeometry from "@/components/ui/SacredGeometry";
 
 type Settings = Record<string, string>;
 
@@ -84,21 +87,42 @@ export default function ContactPage() {
         <div className="max-w-2xl mb-10 md:mb-20 space-y-6">
           <span className="section-badge"><span className="h-px w-8 bg-gold-dark" /> {t('getInTouch')}</span>
           <h1 className="text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-ivory uppercase leading-[0.85]">
-            {def(settings, 'contact_title', 'Inquiries &\nCommissions')}
+            <AnimatedText text={def(settings, 'contact_title', 'Inquiries &\nCommissions')} animationType="lines" direction="up" delay={0.05} underline />
           </h1>
           <p className="text-ivory/55 text-lg font-medium leading-relaxed">
             {def(settings, 'contact_subtitle', 'Whether you are a collector or an interior visionary, we invite you to connect with us.')}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.15,
+              },
+            },
+          }}
+          className="grid grid-cols-1 lg:grid-cols-5 gap-12"
+        >
 
           {/* ─── Contact Info ─── */}
           <div className="lg:col-span-2 space-y-10">
             <div className="space-y-6">
-              {contactItems.map((item) => (
-                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
-                  className="flex items-start gap-6 p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 transition-all group"
+              {contactItems.map((item, index) => (
+                <motion.a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+                  }}
+                  className="flex items-start gap-6 p-6 rounded-3xl bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 transition-all group block"
                 >
                   <div className="p-3 rounded-2xl bg-gold/20 text-gold group-hover:bg-gold group-hover:text-espresso transition-all flex-shrink-0">
                     {item.icon}
@@ -107,12 +131,18 @@ export default function ContactPage() {
                     <p className="text-[9px] font-black uppercase tracking-widest text-ivory/40 mb-1">{item.label}</p>
                     <p className="font-black text-ivory text-base">{item.value}</p>
                   </div>
-                </a>
+                </motion.a>
               ))}
             </div>
 
             {/* Socials */}
-            <div className="p-8 rounded-3xl bg-black/40 backdrop-blur-md border border-gold/20 space-y-5">
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+              }}
+              className="p-8 rounded-3xl bg-black/40 backdrop-blur-md border border-gold/20 space-y-5"
+            >
               <p className="text-[10px] font-black uppercase tracking-[0.25em] text-ivory">{t('follow')}</p>
               <div className="flex gap-4">
                 {socials.map((s) => (
@@ -124,13 +154,23 @@ export default function ContactPage() {
                   </a>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* ─── Inquiry Form ─── */}
-          <div className="lg:col-span-3 bg-black/40 backdrop-blur-md rounded-[2.5rem] border border-gold/20 p-10 xl:p-14">
-            <h2 className="text-2xl font-black tracking-tighter text-ivory uppercase mb-10">{t('sendInquiry')}</h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, x: 30 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
+            }}
+            className="lg:col-span-3 bg-black/40 backdrop-blur-md rounded-[2.5rem] border border-gold/20 p-10 xl:p-14 relative overflow-hidden"
+          >
+            <div className="absolute right-0 bottom-0 opacity-[0.03] pointer-events-none z-0">
+              <SacredGeometry pattern="lotus" className="w-[300px] h-[300px]" color="#D4AF37" rotationSpeed={180} />
+            </div>
+            <div className="relative z-10">
+              <h2 className="text-2xl font-black tracking-tighter text-ivory uppercase mb-10">{t('sendInquiry')}</h2>
+              <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label className="text-[10px] font-black uppercase tracking-[0.2em] text-ivory/50">{t('fullName')}</label>
@@ -192,7 +232,8 @@ export default function ContactPage() {
               </p>
             </form>
           </div>
-        </div>
+        </motion.div>
+      </motion.div>
 
         {/* Map */}
         <div className="mt-12 md:mt-20 h-64 md:h-96 rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden border border-gold/10 shadow-divine grayscale hover:grayscale-0 transition-all duration-1000">

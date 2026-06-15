@@ -4,6 +4,8 @@ import axiosInstance from "@/api/axios";
 import { Link } from "@/i18n/routing";
 import { ChevronLeft, ChevronRight, LayoutGrid } from "lucide-react";
 import { getTranslations } from 'next-intl/server';
+import AnimatedText from "@/components/ui/AnimatedText";
+import SacredGeometry from "@/components/ui/SacredGeometry";
 
 async function getProducts(params: any) {
   try {
@@ -55,8 +57,11 @@ export default async function ProductsPage({
     `/products?page=${p}${categorySlug ? `&category=${categorySlug}` : ''}${search ? `&search=${search}` : ''}`;
 
   return (
-    <div className="bg-transparent min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-4 md:px-6">
+    <div className="bg-transparent min-h-screen pt-32 pb-20 relative overflow-hidden">
+      <div className="absolute right-0 top-1/4 translate-x-1/3 opacity-[0.03] pointer-events-none z-0">
+        <SacredGeometry pattern="lotus" className="w-[600px] h-[600px]" color="#D4AF37" rotationSpeed={160} />
+      </div>
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
 
         {/* ─── Header ─── */}
         <div className="mb-8 md:mb-16">
@@ -66,8 +71,10 @@ export default async function ProductsPage({
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 text-center md:text-left">
             <div className="space-y-3">
               <h1 className="text-4xl md:text-5xl xl:text-7xl font-black tracking-tighter text-ivory uppercase leading-[0.9]">
-                {t('sacred')} <br />
-                <span className="text-divine-gold">{t('collection')}</span>
+                <AnimatedText text={t('sacred')} animationType="words" direction="up" delay={0.05} /> <br />
+                <span className="text-divine-gold">
+                  <AnimatedText text={t('collection')} animationType="letters" direction="up" delay={0.15} underline />
+                </span>
               </h1>
               <p className="text-[10px] text-ivory/40 font-black uppercase tracking-widest flex items-center justify-center md:justify-start gap-2">
                 <LayoutGrid size={12} /> {t('registered', { count: total })}

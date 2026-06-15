@@ -9,6 +9,8 @@ import { Toaster } from "react-hot-toast";
 import Navbar from "@/components/layout/Navbar";
 import ConditionalFooter from "@/components/layout/ConditionalFooter";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
+import PageTransition from "@/components/ui/PageTransition";
+
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -78,8 +80,10 @@ export default async function LocaleLayout({
                 
                 <div className="relative z-10 flex flex-col min-h-screen">
                   <Navbar />
-                  <main className="flex-grow">
-                    {children}
+                  <main className="flex-grow flex flex-col">
+                    <PageTransition>
+                      {children}
+                    </PageTransition>
                   </main>
                   <ConditionalFooter />
                 </div>

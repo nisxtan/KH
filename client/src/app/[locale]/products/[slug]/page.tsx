@@ -10,6 +10,8 @@ import { useLocale } from 'next-intl';
 import { useCurrency } from '@/context/CurrencyContext';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Thumbs, EffectFade } from 'swiper/modules';
+import AnimatedText from "@/components/ui/AnimatedText";
+import SacredGeometry from "@/components/ui/SacredGeometry";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -69,8 +71,11 @@ export default function ProductDetails() {
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   return (
-    <div className="bg-transparent min-h-screen pt-32 pb-24">
-      <div className="container mx-auto px-6 max-w-7xl">
+    <div className="bg-transparent min-h-screen pt-32 pb-24 relative overflow-hidden">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none z-0">
+        <SacredGeometry pattern="lotus" className="w-[800px] h-[800px]" color="#D4AF37" rotationSpeed={200} />
+      </div>
+      <div className="container mx-auto px-6 max-w-7xl relative z-10">
         
         {/* Back Button */}
         <div className="flex justify-center lg:justify-start mb-12">
@@ -79,7 +84,7 @@ export default function ProductDetails() {
             </Link>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-16 xl:gap-24 items-start">
+        <div className="flex flex-col lg:flex-row gap-16 xl:gap-24 items-start relative z-10">
           
           {/* Visual Showcase */}
           <div className="w-full lg:w-1/2 flex flex-col items-center">
@@ -145,7 +150,9 @@ export default function ProductDetails() {
                 <span className="text-[10px] uppercase tracking-[0.4em] text-gold font-black">{product.category?.name || 'Uncategorized'}</span>
               </div>
               
-              <h1 className="text-5xl md:text-6xl xl:text-8xl font-black text-ivory uppercase tracking-tighter leading-[0.9]">{product.name}</h1>
+              <h1 className="text-5xl md:text-6xl xl:text-8xl font-black text-ivory uppercase tracking-tighter leading-[0.9]">
+                <AnimatedText text={product.name} animationType="words" direction="up" delay={0.05} underline />
+              </h1>
               
               <div className="w-full flex flex-col sm:flex-row items-center justify-between py-10 border-y border-gold/20 gap-8">
                 <span className="text-4xl md:text-5xl font-black text-gold tracking-tighter">{formatPrice(product.price)}</span>

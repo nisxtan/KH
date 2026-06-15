@@ -8,6 +8,8 @@ import ProductCard from "@/components/products/ProductCard";
 import { Link } from '@/i18n/routing';
 import { useTranslations, useLocale } from 'next-intl';
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import AnimatedText from "@/components/ui/AnimatedText";
+import SacredGeometry from "@/components/ui/SacredGeometry";
 
 type Settings = Record<string, string>;
 
@@ -120,8 +122,11 @@ export default function Home() {
       </section>
 
       {/* ─── ABOUT US SECTION ─── */}
-      <section className="py-12 md:py-24 overflow-hidden bg-transparent">
-        <div className="container mx-auto px-6">
+      <section className="py-12 md:py-24 overflow-hidden bg-transparent relative">
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 opacity-[0.06] pointer-events-none z-0">
+          <SacredGeometry pattern="lotus" className="w-[400px] h-[400px] md:w-[600px] md:h-[600px]" color="#D4AF37" rotationSpeed={180} />
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
             <ScrollReveal direction="left" className="w-full lg:w-1/2 relative order-2 lg:order-1">
               <div className="relative rounded-[2rem] md:rounded-[3.5rem] overflow-hidden border border-gold/10 shadow-divine aspect-square max-w-xl mx-auto lg:mx-0 bg-ivory-dark">
@@ -146,9 +151,13 @@ export default function Home() {
                   <span className="h-px w-8 md:w-12 bg-gold" /> {def(settings, 'philosophy_badge', 'About Us')}
                 </span>
                 <h2 className="text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-ivory leading-[0.9] md:leading-[0.85] uppercase">
-                  {def(settings, 'philosophy_title_line1', 'Where Faith')} <br/>
-                  {def(settings, 'philosophy_title_line2', 'Meets')}<br />
-                  <span className="text-divine-gold">{def(settings, 'philosophy_title_line3', 'the Chisel')}</span>
+                  <AnimatedText text={def(settings, 'philosophy_title_line1', 'Where Faith')} animationType="words" direction="up" delay={0.05} />
+                  <br />
+                  <AnimatedText text={def(settings, 'philosophy_title_line2', 'Meets')} animationType="words" direction="up" delay={0.15} />
+                  <br />
+                  <span className="text-divine-gold">
+                    <AnimatedText text={def(settings, 'philosophy_title_line3', 'the Chisel')} animationType="letters" direction="up" delay={0.25} underline />
+                  </span>
                 </h2>
               </div>
 
@@ -190,8 +199,10 @@ export default function Home() {
             <div className="space-y-4">
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gold">{t('curated')}</span>
               <h2 className="text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
-                {t('heritage')} <br />
-                <span className="text-divine-gold">{t('masterpieces')}</span>
+                <AnimatedText text={t('heritage')} animationType="words" direction="up" delay={0.05} /> <br />
+                <span className="text-divine-gold">
+                  <AnimatedText text={t('masterpieces')} animationType="letters" direction="up" delay={0.15} underline />
+                </span>
               </h2>
             </div>
             <Link
@@ -232,12 +243,17 @@ export default function Home() {
       {/* ─── FINAL CTA ─── */}
       <section className="py-12 md:py-24 bg-transparent relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-bronze/10 pointer-events-none" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.05] pointer-events-none z-0">
+          <SacredGeometry pattern="mandala" className="w-[500px] h-[500px] md:w-[800px] md:h-[800px]" color="#D4AF37" rotationSpeed={220} />
+        </div>
         <div className="container mx-auto px-6 text-center relative z-10">
         <ScrollReveal direction="up" className="max-w-4xl mx-auto space-y-10 md:space-y-12">
             <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] text-gold">{def(settings, 'cta_badge', 'Commission a Masterpiece')}</p>
             <h2 className="text-4xl sm:text-5xl md:text-7xl xl:text-9xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
-              {def(settings, 'cta_title_line1', 'Bring a God')} <br />
-              <span className="text-divine-gold">{def(settings, 'cta_title_line2', 'Into Your Home')}</span>
+              <AnimatedText text={def(settings, 'cta_title_line1', 'Bring a God')} animationType="words" direction="up" delay={0.05} /> <br />
+              <span className="text-divine-gold">
+                <AnimatedText text={def(settings, 'cta_title_line2', 'Into Your Home')} animationType="letters" direction="up" delay={0.2} underline />
+              </span>
             </h2>
             <p className="text-ivory/50 text-lg md:text-2xl font-medium leading-relaxed italic max-w-2xl mx-auto">
               {def(settings, 'cta_desc', 'Each statue is a one-of-a-kind creation. Commission a bespoke piece crafted to your exact spiritual vision.')}

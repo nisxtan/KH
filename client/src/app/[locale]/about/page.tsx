@@ -2,6 +2,9 @@ import axiosInstance from "@/api/axios";
 import { ChevronRight, Award, Truck, ShieldCheck, HeartHandshake, History, Users } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { getTranslations } from 'next-intl/server';
+import HoverCard from "@/components/ui/HoverCard";
+import AnimatedText from "@/components/ui/AnimatedText";
+import SacredGeometry from "@/components/ui/SacredGeometry";
 
 async function getSettings(locale: string) {
   try {
@@ -52,7 +55,7 @@ export default async function AboutPage({
               {s(settings, 'about_hero_badge', t('essence'))}
             </span>
             <h1 className="text-5xl md:text-7xl xl:text-9xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
-              {s(settings, 'about_hero_title', t('soulChisel'))}
+              <AnimatedText text={s(settings, 'about_hero_title', t('soulChisel'))} animationType="words" direction="up" delay={0.05} underline />
             </h1>
             <p className="text-ivory/60 text-lg md:text-2xl font-medium leading-relaxed max-w-2xl mx-auto md:mx-0 border-l-4 border-gold/40 pl-6 md:pl-8 italic">
               "{s(settings, 'about_hero_quote', t('divinityQuote'))}"
@@ -71,7 +74,7 @@ export default async function AboutPage({
                   <span className="h-px w-8 bg-gold-dark" /> {tHero('since', { year: s(settings, 'general_founded', '1988') })}
                 </span>
                 <h2 className="text-4xl md:text-5xl xl:text-7xl font-black tracking-tighter text-ivory uppercase leading-[0.9]">
-                  {s(settings, 'about_story_title', t('legacyTitle'))}
+                  <AnimatedText text={s(settings, 'about_story_title', t('legacyTitle'))} animationType="words" direction="up" delay={0.05} />
                 </h2>
               </div>
               <div className="space-y-6 md:space-y-8 text-ivory/60 text-base md:text-lg font-medium leading-relaxed">
@@ -95,8 +98,11 @@ export default async function AboutPage({
       </section>
 
       {/* ─── WHY KIRAN ─── */}
-      <section className="py-24 md:py-24 bg-transparent border-t border-gold/10">
-        <div className="container mx-auto px-6">
+      <section className="py-24 md:py-24 bg-transparent border-t border-gold/10 relative overflow-hidden">
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/3 opacity-[0.05] pointer-events-none z-0">
+          <SacredGeometry pattern="yantra" className="w-[500px] h-[500px]" color="#D4AF37" rotationSpeed={140} />
+        </div>
+        <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16 md:mb-24 space-y-6">
             <span className="section-badge">
               <span className="h-px w-6 bg-gold-dark" />
@@ -104,7 +110,7 @@ export default async function AboutPage({
               <span className="h-px w-6 bg-gold-dark" />
             </span>
             <h2 className="text-4xl md:text-5xl xl:text-7xl font-black tracking-tighter text-ivory uppercase leading-[0.9]">
-              {t('differenceTitle')}
+              <AnimatedText text={t('differenceTitle')} animationType="words" direction="up" delay={0.05} underline />
             </h2>
           </div>
 
@@ -115,13 +121,15 @@ export default async function AboutPage({
               { icon: <Truck size={32} />, title: t('worldwideShipping'), desc: t('shippingDesc') },
               { icon: <HeartHandshake size={32} />, title: t('lifetimeSupport'), desc: t('supportDesc') },
             ].map((item) => (
-              <div key={item.title} className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 md:gap-8 p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 hover:-translate-y-2 transition-all duration-300 group shadow-lg hover:shadow-xl">
-                <span className="text-gold group-hover:scale-110 transition-transform">{item.icon}</span>
-                <div>
-                  <h3 className="text-xl font-black text-ivory tracking-tight mb-3">{item.title}</h3>
-                  <p className="text-ivory/50 font-medium leading-relaxed text-sm md:text-base">{item.desc}</p>
+              <HoverCard key={item.title} className="rounded-[2rem] md:rounded-[2.5rem] h-full" glare={true} maxGlareOpacity={0.15}>
+                <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 md:gap-8 p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 group shadow-lg hover:shadow-xl h-full transition-[border-color,box-shadow] duration-300">
+                  <span className="text-gold group-hover:scale-110 transition-transform duration-500">{item.icon}</span>
+                  <div>
+                    <h3 className="text-xl font-black text-ivory tracking-tight mb-3">{item.title}</h3>
+                    <p className="text-ivory/50 font-medium leading-relaxed text-sm md:text-base">{item.desc}</p>
+                  </div>
                 </div>
-              </div>
+              </HoverCard>
             ))}
           </div>
         </div>
