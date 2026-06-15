@@ -44,8 +44,8 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="md:col-span-5 space-y-10">
             <Link href="/" className="flex items-center gap-4 group w-fit mx-auto md:mx-0">
-              <div className="bg-espresso w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-xl md:rounded-2xl shadow-xl group-hover:scale-110 transition-all">
-                <span className="text-sacred font-black text-lg md:text-xl">{siteName.charAt(0)}</span>
+              <div className="bg-espresso w-11 h-11 md:w-12 md:h-12 flex items-center justify-center rounded-xl md:rounded-2xl shadow-xl group-hover:scale-110 transition-all overflow-hidden shrink-0">
+                <img src="/logo.png" alt="Kiran Handicraft Logo" className="w-full h-full object-cover" />
               </div>
               <div className="text-left">
                 <h2 className="text-xs md:text-lg font-black tracking-tighter uppercase leading-none">{siteName}</h2>

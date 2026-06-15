@@ -58,8 +58,8 @@ export default function Navbar() {
           
           {/* Brand Identity */}
           <Link href="/" className="flex items-center gap-3 md:gap-4 group">
-            <div className="bg-espresso w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-lg md:rounded-xl border border-gold/20 shadow-xl transition-all group-hover:scale-110 group-hover:bg-gold shrink-0">
-              <span className="text-sacred font-black text-sm md:text-lg">{siteName.charAt(0)}</span>
+            <div className="bg-espresso w-9 h-9 md:w-11 md:h-11 flex items-center justify-center rounded-lg md:rounded-xl border border-gold/20 shadow-xl transition-all group-hover:scale-110 group-hover:bg-gold shrink-0 overflow-hidden">
+              <img src="/logo.png" alt="Kiran Handicraft Logo" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col max-w-[110px] xs:max-w-[130px] sm:max-w-none">
               <h1 className="text-[8px] sm:text-sm md:text-lg font-black tracking-tighter uppercase leading-tight line-clamp-2 sm:line-clamp-none text-ivory">{siteName}</h1>
@@ -166,8 +166,8 @@ export default function Navbar() {
             >
               <div className="p-8 flex items-center justify-between border-b border-gold/20">
                 <div className="flex items-center gap-3">
-                  <div className="bg-espresso w-10 h-10 flex items-center justify-center rounded-xl text-sacred font-black">
-                    {siteName.charAt(0)}
+                  <div className="bg-espresso w-10 h-10 flex items-center justify-center rounded-xl overflow-hidden shrink-0">
+                    <img src="/logo.png" alt="Kiran Handicraft Logo" className="w-full h-full object-cover" />
                   </div>
                   <h2 className="text-[10px] font-black uppercase tracking-tighter leading-tight text-ivory">{siteName}</h2>
                 </div>
