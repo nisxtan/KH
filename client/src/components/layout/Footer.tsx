@@ -37,7 +37,7 @@ export default function Footer() {
   const instagram = settings['contact_instagram'] || 'https://instagram.com/kiranhandicraft';
 
   return (
-    <footer className="bg-transparent text-espresso border-t border-gold/10">
+    <footer className="bg-espresso text-ivory border-t border-gold/20">
       <div className="container mx-auto px-6 pt-20 md:pt-24 pb-12">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 pb-20 border-b border-gold/10">
 
@@ -104,10 +104,10 @@ export default function Footer() {
             <div className="md:text-left text-center">
                 <h4 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gold mb-8 md:mb-10">{t('gallery')}</h4>
                 <ul className="space-y-4 md:space-y-6">
-                    <li><Link href="/products" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('allStatues')}</Link></li>
+                    <li><Link href="/products" className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">{t('allStatues')}</Link></li>
                     {categories.slice(0, 4).map(cat => (
                         <li key={cat.id}>
-                            <Link href={`/products?category=${cat.slug}`} className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">
+                            <Link href={`/products?category=${cat.slug}`} className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">
                                 {t('collection', { name: cat.name })}
                             </Link>
                         </li>
@@ -119,10 +119,10 @@ export default function Footer() {
             <div className="md:text-left text-center">
                 <h4 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gold mb-8 md:mb-10">{t('company')}</h4>
                 <ul className="space-y-4 md:space-y-6">
-                    <li><Link href="/about" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('about')}</Link></li>
-                    <li><Link href="/about" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('artisans')}</Link></li>
-                    <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('commission')}</Link></li>
-                    <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-espresso/50 hover:text-gold transition-colors">{t('showroom')}</Link></li>
+                    <li><Link href="/about" className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">{t('about')}</Link></li>
+                    <li><Link href="/about" className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">{t('artisans')}</Link></li>
+                    <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">{t('commission')}</Link></li>
+                    <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">{t('showroom')}</Link></li>
                 </ul>
             </div>
 

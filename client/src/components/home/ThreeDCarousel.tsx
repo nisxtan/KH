@@ -118,20 +118,9 @@ export default function ThreeDCarousel() {
   return (
     <div className="flex flex-col items-center justify-center w-full py-2 select-none relative -top-6 md:-top-16">
       {/* 3D Perspective Stage */}
-      <motion.div 
-        className="relative w-full h-[360px] md:h-[560px] flex items-center justify-center overflow-visible cursor-grab active:cursor-grabbing"
+      <div 
+        className="relative w-full h-[360px] md:h-[560px] flex items-center justify-center overflow-visible"
         style={{ perspective: '800px', transformStyle: 'preserve-3d' }}
-        drag="x"
-        dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.15}
-        onDragEnd={(e, info) => {
-          const swipeThreshold = 50;
-          if (info.offset.x < -swipeThreshold) {
-            handleNext();
-          } else if (info.offset.x > swipeThreshold) {
-            handlePrev();
-          }
-        }}
       >
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="w-[240px] md:w-[400px] h-[240px] md:h-[400px] bg-gold/5 rounded-full blur-[80px]" />
@@ -163,12 +152,24 @@ export default function ThreeDCarousel() {
                   stiffness: 120,
                   damping: 18
                 }}
+                drag={isCenter ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={isCenter ? 0.35 : 0}
+                onDragEnd={(e, info) => {
+                  if (!isCenter) return;
+                  const swipeThreshold = 50;
+                  if (info.offset.x < -swipeThreshold) {
+                    handleNext();
+                  } else if (info.offset.x > swipeThreshold) {
+                    handlePrev();
+                  }
+                }}
                 onClick={() => {
                   if (!isCenter) setActiveIndex(index);
                 }}
                 className={`rounded-[2rem] md:rounded-[2.8rem] border overflow-hidden shadow-2xl cursor-pointer transition-all duration-300 ${
                   isCenter 
-                    ? 'border-gold shadow-gold/20' 
+                    ? 'border-gold shadow-gold/20 cursor-grab active:cursor-grabbing' 
                     : 'border-gold/10 hover:border-gold/30 shadow-black/10'
                 }`}
               >
@@ -200,7 +201,7 @@ export default function ThreeDCarousel() {
             );
           })}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
     </div>
   );
