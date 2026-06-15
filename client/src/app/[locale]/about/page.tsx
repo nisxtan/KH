@@ -82,7 +82,7 @@ export default async function AboutPage({
             </div>
 
             <div className="relative order-1 lg:order-1">
-              <div className="rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-gold/10 shadow-divine aspect-[3/4] max-w-lg mx-auto lg:mx-0">
+              <div className="rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-gold/10 shadow-divine aspect-[3/4] max-w-lg mx-auto lg:ml-auto">
                 <img
                   src={s(settings, 'about_hero_img', 'https://images.unsplash.com/photo-1590650213165-c1fef80648c4?q=80&w=1000')}
                   alt="Master Artisan at work"
@@ -115,7 +115,7 @@ export default async function AboutPage({
               { icon: <Truck size={32} />, title: t('worldwideShipping'), desc: t('shippingDesc') },
               { icon: <HeartHandshake size={32} />, title: t('lifetimeSupport'), desc: t('supportDesc') },
             ].map((item) => (
-              <div key={item.title} className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 md:gap-8 p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 transition-all group">
+              <div key={item.title} className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-6 md:gap-8 p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 hover:-translate-y-2 transition-all duration-300 group shadow-lg hover:shadow-xl">
                 <span className="text-gold group-hover:scale-110 transition-transform">{item.icon}</span>
                 <div>
                   <h3 className="text-xl font-black text-ivory tracking-tight mb-3">{item.title}</h3>
