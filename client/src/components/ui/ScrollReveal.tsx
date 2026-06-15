@@ -17,8 +17,8 @@ interface ScrollRevealProps {
 export default function ScrollReveal({
   children,
   direction = 'up',
-  delay = 0,
-  duration = 0.8,
+  delay = 0.1,
+  duration = 1.2,
   distance = 50,
   className = '',
 }: ScrollRevealProps) {
@@ -60,7 +60,7 @@ export default function ScrollReveal({
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once: true, margin: '-120px' }}
       variants={getVariants()}
       transition={{
         duration,

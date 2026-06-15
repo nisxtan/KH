@@ -53,7 +53,13 @@ export default function Home() {
         ]);
         console.log('Settings fetched for locale', locale, ':', settingsRes.data);
         setSettings(settingsRes.data);
-        setFeaturedProducts(productsRes.data.items.slice(0, 4));
+        
+        let fetchedProducts = productsRes.data.items || [];
+        if (fetchedProducts.length === 0) {
+          const fallbackRes = await axiosInstance.get(`/products?lang=${locale}&limit=4`);
+          fetchedProducts = fallbackRes.data.items || [];
+        }
+        setFeaturedProducts(fetchedProducts.slice(0, 4));
       } catch (err) {
         console.error("Failed to fetch home data", err);
       } finally {
@@ -202,7 +208,7 @@ export default function Home() {
             {featuredProducts.length > 0 ? (
               featuredProducts.map((product, index) => (
                 <ScrollReveal key={product.id} direction="up" delay={index * 0.1}>
-                  <ProductCard product={product} />
+                  <ProductCard product={product} hoverUp={false} />
                 </ScrollReveal>
               ))
             ) : (

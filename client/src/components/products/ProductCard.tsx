@@ -17,19 +17,20 @@ interface ProductCardProps {
     featured: boolean;
     description?: string;
   };
+  hoverUp?: boolean;
 }
 
-export default function ProductCard({ product }: ProductCardProps) {
+export default function ProductCard({ product, hoverUp = true }: ProductCardProps) {
   const { formatPrice } = useCurrency();
 
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.96 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      whileHover={{ y: -6 }}
+      whileHover={hoverUp ? { y: -6, transition: { type: 'spring', stiffness: 300, damping: 20 } } : {}}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="group bg-espresso/40 backdrop-blur-md rounded-3xl border border-gold/20 overflow-hidden hover:border-gold/50 hover:shadow-lg hover:shadow-gold/10 transition-all duration-500 flex flex-col h-full"
+      className="group bg-espresso/40 backdrop-blur-md rounded-3xl border border-gold/20 overflow-hidden hover:border-gold/50 hover:shadow-lg hover:shadow-gold/10 transition-[border-color,box-shadow] duration-300 flex flex-col h-full"
     >
       <Link href={`/products/${product.slug}`} className="flex flex-col h-full">
         {/* Image - Square on mobile, 4/3 on desktop */}
@@ -68,7 +69,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <span className="font-black text-gold text-[10px] md:text-sm">
               {formatPrice(product.price)}
             </span>
-            <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl bg-espresso text-sacred group-hover:bg-gold group-hover:text-espresso transition-all">
+            <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl bg-espresso text-sacred transition-all">
               <ChevronRight size={10} className="md:w-4 md:h-4" />
             </div>
           </div>

@@ -102,10 +102,10 @@ html[lang="zh"] body {
     }
   }
   .btn-primary:hover {
-    background: var(--color-gold);
+    background: var(--color-gold-dark);
     color: var(--color-espresso);
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(30, 15, 5, 0.2);
   }
 
   .btn-secondary {

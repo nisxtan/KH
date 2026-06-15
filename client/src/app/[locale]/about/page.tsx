@@ -65,7 +65,7 @@ export default async function AboutPage({
       <section className="py-24 md:py-24 bg-transparent">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 items-center">
-            <div className="space-y-10 order-2 lg:order-1 text-center lg:text-left">
+            <div className="space-y-10 order-2 lg:order-2 text-center lg:text-left">
               <div className="space-y-4">
                 <span className="section-badge">
                   <span className="h-px w-8 bg-gold-dark" /> {tHero('since', { year: s(settings, 'general_founded', '1988') })}
@@ -81,7 +81,7 @@ export default async function AboutPage({
 
             </div>
 
-            <div className="relative order-1 lg:order-2">
+            <div className="relative order-1 lg:order-1">
               <div className="rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-gold/10 shadow-divine aspect-[3/4] max-w-lg mx-auto lg:mx-0">
                 <img
                   src={s(settings, 'about_hero_img', 'https://images.unsplash.com/photo-1590650213165-c1fef80648c4?q=80&w=1000')}

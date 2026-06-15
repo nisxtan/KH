@@ -42,7 +42,7 @@ export default function WhatsAppButton() {
       <div className="bg-espresso text-sacred px-6 py-3 rounded-2xl text-[10px] uppercase tracking-[0.3em] font-black shadow-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0 border border-gold/20">
         Inquire Now
       </div>
-      <div className="bg-espresso text-gold p-5 rounded-full shadow-2xl border border-gold/20 group-hover:bg-gold group-hover:text-espresso transition-all duration-500">
+      <div className="bg-espresso text-gold p-5 rounded-full shadow-2xl border border-gold/20 group-hover:bg-gold-dark group-hover:text-espresso transition-all duration-500">
         <MessageCircle size={24} />
       </div>
     </motion.a>

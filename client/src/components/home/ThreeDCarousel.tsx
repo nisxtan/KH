@@ -149,8 +149,8 @@ export default function ThreeDCarousel() {
                 }}
                 transition={{
                   type: 'spring',
-                  stiffness: 120,
-                  damping: 18
+                  stiffness: 300,
+                  damping: 25
                 }}
                 drag={isCenter ? "x" : false}
                 dragConstraints={{ left: -100, right: 100 }}
@@ -167,18 +167,18 @@ export default function ThreeDCarousel() {
                 onClick={() => {
                   if (!isCenter) setActiveIndex(index);
                 }}
-                className={`rounded-[2rem] md:rounded-[2.8rem] border overflow-hidden shadow-2xl cursor-pointer transition-all duration-300 ${
+                className={`rounded-[2rem] md:rounded-[2.8rem] border overflow-hidden shadow-2xl cursor-pointer transition-[border-color,box-shadow] duration-300 ${
                   isCenter 
                     ? 'border-gold shadow-gold/20 cursor-grab active:cursor-grabbing' 
                     : 'border-gold/10 hover:border-gold/30 shadow-black/10'
                 }`}
               >
                 {/* Image and Overlay */}
-                <div className="relative w-full h-full bg-espresso">
+                <div className="relative w-full h-full bg-espresso pointer-events-none select-none">
                   <img
                     src={slide.image}
                     alt={slide.title}
-                    className="w-full h-full object-cover transition-transform duration-1000"
+                    className="w-full h-full object-cover transition-transform duration-1000 pointer-events-none select-none"
                     draggable={false}
                   />
                   <div className={`absolute inset-0 bg-gradient-to-t from-espresso/90 via-espresso/10 to-transparent transition-opacity duration-500 ${
