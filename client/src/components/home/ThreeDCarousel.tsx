@@ -118,9 +118,20 @@ export default function ThreeDCarousel() {
   return (
     <div className="flex flex-col items-center justify-center w-full py-2 select-none relative -top-6 md:-top-16">
       {/* 3D Perspective Stage */}
-      <div 
-        className="relative w-full h-[360px] md:h-[560px] flex items-center justify-center overflow-visible"
+      <motion.div 
+        className="relative w-full h-[360px] md:h-[560px] flex items-center justify-center overflow-visible cursor-grab active:cursor-grabbing"
         style={{ perspective: '800px', transformStyle: 'preserve-3d' }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.15}
+        onDragEnd={(e, info) => {
+          const swipeThreshold = 50;
+          if (info.offset.x < -swipeThreshold) {
+            handleNext();
+          } else if (info.offset.x > swipeThreshold) {
+            handlePrev();
+          }
+        }}
       >
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="w-[240px] md:w-[400px] h-[240px] md:h-[400px] bg-gold/5 rounded-full blur-[80px]" />
@@ -189,7 +200,7 @@ export default function ThreeDCarousel() {
             );
           })}
         </AnimatePresence>
-      </div>
+      </motion.div>
 
     </div>
   );

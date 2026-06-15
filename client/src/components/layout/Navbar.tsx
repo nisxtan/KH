@@ -53,8 +53,12 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`fixed w-full z-50 transition-all duration-500 px-4 md:px-6 pointer-events-none ${scrolled ? 'py-3 md:py-4' : 'py-5 md:py-6'}`}>
-        <div className={`container mx-auto px-4 md:px-10 h-16 md:h-20 flex justify-between items-center transition-all duration-500 rounded-2xl md:rounded-[2rem] pointer-events-auto ${scrolled ? 'bg-black/60 backdrop-blur-xl shadow-2xl border border-gold/20' : 'bg-transparent border-transparent'}`}>
+      <nav className="fixed top-0 left-0 w-full z-50 pointer-events-none">
+        <div className={`w-full px-6 md:px-16 h-16 md:h-20 flex justify-between items-center transition-all duration-500 pointer-events-auto border-b ${
+          scrolled 
+            ? 'bg-black border-gold/20 shadow-2xl' 
+            : 'bg-transparent border-transparent'
+        }`}>
           
           {/* Brand Identity */}
           <Link href="/" className="flex items-center gap-3 md:gap-4 group">

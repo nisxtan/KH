@@ -22,9 +22,22 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noopener noreferrer"
       initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      whileHover={{ scale: 1.05 }}
-      className="fixed bottom-12 right-12 z-50 flex items-center gap-4 group"
+      animate={{ 
+        scale: 1, 
+        opacity: 1,
+        y: [0, -12, 0]
+      }}
+      transition={{
+        y: {
+          duration: 3.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        },
+        scale: { duration: 0.5 },
+        opacity: { duration: 0.5 }
+      }}
+      whileHover={{ scale: 1.08 }}
+      className="fixed bottom-12 right-12 z-50 flex items-center gap-4 group cursor-pointer"
     >
       <div className="bg-espresso text-sacred px-6 py-3 rounded-2xl text-[10px] uppercase tracking-[0.3em] font-black shadow-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0 border border-gold/20">
         Inquire Now

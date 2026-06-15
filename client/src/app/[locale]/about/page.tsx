@@ -78,18 +78,7 @@ export default async function AboutPage({
                 <p>{s(settings, 'about_story_para1', 'Born in the sacred atmosphere of Boudha Stupa, KIRAN HANDICRAFT ENTERPRISES was founded in 1988 by Kiran Kumar Shakya.')}</p>
                 <p>{s(settings, 'about_story_para2', 'Our workshop is a place of silence and focus. As leading wholesalers and manufacturers, every piece we produce is the result of hundreds of hours of manual labor.')}</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                <div className="p-6 md:p-8 rounded-3xl bg-black/40 backdrop-blur-md border border-gold/20 text-center">
-                  <div className="flex justify-center mb-4 text-gold"><History size={24} /></div>
-                  <p className="text-3xl md:text-4xl font-black text-gold">{s(settings, 'about_stat1_value', '3,200+')}</p>
-                  <p className="text-[9px] font-black uppercase tracking-widest text-ivory/50 mt-2">{s(settings, 'about_stat1_label', 'Statues Delivered')}</p>
-                </div>
-                <div className="p-6 md:p-8 rounded-3xl bg-black/40 backdrop-blur-md border border-gold/20 text-center">
-                  <div className="flex justify-center mb-4 text-gold"><Users size={24} /></div>
-                  <p className="text-3xl md:text-4xl font-black text-gold">{s(settings, 'about_stat2_value', '12')}</p>
-                  <p className="text-[9px] font-black uppercase tracking-widest text-ivory/50 mt-2">{s(settings, 'about_stat2_label', 'Master Artisans')}</p>
-                </div>
-              </div>
+
             </div>
 
             <div className="relative order-1 lg:order-2">

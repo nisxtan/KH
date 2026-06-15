@@ -7,6 +7,7 @@ import Hero from "@/components/home/Hero";
 import ProductCard from "@/components/products/ProductCard";
 import { Link } from '@/i18n/routing';
 import { useTranslations, useLocale } from 'next-intl';
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 type Settings = Record<string, string>;
 
@@ -98,13 +99,15 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/5">
             {features.map((f, i) => (
-              <div key={i} className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6 px-6 md:px-12 py-8 group hover:bg-white/5 transition-all duration-500">
-                <div className="group-hover:scale-110 transition-transform">{f.icon}</div>
-                <div>
-                  <h3 className="text-base font-black text-sacred tracking-tight mb-2">{f.title}</h3>
-                  <p className="text-white/40 text-sm font-medium leading-relaxed">{f.desc}</p>
+              <ScrollReveal key={i} direction="up" delay={i * 0.15} className="w-full">
+                <div className="flex flex-col md:flex-row items-center md:items-start text-center md:text-left gap-6 px-6 md:px-12 py-8 group hover:bg-white/5 transition-all duration-500">
+                  <div className="group-hover:scale-110 transition-transform">{f.icon}</div>
+                  <div>
+                    <h3 className="text-base font-black text-sacred tracking-tight mb-2">{f.title}</h3>
+                    <p className="text-white/40 text-sm font-medium leading-relaxed">{f.desc}</p>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -114,7 +117,7 @@ export default function Home() {
       <section className="py-12 md:py-24 overflow-hidden bg-transparent">
         <div className="container mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
-            <div className="w-full lg:w-1/2 relative order-2 lg:order-1">
+            <ScrollReveal direction="left" className="w-full lg:w-1/2 relative order-2 lg:order-1">
               <div className="relative rounded-[2rem] md:rounded-[3.5rem] overflow-hidden border border-gold/10 shadow-divine aspect-square max-w-xl mx-auto lg:mx-0 bg-ivory-dark">
                 <img
                   src="https://images.unsplash.com/photo-1544111301-44754a01948d?q=80&w=1200"
@@ -129,9 +132,9 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="w-full lg:w-1/2 space-y-8 md:space-y-10 order-1 lg:order-2 text-center lg:text-left">
+            <ScrollReveal direction="right" className="w-full lg:w-1/2 space-y-8 md:space-y-10 order-1 lg:order-2 text-center lg:text-left">
               <div className="space-y-4">
                 <span className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.25em] text-gold">
                   <span className="h-px w-8 md:w-12 bg-gold" /> {def(settings, 'philosophy_badge', 'About Us')}
@@ -147,9 +150,9 @@ export default function Home() {
                 {def(settings, 'philosophy_desc', 'In the sacred air of Boudha, our artisans don\'t just carve metal—they transmit devotion into physical form. Every statue begins with a day of meditation.')}
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 {philosophyItems.map((item) => (
-                  <div key={item.label} className="flex items-center gap-4 p-5 md:p-6 rounded-2xl bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 transition-all group text-left">
+                  <div key={item.label} className="flex items-center gap-4 p-5 md:p-6 rounded-2xl bg-black/40 backdrop-blur-md border border-gold/20 hover:border-gold/40 hover:-translate-y-2 transition-all duration-300 group text-left shadow-lg hover:shadow-xl">
                     <div className="p-2.5 md:p-3 rounded-xl bg-gold/20 text-gold group-hover:bg-gold group-hover:text-espresso transition-all">
                       {item.icon}
                     </div>
@@ -168,15 +171,16 @@ export default function Home() {
                 {t('enterWorkshop')}
                 <span className="h-px w-8 md:w-12 bg-ivory/20 group-hover:w-24 group-hover:bg-gold transition-all duration-500" />
               </Link>
+              </ScrollReveal>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* ─── FEATURED COLLECTION ─── */}
       <section className="py-12 md:py-24 bg-transparent border-y border-gold/10">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-10 md:mb-24 text-center md:text-left gap-6">
+          <ScrollReveal direction="up" className="w-full">
+            <div className="flex flex-col md:flex-row items-center md:items-end justify-between mb-10 md:mb-24 text-center md:text-left gap-6">
             <div className="space-y-4">
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gold">{t('curated')}</span>
               <h2 className="text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
@@ -192,11 +196,14 @@ export default function Home() {
               <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-10">
             {featuredProducts.length > 0 ? (
-              featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
+              featuredProducts.map((product, index) => (
+                <ScrollReveal key={product.id} direction="up" delay={index * 0.1}>
+                  <ProductCard product={product} />
+                </ScrollReveal>
               ))
             ) : (
               [...Array(4)].map((_, i) => (
@@ -220,7 +227,7 @@ export default function Home() {
       <section className="py-12 md:py-24 bg-transparent relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-bronze/10 pointer-events-none" />
         <div className="container mx-auto px-6 text-center relative z-10">
-          <div className="max-w-4xl mx-auto space-y-10 md:space-y-12">
+        <ScrollReveal direction="up" className="max-w-4xl mx-auto space-y-10 md:space-y-12">
             <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] text-gold">{def(settings, 'cta_badge', 'Commission a Masterpiece')}</p>
             <h2 className="text-4xl sm:text-5xl md:text-7xl xl:text-9xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
               {def(settings, 'cta_title_line1', 'Bring a God')} <br />
@@ -243,7 +250,7 @@ export default function Home() {
                 {t('browseGallery')}
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
       </div>
