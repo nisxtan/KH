@@ -122,8 +122,8 @@ export default function Navbar() {
               <img src="/logo.png" alt="Kiran Handicraft Logo" className="w-full h-full object-cover" />
             </div>
             <div className="flex flex-col max-w-[110px] xs:max-w-[130px] sm:max-w-none">
-              <h1 className="text-[8px] sm:text-sm md:text-lg font-black tracking-tighter uppercase leading-tight line-clamp-2 sm:line-clamp-none text-ivory">{siteName}</h1>
-              <p className="text-[6px] md:text-[7.5px] font-black uppercase tracking-[0.2em] leading-none mt-0.5 sm:block hidden text-gold">{tagline}</p>
+              <h1 className="text-[9px] sm:text-base md:text-xl font-extrabold tracking-tight uppercase leading-tight line-clamp-2 sm:line-clamp-none text-ivory">{siteName}</h1>
+              <p className="text-[7px] md:text-[9.5px] font-semibold uppercase tracking-[0.25em] leading-none mt-1 sm:block hidden text-gold">{tagline}</p>
             </div>
           </Link>
 
@@ -135,8 +135,8 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-[9px] uppercase tracking-[0.2em] font-black transition-all relative py-1 group ${
-                    isActive ? 'text-gold' : 'text-ivory/70 hover:text-ivory'
+                  className={`text-[10.5px] uppercase tracking-[0.22em] font-bold transition-all relative py-1 group ${
+                    isActive ? 'text-gold' : 'text-ivory/90 hover:text-gold'
                   }`}
                 >
                   {link.name}
@@ -158,19 +158,19 @@ export default function Navbar() {
             {/* Global Search Trigger Button */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center justify-center bg-gold/15 text-ivory p-3.5 rounded-xl border border-gold/20 hover:bg-gold-dark hover:text-espresso hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-md group"
+              className="flex items-center justify-center bg-gold/25 text-ivory p-3.5 rounded-xl border border-gold/35 hover:bg-gold-dark hover:text-espresso hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-md group"
               title="Search Site"
             >
-              <Search size={12} className="text-gold group-hover:text-espresso" />
+              <Search size={14} className="text-gold group-hover:text-espresso" />
             </button>
 
             {/* Language Switcher */}
             <div className="relative pointer-events-auto hidden md:block">
               <button
                 onClick={() => setLangDropdown(!langDropdown)}
-                className="flex items-center gap-2 bg-gold/15 text-ivory px-4 py-3 rounded-xl text-[9px] font-black uppercase tracking-widest border border-gold/20 hover:bg-gold/20 transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-md"
+                className="flex items-center gap-2 bg-gold/25 text-ivory px-5 py-3.5 rounded-xl text-[11px] font-bold uppercase tracking-[0.22em] border border-gold/35 hover:bg-gold/20 transition-all cursor-pointer hover:scale-105 active:scale-95 shadow-md"
               >
-                <Globe size={11} className="text-gold" />
+                <Globe size={13} className="text-gold" />
                 {locale.toUpperCase()}
               </button>
               <AnimatePresence>
@@ -190,7 +190,7 @@ export default function Navbar() {
                             handleLocaleChange(loc);
                             setLangDropdown(false);
                           }}
-                          className={`w-full text-left px-4 py-2.5 text-[9px] font-black uppercase tracking-widest hover:bg-gold/10 transition-all ${
+                          className={`w-full text-left px-4 py-2.5 text-[10.5px] font-bold uppercase tracking-[0.22em] hover:bg-gold/10 transition-all ${
                             locale === loc ? 'text-gold' : 'text-ivory/70 hover:text-ivory'
                           }`}
                         >
@@ -205,7 +205,7 @@ export default function Navbar() {
 
             <Link
               href="/contact"
-              className="hidden md:block bg-espresso text-sacred px-8 py-3.5 rounded-xl text-[9px] font-black uppercase tracking-widest hover:bg-gold-dark hover:text-espresso transition-all hover:scale-105 active:scale-95 shadow-xl"
+              className="hidden md:block bg-espresso text-sacred border border-gold/30 px-9 py-4 rounded-xl text-[11px] font-bold uppercase tracking-[0.22em] hover:bg-gold-dark hover:text-espresso transition-all hover:scale-105 active:scale-95 shadow-xl"
             >
               {t('inquire')}
             </Link>
@@ -264,10 +264,10 @@ export default function Navbar() {
                     key={link.name}
                     href={link.href}
                     onClick={() => setMobileMenu(false)}
-                    className={`flex items-center justify-between w-full p-6 rounded-2xl text-sm font-black uppercase tracking-widest transition-all ${
+                    className={`flex items-center justify-between w-full p-6 rounded-2xl text-sm font-bold uppercase tracking-widest transition-all ${
                       pathname === link.href 
                         ? 'bg-gold text-espresso shadow-xl' 
-                        : 'text-ivory/60 hover:bg-white/10 hover:text-ivory'
+                        : 'text-ivory/80 hover:bg-white/10 hover:text-gold'
                     }`}
                   >
                     {link.name}
@@ -339,7 +339,7 @@ export default function Navbar() {
               transition={{ type: 'spring', duration: 0.4 }}
               className="relative w-full max-w-2xl bg-espresso border border-gold/25 shadow-2xl rounded-[2rem] overflow-hidden flex flex-col z-20 pointer-events-auto max-h-[75vh]"
             >
-              {/* Input Header */}
+               {/* Input Header */}
               <div className="relative border-b border-gold/15 p-6 flex items-center gap-4">
                 <Search size={20} className="text-gold" />
                 <input
@@ -348,7 +348,7 @@ export default function Navbar() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search statues, collections, pages..."
-                  className="flex-1 bg-transparent text-ivory placeholder:text-ivory/30 focus:outline-none text-base font-semibold"
+                  className="flex-1 bg-transparent text-ivory placeholder:text-ivory/50 focus:outline-none text-base font-bold"
                 />
                 {searchLoading && (
                   <Loader2 size={16} className="text-gold animate-spin" />
@@ -366,7 +366,7 @@ export default function Navbar() {
                 {/* Pages Section */}
                 {searchResults.pages.length > 0 && (
                   <div className="space-y-2">
-                    <p className="text-[9px] font-black uppercase tracking-widest text-gold px-2">Site Pages</p>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-gold px-2">Site Pages</p>
                     <div className="grid grid-cols-1 gap-1">
                       {searchResults.pages.map((p) => (
                         <button
@@ -378,8 +378,8 @@ export default function Navbar() {
                           className="w-full text-left p-3.5 rounded-xl hover:bg-gold/10 hover:text-gold transition-colors flex items-center justify-between group"
                         >
                           <div>
-                            <p className="text-xs font-black text-ivory group-hover:text-gold">{p.name}</p>
-                            <p className="text-[9px] font-medium text-ivory/40 mt-0.5">{p.desc}</p>
+                            <p className="text-[14px] font-bold text-ivory group-hover:text-gold transition-colors">{p.name}</p>
+                            <p className="text-xs font-medium text-ivory/65 mt-1">{p.desc}</p>
                           </div>
                           <ChevronRight size={14} className="text-ivory/20 group-hover:text-gold group-hover:translate-x-0.5 transition-all" />
                         </button>
@@ -391,7 +391,7 @@ export default function Navbar() {
                 {/* Products Section */}
                 {searchResults.products.length > 0 && (
                   <div className="space-y-2">
-                    <p className="text-[9px] font-black uppercase tracking-widest text-gold px-2">Statues & Masterpieces</p>
+                    <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-gold px-2">Statues & Masterpieces</p>
                     <div className="grid grid-cols-1 gap-1">
                       {searchResults.products.map((item) => (
                         <button
@@ -414,8 +414,8 @@ export default function Navbar() {
                             )}
                           </div>
                           <div className="min-w-0 flex-1">
-                            <p className="text-xs font-black truncate text-ivory group-hover:text-gold">{item.name}</p>
-                            <p className="text-[8px] font-bold uppercase tracking-widest text-ivory/40 group-hover:text-gold/60 mt-0.5">{item.category}</p>
+                            <p className="text-[14px] font-bold truncate text-ivory group-hover:text-gold transition-colors">{item.name}</p>
+                            <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-ivory/65 mt-1">{item.category}</p>
                           </div>
                           <ChevronRight size={14} className="text-ivory/20 group-hover:text-gold group-hover:translate-x-0.5 transition-all pr-2" />
                         </button>

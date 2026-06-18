@@ -63,7 +63,7 @@ const defaultSettings = [
     { key: 'contact_address', value: 'Boudha-6, Stupa, Kathmandu, Nepal', section: 'contact', label: 'Address', type: 'text' },
     { key: 'contact_phone', value: '01-4916351', section: 'contact', label: 'Phone Number', type: 'text' },
     { key: 'contact_email', value: 'kijenshakya@gmail.com', section: 'contact', label: 'Email Address', type: 'text' },
-    { key: 'contact_whatsapp', value: '9779851034260', section: 'contact', label: 'WhatsApp Number', type: 'text' },
+    { key: 'contact_whatsapp', value: '9779849532402', section: 'contact', label: 'WhatsApp Number', type: 'text' },
     { key: 'contact_facebook', value: 'https://facebook.com/kiranhandicraft', section: 'contact', label: 'Facebook URL', type: 'text' },
     { key: 'contact_instagram', value: 'https://instagram.com/kiranhandicraft', section: 'contact', label: 'Instagram URL', type: 'text' },
 
@@ -86,13 +86,17 @@ const seed = async () => {
         const userRepo = AppDataSource.getRepository(User);
         const settingsRepo = AppDataSource.getRepository(SiteSetting);
 
-        // 1. Admin User
-        const adminExists = await userRepo.findOne({ where: { username: 'admin' } });
-        if (!adminExists) {
-            const hashedPassword = await bcrypt.hash('admin123', 10);
-            const admin = userRepo.create({ username: 'admin', email: 'admin@kiranhadicraft.com', password: hashedPassword });
+        // 1. Admin User (Force reset/create)
+        let admin = await userRepo.findOne({ where: { username: 'admin' } });
+        const hashedPassword = await bcrypt.hash('admin123', 10);
+        if (!admin) {
+            admin = userRepo.create({ username: 'admin', email: 'admin@kiranhadicraft.com', password: hashedPassword });
             await userRepo.save(admin);
-            console.log('✅ Admin user created');
+            console.log('✅ Admin user created (username: admin, password: admin123)');
+        } else {
+            admin.password = hashedPassword;
+            await userRepo.save(admin);
+            console.log('✅ Admin password reset to default: admin123');
         }
 
         // 2. Site Settings (Force update)
@@ -109,6 +113,20 @@ const seed = async () => {
             }
         }
         console.log('✅ Site settings updated (Emojis removed)');
+
+        // 3. Clean up existing watermarked image URLs from the database
+        console.log('🔄 Cleaning up watermarked image URLs (restoring originals) in the database...');
+        await AppDataSource.query(`
+            UPDATE products 
+            SET images = REPLACE(images, 'l_text:Arial_22_bold:Copyright%20Kiran%20Handicrafts%2Cco_white%2Cb_rgb:00000080/fl_layer_apply%2Cg_south_east%2Cx_15%2Cy_15/', '')
+            WHERE images LIKE '%Copyright%';
+        `);
+        await AppDataSource.query(`
+            UPDATE products 
+            SET images = REPLACE(images, 'l_text:Arial_22_bold:Copyright%20Kiran%20Handicrafts,co_white,b_rgb:00000080/fl_layer_apply,g_south_east,x_15,y_15/', '')
+            WHERE images LIKE '%Copyright%';
+        `);
+        console.log('✅ Watermarked image URLs restored to clean versions');
 
         await AppDataSource.destroy();
         console.log('✅ Seeding completed');

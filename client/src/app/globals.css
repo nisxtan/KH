@@ -16,6 +16,9 @@
   --font-sans: "Plus Jakarta Sans", sans-serif;
   --font-devanagari: "Noto Sans Devanagari", "Plus Jakarta Sans", sans-serif;
   --font-cjk: "Noto Sans SC", "Plus Jakarta Sans", sans-serif;
+
+  --font-weight-black: 700;       /* Maps font-black utility to bold weight (700) for cleaner legibility, especially for older visitors */
+  --font-weight-extrabold: 700;  /* Maps font-extrabold utility to bold weight (700) */
 }
 
 html[lang="ne"] body {

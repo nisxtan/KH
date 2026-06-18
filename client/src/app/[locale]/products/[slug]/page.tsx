@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import axiosInstance from '@/api/axios';
 import { motion } from 'framer-motion';
-import { MessageCircle, Ruler, Info, Box, ArrowLeft, Share2, Loader2 } from 'lucide-react';
+import { MessageCircle, Ruler, Info, Box, ArrowLeft, Share2, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 import { useCurrency } from '@/context/CurrencyContext';
@@ -19,6 +19,16 @@ import 'swiper/css/pagination';
 import 'swiper/css/thumbs';
 import 'swiper/css/effect-fade';
 
+const getWatermarkedUrl = (url: string) => {
+  if (url && url.includes('res.cloudinary.com') && url.includes('/image/upload/')) {
+    return url.replace(
+      '/image/upload/',
+      '/image/upload/l_text:Arial_24_bold:Copyright%20Kiran%20Handicrafts%2Cco_white%2Cb_rgb:00000030%2Ca_-30/fl_layer_apply%2Cg_center/l_text:Arial_18_bold:Copyright%20Kiran%20Handicrafts%2Cco_white%2Cb_rgb:00000030%2Ca_-30/fl_layer_apply%2Cg_north_west%2Cx_50%2Cy_100/l_text:Arial_18_bold:Copyright%20Kiran%20Handicrafts%2Cco_white%2Cb_rgb:00000030%2Ca_-30/fl_layer_apply%2Cg_south_east%2Cx_50%2Cy_100/'
+    );
+  }
+  return url;
+};
+
 export default function ProductDetails() {
   const { slug } = useParams();
   const locale = useLocale();
@@ -27,6 +37,8 @@ export default function ProductDetails() {
   const [loading, setLoading] = useState(true);
   const [thumbsSwiper, setThumbsSwiper] = useState<any>(null);
   const [settings, setSettings] = useState<Record<string, string>>({});
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [activePhotoIndex, setActivePhotoIndex] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -66,7 +78,7 @@ export default function ProductDetails() {
     </div>
   );
 
-  const whatsappNumber = settings['contact_whatsapp'] || '9779851034260';
+  const whatsappNumber = settings['contact_whatsapp'] || '9779849532402';
   const whatsappMessage = `Greetings Kiran Handicraft, I am deeply interested in the ${product.name} (Ref: ${product.slug}). May I have more information?`;
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
@@ -105,7 +117,15 @@ export default function ProductDetails() {
                 >
                   {product.images.map((img: string, idx: number) => (
                     <SwiperSlide key={idx}>
-                      <img src={img} alt={product.name} className="w-full h-full object-cover" />
+                      <img 
+                        src={img} 
+                        alt={product.name} 
+                        className="w-full h-full object-cover cursor-zoom-in" 
+                        onClick={() => {
+                          setActivePhotoIndex(idx);
+                          setIsLightboxOpen(true);
+                        }}
+                      />
                     </SwiperSlide>
                   ))}
                 </Swiper>
@@ -214,6 +234,78 @@ export default function ProductDetails() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox / Fullscreen Modal Carousel */}
+      {isLightboxOpen && (
+        <div className="fixed inset-0 z-50 flex flex-col justify-between bg-black/95 backdrop-blur-xl p-4 md:p-8 select-none transition-all duration-300 animate-fade-in">
+          {/* Top Bar with close button */}
+          <div className="flex justify-between items-center text-ivory/80 relative z-10 w-full max-w-7xl mx-auto">
+            <span className="text-[10px] uppercase tracking-[0.3em] font-black text-gold">
+              Secured Masterpiece Preview ({activePhotoIndex + 1} / {product.images.length})
+            </span>
+            <button 
+              onClick={() => setIsLightboxOpen(false)}
+              className="p-3 rounded-full hover:bg-white/10 text-ivory hover:text-gold transition-colors duration-300"
+              aria-label="Close Preview"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Main Showcase (Image and controls) */}
+          <div className="relative flex-grow flex items-center justify-center py-4 w-full max-w-7xl mx-auto">
+            {/* Prev Button */}
+            {product.images.length > 1 && (
+              <button 
+                onClick={() => setActivePhotoIndex((prev) => (prev === 0 ? product.images.length - 1 : prev - 1))}
+                className="absolute left-2 md:left-6 p-4 rounded-full bg-black/60 hover:bg-gold/20 text-ivory hover:text-gold transition-colors z-20 border border-gold/20"
+                aria-label="Previous Image"
+              >
+                <ChevronLeft size={24} />
+              </button>
+            )}
+
+            {/* Image (With Diagonal Repeating Watermark) */}
+            <div className="w-full max-h-[70vh] flex items-center justify-center relative">
+              <img 
+                src={getWatermarkedUrl(product.images[activePhotoIndex])}
+                alt={`${product.name} Preview`}
+                className="max-w-full max-h-[70vh] object-contain rounded-2xl border border-gold/20 shadow-2xl transition-all duration-500"
+              />
+            </div>
+
+            {/* Next Button */}
+            {product.images.length > 1 && (
+              <button 
+                onClick={() => setActivePhotoIndex((prev) => (prev === product.images.length - 1 ? 0 : prev + 1))}
+                className="absolute right-2 md:right-6 p-4 rounded-full bg-black/60 hover:bg-gold/20 text-ivory hover:text-gold transition-colors z-20 border border-gold/20"
+                aria-label="Next Image"
+              >
+                <ChevronRight size={24} />
+              </button>
+            )}
+          </div>
+
+          {/* Thumbnail list (bottom) */}
+          {product.images.length > 1 && (
+            <div className="flex justify-center gap-3 overflow-x-auto pb-4 max-w-xl mx-auto z-10 w-full scrollbar-hide">
+              {product.images.map((img: string, idx: number) => (
+                <button
+                  key={idx}
+                  onClick={() => setActivePhotoIndex(idx)}
+                  className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all duration-300 ${
+                    idx === activePhotoIndex ? 'border-gold scale-105 shadow-lg shadow-gold/20' : 'border-transparent opacity-40 hover:opacity-100'
+                  }`}
+                >
+                  <img src={img} alt="thumb" className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

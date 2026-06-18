@@ -61,7 +61,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body className={`antialiased ${fontClass}`}>
+      <body className={fontClass ? `antialiased ${fontClass}` : 'antialiased'}>
         <NextIntlClientProvider messages={messages}>
           <ReduxProvider>
             <CurrencyProvider>

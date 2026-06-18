@@ -12,7 +12,7 @@ export default function WhatsAppButton() {
     axiosInstance.get('/settings').then(res => setSettings(res.data)).catch(() => {});
   }, []);
 
-  const whatsappNumber = settings['contact_whatsapp'] || "9779851034260"; 
+  const whatsappNumber = settings['contact_whatsapp'] || "9779849532402"; 
   const message = `Greetings ${settings['general_site_name'] || 'Kiran Handicraft'}, I would like to inquire about your collection.`;
   const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 

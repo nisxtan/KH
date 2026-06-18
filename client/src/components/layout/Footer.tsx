@@ -33,7 +33,7 @@ export default function Footer() {
   const address = settings['contact_address'] || 'Boudha-6, Stupa, Kathmandu, Nepal';
   const phone = settings['contact_phone'] || '01-4916351';
   const email = settings['contact_email'] || 'kijenshakya@gmail.com';
-  const whatsapp = settings['contact_whatsapp'] || '9779851034260';
+  const whatsapp = settings['contact_whatsapp'] || '9779849532402';
   const facebook = settings['contact_facebook'] || 'https://facebook.com/kiranhandicraft';
   const instagram = settings['contact_instagram'] || 'https://instagram.com/kiranhandicraft';
 
@@ -49,8 +49,8 @@ export default function Footer() {
                 <img src="/logo.png" alt="Kiran Handicraft Logo" className="w-full h-full object-cover" />
               </div>
               <div className="text-left">
-                <h2 className="text-xs md:text-base font-black tracking-tighter uppercase leading-none">{siteName}</h2>
-                <p className="text-[7px] md:text-[8px] text-gold font-black uppercase tracking-[0.25em] mt-1.5 leading-none">{tagline}</p>
+                <h2 className="text-sm md:text-lg font-extrabold tracking-tight uppercase leading-none">{siteName}</h2>
+                <p className="text-[8px] md:text-[9.5px] text-gold font-semibold uppercase tracking-[0.25em] mt-2 leading-none">{tagline}</p>
               </div>
             </Link>
 

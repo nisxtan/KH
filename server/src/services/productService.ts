@@ -207,7 +207,9 @@ export class ProductService {
                     { folder: 'kiran-handicraft' },
                     (error, result) => {
                         if (error) reject(error);
-                        else resolve(result!.secure_url);
+                        else {
+                            resolve(result!.secure_url);
+                        }
                     }
                 );
                 stream.end(file.buffer);

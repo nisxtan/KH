@@ -11,7 +11,7 @@ export interface AnimatedTextProps {
   text: string;
   /**
    * The container HTML element type.
-   * @default 'p'
+   * @default 'span'
    */
   el?: ElementType;
   /** Additional CSS class names */
@@ -50,7 +50,7 @@ export interface AnimatedTextProps {
  */
 export default function AnimatedText({
   text,
-  el: Wrapper = 'p',
+  el: Wrapper = 'span',
   className = '',
   animationType = 'words',
   delay = 0,
@@ -93,15 +93,22 @@ export default function AnimatedText({
   // Split calculations
   const renderContent = () => {
     if (animationType === 'letters') {
-      return text.split('').map((char, index) => (
-        <motion.span
-          key={`${char}-${index}`}
-          className="inline-block"
-          variants={itemVariants}
-          style={{ whiteSpace: char === ' ' ? 'pre' : 'normal' }}
+      return text.split(' ').map((word, wordIndex, wordArr) => (
+        <span
+          key={`${word}-${wordIndex}`}
+          className="inline-block whitespace-nowrap"
+          style={{ marginRight: wordIndex < wordArr.length - 1 ? '0.25em' : '0' }}
         >
-          {char}
-        </motion.span>
+          {word.split('').map((char, charIndex) => (
+            <motion.span
+              key={`${char}-${charIndex}`}
+              className="inline-block"
+              variants={itemVariants}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </span>
       ));
     }
 
@@ -119,9 +126,9 @@ export default function AnimatedText({
       ));
     }
 
-    // Default 'words' splitting
+    // Default 'words' splitting (removed overflow-hidden to prevent vertical clipping)
     return text.split(' ').map((word, index) => (
-      <span key={`${word}-${index}`} className="inline-block overflow-hidden py-1">
+      <span key={`${word}-${index}`} className="inline-block">
         <motion.span className="inline-block mr-[0.25em]" variants={itemVariants}>
           {word}
         </motion.span>
@@ -144,29 +151,27 @@ export default function AnimatedText({
   };
 
   return (
-    <div className="relative inline-block w-full">
-      <motion.div
-        className={className}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once, margin: '-10% 0px' }}
-        variants={containerVariants}
-      >
-        <Wrapper className="inline-block">
-          {renderContent()}
-        </Wrapper>
-      </motion.div>
+    <motion.span
+      className={`relative inline-block w-full ${className}`}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once, margin: '-10% 0px' }}
+      variants={containerVariants}
+    >
+      <Wrapper className="inline-block">
+        {renderContent()}
+      </Wrapper>
 
       {underline && (
-        <motion.div
+        <motion.span
           initial="hidden"
           whileInView="visible"
           viewport={{ once }}
           variants={lineDrawVariants}
-          className={`h-[2px] mt-1.5 rounded-full ${underlineColor}`}
+          className={`block h-[2px] mt-1.5 rounded-full ${underlineColor}`}
           style={{ originX: 0 }}
         />
       )}
-    </div>
+    </motion.span>
   );
 }

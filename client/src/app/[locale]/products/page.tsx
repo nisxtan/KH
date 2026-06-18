@@ -72,9 +72,7 @@ export default async function ProductsPage({
             <div className="space-y-3">
               <h1 className="text-4xl md:text-5xl xl:text-7xl font-black tracking-tighter text-ivory uppercase leading-[0.9]">
                 <AnimatedText text={t('sacred')} animationType="words" direction="up" delay={0.05} /> <br />
-                <span className="text-divine-gold">
-                  <AnimatedText text={t('collection')} animationType="letters" direction="up" delay={0.15} underline />
-                </span>
+                <AnimatedText text={t('collection')} animationType="letters" direction="up" delay={0.15} className="text-divine-gold" underline />
               </h1>
               <p className="text-[10px] text-ivory/40 font-black uppercase tracking-widest flex items-center justify-center md:justify-start gap-2">
                 <LayoutGrid size={12} /> {t('registered', { count: total })}

@@ -155,9 +155,7 @@ export default function Home() {
                   <br />
                   <AnimatedText text={def(settings, 'philosophy_title_line2', 'Meets')} animationType="words" direction="up" delay={0.15} />
                   <br />
-                  <span className="text-divine-gold">
-                    <AnimatedText text={def(settings, 'philosophy_title_line3', 'the Chisel')} animationType="letters" direction="up" delay={0.25} underline />
-                  </span>
+                  <AnimatedText text={def(settings, 'philosophy_title_line3', 'the Chisel')} animationType="letters" direction="up" delay={0.25} className="text-divine-gold" underline />
                 </h2>
               </div>
 
@@ -200,9 +198,7 @@ export default function Home() {
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-gold">{t('curated')}</span>
               <h2 className="text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
                 <AnimatedText text={t('heritage')} animationType="words" direction="up" delay={0.05} /> <br />
-                <span className="text-divine-gold">
-                  <AnimatedText text={t('masterpieces')} animationType="letters" direction="up" delay={0.15} underline />
-                </span>
+                <AnimatedText text={t('masterpieces')} animationType="letters" direction="up" delay={0.15} className="text-divine-gold" underline />
               </h2>
             </div>
             <Link
@@ -249,11 +245,9 @@ export default function Home() {
         <div className="container mx-auto px-6 text-center relative z-10">
         <ScrollReveal direction="up" className="max-w-4xl mx-auto space-y-10 md:space-y-12">
             <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] md:tracking-[0.5em] text-gold">{def(settings, 'cta_badge', 'Commission a Masterpiece')}</p>
-            <h2 className="text-4xl sm:text-5xl md:text-7xl xl:text-9xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
+            <h2 className="text-3xl sm:text-4xl md:text-6xl xl:text-8xl font-black tracking-tighter text-ivory uppercase leading-[0.9] md:leading-[0.85]">
               <AnimatedText text={def(settings, 'cta_title_line1', 'Bring a God')} animationType="words" direction="up" delay={0.05} /> <br />
-              <span className="text-divine-gold">
-                <AnimatedText text={def(settings, 'cta_title_line2', 'Into Your Home')} animationType="letters" direction="up" delay={0.2} underline />
-              </span>
+              <AnimatedText text={def(settings, 'cta_title_line2', 'Into Your Home')} animationType="letters" direction="up" delay={0.2} className="text-divine-gold" underline />
             </h2>
             <p className="text-ivory/50 text-lg md:text-2xl font-medium leading-relaxed italic max-w-2xl mx-auto">
               {def(settings, 'cta_desc', 'Each statue is a one-of-a-kind creation. Commission a bespoke piece crafted to your exact spiritual vision.')}
