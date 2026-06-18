@@ -44,9 +44,6 @@ export default function ProductCard({ product, hoverUp = false }: ProductCardPro
 
           {/* Badges */}
           <div className="absolute top-2 left-2 md:top-3 md:left-3 flex flex-col gap-1 md:gap-2">
-            <span className="bg-espresso/80 backdrop-blur-sm text-gold text-[7px] md:text-[8px] font-black uppercase tracking-wider px-2 py-0.5 md:px-3 md:py-1 rounded-lg md:rounded-xl border border-gold/20">
-              {product.category?.name || 'Uncategorized'}
-            </span>
             {product.featured && (
               <span className="bg-gold text-espresso text-[7px] md:text-[8px] font-black uppercase tracking-wider px-2 py-0.5 md:px-3 md:py-1 rounded-lg md:rounded-xl">
                 Elite Collection

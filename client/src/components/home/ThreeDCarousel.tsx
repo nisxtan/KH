@@ -26,28 +26,28 @@ const slides: Slide[] = [
     title: 'Arya Green Tara',
     subtitle: 'Mother of Liberation',
     desc: 'Detailed lost-wax hand-casting. Features authentic hand-set coral and turquoise stones.',
-    image: 'https://images.unsplash.com/photo-1544111301-44754a01948d?q=80&w=800',
+    image: '/green_tara.png',
   },
   {
     id: 3,
     title: 'Vajrasattva Deity',
     subtitle: 'The Great Purifier',
     desc: 'Extraordinary filigree carvings. Masterfully carved vajra and bell accents.',
-    image: 'https://images.unsplash.com/photo-1590650213165-c1fef80648c4?q=80&w=800',
+    image: '/vajrasattva.png',
   },
   {
     id: 4,
     title: 'Four-Armed Chenrezig',
     subtitle: 'Lord of Compassion',
     desc: 'Full fire-gilded body. Intricate hand-etched robes depicting sacred mantras.',
-    image: 'https://images.unsplash.com/photo-1616423641454-e6992925345b?q=80&w=800',
+    image: '/chenrezig.png',
   },
   {
     id: 5,
     title: 'Maharaja Ganesh',
     subtitle: 'Remover of Obstacles',
     desc: 'Oxidized copper finish with fine 24K gold highlights. Captures cosmic power in heavy casting.',
-    image: 'https://images.unsplash.com/photo-1533633517164-9da96eb5bb09?q=80&w=800',
+    image: '/ganesh.png',
   }
 ];
 

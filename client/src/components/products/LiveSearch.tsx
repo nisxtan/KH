@@ -135,9 +135,6 @@ export default function LiveSearch({
                     <p className="text-xs font-black truncate text-ivory group-hover:text-gold">
                       {item.name}
                     </p>
-                    <p className="text-[8px] font-bold uppercase tracking-widest text-ivory/40 group-hover:text-gold/60 mt-0.5">
-                      {item.category}
-                    </p>
                   </div>
                 </button>
               ))

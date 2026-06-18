@@ -8,7 +8,7 @@ import { RootState } from '@/store';
 import { 
   Save, Settings, HelpCircle, Image as ImageIcon, X, Loader2, 
   CheckCircle, Upload, Trash2, Home, Info, BookOpen, Phone, 
-  Globe, LayoutGrid, Plus, Search, Coins
+  Globe, Coins
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
@@ -23,19 +23,11 @@ interface SettingField {
   section: string;
 }
 
-interface Category {
-  id: number;
-  name: string;
-  slug: string;
-  description?: string;
-}
-
 type GroupedSettings = Record<string, SettingField[]>;
 
 const sectionMeta: Record<string, { label: string; icon: any; color: string; desc: string }> = {
   hero:       { label: 'Hero Section',    icon: <Home size={28} />,    color: 'from-gold/20 to-gold/5', desc: 'Manage the main landing page headline, subtitle, and all 4 grid images.' },
   home:       { label: 'Home Page',      icon: <Globe size={28} />,   color: 'from-ivory-dark to-ivory', desc: 'Control the About Us section and the features strip below the hero.' },
-  categories: { label: 'Categories',      icon: <LayoutGrid size={28} />, color: 'from-bronze/20 to-bronze/5', desc: 'Add or delete product categories like Buddha, Ganesh, etc.' },
   about:      { label: 'About Us',       icon: <BookOpen size={28} />, color: 'from-ivory-dark to-ivory', desc: 'Edit your brand story, legacy paragraphs, and the story hero image.' },
   contact:    { label: 'Contact',        icon: <Phone size={28} />,    color: 'from-gold/20 to-gold/5', desc: 'Update addresses, phones, emails, and all social media links.' },
   currency:   { label: 'Currency Settings', icon: <Coins size={28} />,    color: 'from-gold/20 to-gold/5', desc: 'Manage exchange rates for dynamic currency conversion (Base: NPR).' },
@@ -47,8 +39,6 @@ export default function AdminSettingsPage() {
   const router = useRouter();
 
   const [grouped, setGrouped] = useState<GroupedSettings>({});
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [newCatName, setNewCatName] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -64,12 +54,10 @@ export default function AdminSettingsPage() {
 
   const fetchData = async () => {
     try {
-      const [settingsRes, categoriesRes] = await Promise.all([
-        axiosInstance.get('/settings/grouped', { headers: { Authorization: `Bearer ${token}` } }),
-        axiosInstance.get('/categories')
-      ]);
+      const settingsRes = await axiosInstance.get('/settings/grouped', {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       setGrouped(settingsRes.data);
-      setCategories(categoriesRes.data);
     } catch {
       toast.error('Failed to load sanctuary data');
     } finally {
@@ -118,33 +106,6 @@ export default function AdminSettingsPage() {
       toast.error('Failed to preserve settings');
     } finally {
       setSaving(false);
-    }
-  };
-
-  const handleAddCategory = async () => {
-    if (!newCatName.trim()) return;
-    try {
-      await axiosInstance.post('/categories', { name: newCatName }, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setNewCatName('');
-      toast.success('New category established');
-      fetchData();
-    } catch {
-      toast.error('Failed to create category');
-    }
-  };
-
-  const handleDeleteCategory = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this category? Products in this category will be unassigned.')) return;
-    try {
-      await axiosInstance.delete(`/categories/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      toast.success('Category removed');
-      fetchData();
-    } catch {
-      toast.error('Failed to remove category');
     }
   };
 
@@ -197,7 +158,7 @@ export default function AdminSettingsPage() {
             {Object.keys(sectionMeta).map((section) => {
               const meta = sectionMeta[section];
               const active = activeSection === section;
-              if (section !== 'categories' && !grouped[section]) return null;
+              if (!grouped[section]) return null;
               
               return (
                 <button
@@ -211,7 +172,7 @@ export default function AdminSettingsPage() {
                   <div className="flex-1">
                     <p className="text-[9px] lg:text-[10px] font-black uppercase tracking-widest truncate">{meta.label}</p>
                     <p className={`text-[7px] lg:text-[8px] font-bold uppercase tracking-tight mt-0.5 lg:mt-1 ${active ? 'text-gold' : 'opacity-40'}`}>
-                      {section === 'categories' ? `${categories.length} Types` : `${grouped[section]?.length || 0} Fields`}
+                      {`${grouped[section]?.length || 0} Fields`}
                     </p>
                   </div>
                 </button>
@@ -240,129 +201,87 @@ export default function AdminSettingsPage() {
             </div>
 
             <div className="p-6 md:p-10 space-y-8 md:space-y-12">
-              {activeSection === 'categories' ? (
-                <div className="space-y-10">
-                  {/* Add New Category */}
-                  <div className="bg-ivory/30 p-8 rounded-[2rem] border border-gold/10 flex flex-col md:flex-row gap-6 items-end">
-                    <div className="flex-1 space-y-3 w-full">
-                      <label className="text-[10px] font-black uppercase tracking-[0.25em] text-espresso/60">New Category Name</label>
-                      <input 
-                        type="text" value={newCatName} onChange={e => setNewCatName(e.target.value)}
-                        placeholder="e.g. Mahakala"
-                        className="w-full bg-sacred border border-gold/15 focus:border-gold rounded-2xl px-6 py-5 text-espresso text-base font-medium focus:outline-none transition-all shadow-inner"
-                      />
+              {currentFields.map((field) => {
+                const isDirty = changes[field.key] !== undefined;
+                const value = getValue(field);
+                return (
+                  <div key={field.key} className={`group space-y-4 p-8 rounded-[2rem] transition-all border ${isDirty ? 'bg-gold/5 border-gold/30' : 'bg-ivory/30 border-transparent hover:border-gold/10'}`}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        {field.type === 'image' && <ImageIcon size={14} className="text-gold" />}
+                        <label className="text-[10px] font-black uppercase tracking-[0.25em] text-espresso/60">{field.label}</label>
+                      </div>
+                      <span className="text-[8px] font-black uppercase tracking-widest text-espresso/20 bg-espresso/5 px-3 py-1 rounded-full">{field.key}</span>
                     </div>
-                    <button 
-                      onClick={handleAddCategory}
-                      className="bg-espresso text-sacred px-10 py-5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-gold hover:text-espresso transition-all flex items-center gap-3 whitespace-nowrap"
-                    >
-                      <Plus size={16} /> Add Category
-                    </button>
-                  </div>
 
-                  {/* Categories List */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {categories.map((cat) => (
-                      <div key={cat.id} className="bg-sacred p-8 rounded-[2rem] border border-gold/10 shadow-sm flex items-center justify-between group hover:border-gold/30 transition-all">
-                        <div>
-                          <p className="text-lg font-black text-espresso uppercase tracking-tighter">{cat.name}</p>
-                          <p className="text-[9px] text-espresso/40 font-bold uppercase tracking-widest mt-1">slug: {cat.slug}</p>
-                        </div>
-                        <button 
-                          onClick={() => handleDeleteCategory(cat.id)}
-                          className="p-4 rounded-xl text-espresso/20 hover:text-bronze hover:bg-bronze/5 transition-all"
-                        >
-                          <Trash2 size={20} />
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                currentFields.map((field) => {
-                  const isDirty = changes[field.key] !== undefined;
-                  const value = getValue(field);
-                  return (
-                    <div key={field.key} className={`group space-y-4 p-8 rounded-[2rem] transition-all border ${isDirty ? 'bg-gold/5 border-gold/30' : 'bg-ivory/30 border-transparent hover:border-gold/10'}`}>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          {field.type === 'image' && <ImageIcon size={14} className="text-gold" />}
-                          <label className="text-[10px] font-black uppercase tracking-[0.25em] text-espresso/60">{field.label}</label>
-                        </div>
-                        <span className="text-[8px] font-black uppercase tracking-widest text-espresso/20 bg-espresso/5 px-3 py-1 rounded-full">{field.key}</span>
-                      </div>
-
-                      {field.type === 'textarea' ? (
-                        <textarea
-                          rows={5} value={value} onChange={e => handleChange(field.key, e.target.value)}
-                          className="w-full bg-sacred border border-gold/15 focus:border-gold rounded-2xl px-6 py-5 text-espresso text-base font-medium focus:outline-none focus:ring-4 focus:ring-gold/10 transition-all resize-none shadow-inner"
-                        />
-                      ) : field.type === 'image' ? (
-                        <div className="space-y-6">
-                          <div className="flex flex-col md:flex-row gap-8 items-start">
-                            <div className="w-full md:w-48 h-48 rounded-2xl overflow-hidden border border-gold/20 shadow-lg bg-ivory relative group/img">
-                              <img src={value} alt="Preview" className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110" />
-                              {uploadingKey === field.key && (
-                                <div className="absolute inset-0 bg-espresso/60 backdrop-blur-sm flex items-center justify-center">
-                                  <Loader2 className="animate-spin text-gold" size={32} />
-                                </div>
-                              )}
-                            </div>
-                            
-                            <div className="flex-1 w-full space-y-4">
-                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <label className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gold/20 rounded-2xl hover:border-gold hover:bg-gold/5 transition-all cursor-pointer group/upload">
-                                  <input 
-                                    type="file" accept="image/*" className="hidden" 
-                                    onChange={e => e.target.files?.[0] && handleFileUpload(field.key, e.target.files[0])}
-                                  />
-                                  <Upload size={24} className="text-gold mb-2 group-hover/upload:scale-110 transition-transform" />
-                                  <span className="text-[10px] font-black uppercase tracking-widest text-espresso/60">Upload Image</span>
-                                </label>
-                                
-                                <div className="space-y-2">
-                                  <p className="text-[9px] font-bold text-espresso/40 uppercase tracking-widest">Or Paste URL</p>
-                                  <input
-                                    type="text" value={value} onChange={e => handleChange(field.key, e.target.value)}
-                                    className="w-full bg-sacred border border-gold/15 focus:border-gold rounded-xl px-5 py-4 text-espresso text-xs font-medium focus:outline-none focus:ring-4 focus:ring-gold/10 transition-all shadow-inner"
-                                    placeholder="https://..."
-                                  />
-                                  {isDirty && (
-                                    <button onClick={() => handleChange(field.key, field.value)} className="flex items-center gap-2 text-[8px] font-black uppercase tracking-widest text-bronze hover:text-gold transition-colors">
-                                      <Trash2 size={10} /> Reset to Original
-                                    </button>
-                                  )}
-                                </div>
+                    {field.type === 'textarea' ? (
+                      <textarea
+                        rows={5} value={value} onChange={e => handleChange(field.key, e.target.value)}
+                        className="w-full bg-sacred border border-gold/15 focus:border-gold rounded-2xl px-6 py-5 text-espresso text-base font-medium focus:outline-none focus:ring-4 focus:ring-gold/10 transition-all resize-none shadow-inner"
+                      />
+                    ) : field.type === 'image' ? (
+                      <div className="space-y-6">
+                        <div className="flex flex-col md:flex-row gap-8 items-start">
+                          <div className="w-full md:w-48 h-48 rounded-2xl overflow-hidden border border-gold/20 shadow-lg bg-ivory relative group/img">
+                            <img src={value} alt="Preview" className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110" />
+                            {uploadingKey === field.key && (
+                              <div className="absolute inset-0 bg-espresso/60 backdrop-blur-sm flex items-center justify-center">
+                                <Loader2 className="animate-spin text-gold" size={32} />
+                              </div>
+                            )}
+                          </div>
+                          
+                          <div className="flex-1 w-full space-y-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <label className="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gold/20 rounded-2xl hover:border-gold hover:bg-gold/5 transition-all cursor-pointer group/upload">
+                                <input 
+                                  type="file" accept="image/*" className="hidden" 
+                                  onChange={e => e.target.files?.[0] && handleFileUpload(field.key, e.target.files[0])}
+                                />
+                                <Upload size={24} className="text-gold mb-2 group-hover/upload:scale-110 transition-transform" />
+                                <span className="text-[10px] font-black uppercase tracking-widest text-espresso/60">Upload Image</span>
+                              </label>
+                              
+                              <div className="space-y-2">
+                                <p className="text-[9px] font-bold text-espresso/40 uppercase tracking-widest">Or Paste URL</p>
+                                <input
+                                  type="text" value={value} onChange={e => handleChange(field.key, e.target.value)}
+                                  className="w-full bg-sacred border border-gold/15 focus:border-gold rounded-xl px-5 py-4 text-espresso text-xs font-medium focus:outline-none focus:ring-4 focus:ring-gold/10 transition-all shadow-inner"
+                                  placeholder="https://..."
+                                />
+                                {isDirty && (
+                                  <button onClick={() => handleChange(field.key, field.value)} className="flex items-center gap-2 text-[8px] font-black uppercase tracking-widest text-bronze hover:text-gold transition-colors">
+                                    <Trash2 size={10} /> Reset to Original
+                                  </button>
+                                )}
                               </div>
                             </div>
                           </div>
                         </div>
-                      ) : (
-                        <input
-                          type="text" value={value} onChange={e => handleChange(field.key, e.target.value)}
-                          className="w-full bg-sacred border border-gold/15 focus:border-gold rounded-2xl px-6 py-5 text-espresso text-base font-medium focus:outline-none focus:ring-4 focus:ring-gold/10 transition-all shadow-inner"
-                        />
-                      )}
-                    </div>
-                  )
-                })
-              )}
+                      </div>
+                    ) : (
+                      <input
+                        type="text" value={value} onChange={e => handleChange(field.key, e.target.value)}
+                        className="w-full bg-sacred border border-gold/15 focus:border-gold rounded-2xl px-6 py-5 text-espresso text-base font-medium focus:outline-none focus:ring-4 focus:ring-gold/10 transition-all shadow-inner"
+                      />
+                    )}
+                  </div>
+                )
+              })}
               
               {/* Static Save Button */}
-              {activeSection !== 'categories' && (
-                <div className="pt-12 border-t border-gold/10 flex justify-end">
-                  <button
-                    onClick={handleSave}
-                    disabled={saving || !hasChanges}
-                    className={`flex items-center gap-4 px-12 py-5 rounded-[2rem] text-sm font-black uppercase tracking-widest transition-all ${
-                      saved ? 'bg-green-600 text-white shadow-xl' : hasChanges ? 'bg-espresso text-sacred hover:scale-105 shadow-2xl hover:bg-gold hover:text-espresso' : 'bg-espresso/5 text-espresso/20 cursor-not-allowed'
-                    }`}
-                  >
-                    {saving ? <Loader2 size={20} className="animate-spin" /> : saved ? <CheckCircle size={20} /> : <Save size={20} />}
-                    {saving ? 'Preserving Changes...' : saved ? 'Successfully Saved' : 'Preserve All Changes'}
-                  </button>
-                </div>
-              )}
+              <div className="pt-12 border-t border-gold/10 flex justify-end">
+                <button
+                  onClick={handleSave}
+                  disabled={saving || !hasChanges}
+                  className={`flex items-center gap-4 px-12 py-5 rounded-[2rem] text-sm font-black uppercase tracking-widest transition-all ${
+                    saved ? 'bg-green-600 text-white shadow-xl' : hasChanges ? 'bg-espresso text-sacred hover:scale-105 shadow-2xl hover:bg-gold hover:text-espresso' : 'bg-espresso/5 text-espresso/20 cursor-not-allowed'
+                  }`}
+                >
+                  {saving ? <Loader2 size={20} className="animate-spin" /> : saved ? <CheckCircle size={20} /> : <Save size={20} />}
+                  {saving ? 'Preserving Changes...' : saved ? 'Successfully Saved' : 'Preserve All Changes'}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -422,14 +341,7 @@ export default function AdminSettingsPage() {
                   <p className="text-espresso/50 font-medium text-lg">Visual reference for site management.</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="bg-sacred p-8 rounded-[2.5rem] border border-gold/10 space-y-4">
-                    <div className="flex items-center gap-3 text-gold">
-                       <LayoutGrid size={18} />
-                       <h3 className="text-sm font-black uppercase tracking-widest">Categories</h3>
-                    </div>
-                    <p className="text-[10px] text-espresso/60 leading-relaxed font-medium">Add or remove categories like Tara, Buddha, or Shiva. Once added, they will appear in the gallery filters and when adding new products.</p>
-                  </div>
+                <div className="max-w-xl mx-auto">
                   <div className="bg-sacred p-8 rounded-[2.5rem] border border-gold/10 space-y-4">
                     <div className="flex items-center gap-3 text-gold">
                        <ImageIcon size={18} />

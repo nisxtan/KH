@@ -110,7 +110,10 @@
     "all": "Tout",
     "recommendedTitle": "Chefs-d'œuvre Recommandés",
     "suggestionsTitle": "Suggestions",
-    "noResultsText": "Aucun résultat trouvé"
+    "noResultsText": "Aucun résultat trouvé",
+    "sortNewest": "Plus Récent",
+    "priceLowHigh": "Prix: Bas à Élevé",
+    "priceHighLow": "Prix: Élevé à Bas"
   },
   "Contact": {
     "getInTouch": "Entrer en contact",

@@ -144,6 +144,7 @@ export default function AdminDashboard() {
                     <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Product</th>
                     <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Category</th>
                     <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Price</th>
+                    <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Stock</th>
                     <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Status</th>
                     <th className="p-6 uppercase tracking-widest text-[9px] font-black text-right whitespace-nowrap">Actions</th>
                   </tr>
@@ -168,6 +169,7 @@ export default function AdminDashboard() {
                       </td>
                       <td className="p-6 text-xs font-bold text-espresso/50 uppercase tracking-wider">{product.category?.name || 'Uncategorized'}</td>
                       <td className="p-6 font-black text-gold text-sm whitespace-nowrap">Rs. {Number(product.price).toLocaleString()}</td>
+                      <td className="p-6 text-xs font-bold text-espresso/50 uppercase tracking-wider">{product.stock !== undefined ? product.stock : 0} units</td>
                       <td className="p-6">
                         <div className="flex flex-col gap-2">
                           <span className={`text-[9px] uppercase font-black px-3 py-1 rounded-full inline-block w-fit ${product.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
@@ -216,6 +218,8 @@ export default function AdminDashboard() {
                         <p className="text-[9px] text-espresso/50 font-bold uppercase tracking-widest truncate">{product.category?.name || 'Uncategorized'}</p>
                         <span className="text-gold">•</span>
                         <p className="text-[9px] text-espresso/40 font-bold uppercase tracking-widest truncate">{product.size}</p>
+                        <span className="text-gold">•</span>
+                        <p className="text-[9px] text-espresso/50 font-bold uppercase tracking-widest truncate">Stock: {product.stock !== undefined ? product.stock : 0}</p>
                       </div>
                       <p className="font-black text-gold text-sm mt-2">Rs. {Number(product.price).toLocaleString()}</p>
                     </div>

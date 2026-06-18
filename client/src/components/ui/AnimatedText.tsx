@@ -115,7 +115,7 @@ export default function AnimatedText({
     if (animationType === 'lines') {
       // Splits text by standard newline character or paragraph splits
       return text.split('\n').map((line, index) => (
-        <span key={`${line}-${index}`} className="block overflow-hidden py-1">
+        <span key={`${line}-${index}`} className="block py-1">
           <motion.span
             className="inline-block w-full"
             variants={itemVariants}
@@ -152,10 +152,11 @@ export default function AnimatedText({
 
   return (
     <motion.span
+      key={text}
       className={`relative inline-block w-full ${className}`}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: '-10% 0px' }}
+      viewport={{ once, margin: '0px' }}
       variants={containerVariants}
     >
       <Wrapper className="inline-block">

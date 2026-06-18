@@ -58,13 +58,25 @@ export class ProductService {
             query.andWhere('(product.name ILIKE :search OR product.description ILIKE :search)', { search: `%${filters.search}%` });
         }
 
+        // Sorting
+        let sortField = 'product.createdAt';
+        let sortOrder: 'ASC' | 'DESC' = 'DESC';
+
+        if (filters.sort === 'price_asc') {
+            sortField = 'product.price';
+            sortOrder = 'ASC';
+        } else if (filters.sort === 'price_desc') {
+            sortField = 'product.price';
+            sortOrder = 'DESC';
+        }
+
         // Pagination
         const page = parseInt(filters.page) || 1;
         const limit = parseInt(filters.limit) || 12;
         const skip = (page - 1) * limit;
 
         const [items, total] = await query
-            .orderBy('product.createdAt', 'DESC')
+            .orderBy(sortField, sortOrder)
             .skip(skip)
             .take(limit)
             .getManyAndCount();

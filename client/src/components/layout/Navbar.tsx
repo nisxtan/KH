@@ -415,7 +415,6 @@ export default function Navbar() {
                           </div>
                           <div className="min-w-0 flex-1">
                             <p className="text-[14px] font-bold truncate text-ivory group-hover:text-gold transition-colors">{item.name}</p>
-                            <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-ivory/65 mt-1">{item.category}</p>
                           </div>
                           <ChevronRight size={14} className="text-ivory/20 group-hover:text-gold group-hover:translate-x-0.5 transition-all pr-2" />
                         </button>

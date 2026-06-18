@@ -10,7 +10,7 @@ import SacredGeometry from "@/components/ui/SacredGeometry";
 async function getProducts(params: any) {
   try {
     const queryParams = new URLSearchParams();
-    if (params.categorySlug && params.categorySlug !== 'All') queryParams.append('categorySlug', params.categorySlug);
+    if (params.sort) queryParams.append('sort', params.sort);
     if (params.page) queryParams.append('page', params.page);
     if (params.search) queryParams.append('search', params.search);
     if (params.locale) queryParams.append('lang', params.locale);
@@ -23,38 +23,25 @@ async function getProducts(params: any) {
   }
 }
 
-async function getCategories(locale: string) {
-  try {
-    const res = await axiosInstance.get(`/categories?lang=${locale}`);
-    return res.data;
-  } catch {
-    return [];
-  }
-}
-
 export default async function ProductsPage({
   params,
   searchParams,
 }: {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ category?: string; page?: string; search?: string }>;
+  searchParams: Promise<{ sort?: string; page?: string; search?: string }>;
 }) {
   const { locale } = await params;
   const t = await getTranslations('Products');
-  const { category: categorySlug, page, search } = await searchParams;
-  const [{ items: products, total, totalPages, page: currentPage }, categories] = await Promise.all([
-    getProducts({ categorySlug, page, search, locale }),
-    getCategories(locale)
-  ]);
+  const { sort, page, search } = await searchParams;
+  const { items: products, total, totalPages, page: currentPage } = await getProducts({ sort, page, search, locale });
 
-  const categoryList = [{ name: t('all'), slug: 'All' }, ...categories];
   const safeCurrentPage = Number(currentPage) || 1;
   const safeTotalPages = Number(totalPages) || 1;
   const isPrevDisabled = safeCurrentPage <= 1;
   const isNextDisabled = safeCurrentPage >= safeTotalPages;
 
   const buildHref = (p: number) =>
-    `/products?page=${p}${categorySlug ? `&category=${categorySlug}` : ''}${search ? `&search=${search}` : ''}`;
+    `/products?page=${p}${sort ? `&sort=${sort}` : ''}${search ? `&search=${search}` : ''}`;
 
   return (
     <div className="bg-transparent min-h-screen pt-32 pb-20 relative overflow-hidden">
@@ -90,21 +77,25 @@ export default async function ProductsPage({
           </div>
         </div>
 
-        {/* ─── Category Filters ─── */}
+        {/* ─── Price / Sort Filters ─── */}
         <div className="flex gap-3 overflow-x-auto pb-4 mb-10 scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:flex-wrap">
-          {categoryList.map((cat: any) => {
-            const isActive = (!categorySlug && cat.name === t('all')) || categorySlug === cat.slug;
+          {[
+            { name: t('sortNewest'), value: '' },
+            { name: t('priceLowHigh'), value: 'price_asc' },
+            { name: t('priceHighLow'), value: 'price_desc' }
+          ].map((option) => {
+            const isActive = sort === option.value || (!sort && option.value === '');
             return (
               <Link
-                key={cat.slug}
-                href={cat.slug === "All" ? "/products" : `/products?category=${cat.slug}${search ? `&search=${search}` : ''}`}
+                key={option.name}
+                href={`/products?sort=${option.value}${search ? `&search=${search}` : ''}`}
                 className={`whitespace-nowrap px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] transition-all border flex-shrink-0 ${
                   isActive
                     ? "bg-gold text-espresso border-gold shadow-xl scale-105"
                     : "bg-black/40 backdrop-blur-md text-ivory/60 border-gold/20 hover:border-gold/50 hover:text-ivory"
                 }`}
               >
-                {cat.name}
+                {option.name}
               </Link>
             );
           })}

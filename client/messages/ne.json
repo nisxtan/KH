@@ -110,7 +110,10 @@
     "all": "सबै",
     "recommendedTitle": "सिफारिस गरिएका उत्कृष्ट कृतिहरू",
     "suggestionsTitle": "सुझावहरू",
-    "noResultsText": "कुनै मेल फेला परेन"
+    "noResultsText": "कुनै मेल फेला परेन",
+    "sortNewest": "नवीनतम",
+    "priceLowHigh": "मूल्य: सस्तो देखि महँगो",
+    "priceHighLow": "मूल्य: महँगो देखि सस्तो"
   },
   "Contact": {
     "getInTouch": "सम्पर्कमा रहनुहोस्",

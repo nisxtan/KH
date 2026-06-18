@@ -165,11 +165,6 @@ export default function ProductDetails() {
               transition={{ duration: 1, delay: 0.3 }}
               className="space-y-8 flex flex-col items-center lg:items-start"
             >
-              <div className="flex items-center gap-4">
-                <span className="h-px w-10 bg-gold/30"></span>
-                <span className="text-[10px] uppercase tracking-[0.4em] text-gold font-black">{product.category?.name || 'Uncategorized'}</span>
-              </div>
-              
               <h1 className="text-5xl md:text-6xl xl:text-8xl font-black text-ivory uppercase tracking-tighter leading-[0.9]">
                 <AnimatedText text={product.name} animationType="words" direction="up" delay={0.05} underline />
               </h1>

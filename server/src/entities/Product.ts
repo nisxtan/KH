@@ -41,6 +41,9 @@ export class Product {
     @Column({ default: true })
     available!: boolean;
 
+    @Column('int', { default: 0 })
+    stock!: number;
+
     @CreateDateColumn()
     createdAt!: Date;
 

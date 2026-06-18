@@ -18,16 +18,23 @@ interface Category {
 }
 
 export default function ProductForm({ initialData, onSuccess, onCancel }: ProductFormProps) {
-  const [formData, setFormData] = useState(initialData || {
-    name: '',
-    description: '',
-    price: '',
-    size: '',
-    material: '',
-    categoryId: '',
-    images: [],
-    featured: false,
-    available: true,
+  const [formData, setFormData] = useState(() => {
+    const base = initialData || {
+      name: '',
+      description: '',
+      price: '',
+      size: '',
+      material: '',
+      categoryId: '',
+      images: [],
+      featured: false,
+      available: true,
+      stock: 0,
+    };
+    return {
+      ...base,
+      stock: base.stock !== undefined ? base.stock : 0,
+    };
   });
 
   const [categories, setCategories] = useState<Category[]>([]);
@@ -215,6 +222,20 @@ export default function ProductForm({ initialData, onSuccess, onCancel }: Produc
             onChange={(e) => setFormData({ ...formData, material: e.target.value })}
             required
             placeholder="e.g. Copper with Gold Gilding"
+          />
+        </div>
+
+        {/* Stock */}
+        <div className="space-y-4">
+          <label className="text-[10px] font-black uppercase tracking-[0.25em] text-espresso/40">Number of Stock</label>
+          <input
+            type="number"
+            className="w-full bg-ivory/30 border border-gold/15 focus:border-gold rounded-2xl px-6 py-5 text-espresso font-medium focus:outline-none transition-all shadow-inner"
+            value={formData.stock}
+            onChange={(e) => setFormData({ ...formData, stock: parseInt(e.target.value) || 0 })}
+            required
+            min="0"
+            placeholder="0"
           />
         </div>
 

@@ -110,7 +110,10 @@
     "all": "Alle",
     "recommendedTitle": "Empfohlene Meisterwerke",
     "suggestionsTitle": "Vorschläge",
-    "noResultsText": "Keine Treffer gefunden"
+    "noResultsText": "Keine Treffer gefunden",
+    "sortNewest": "Neueste",
+    "priceLowHigh": "Preis: Niedrig bis Hoch",
+    "priceHighLow": "Preis: Hoch bis Niedrig"
   },
   "Contact": {
     "getInTouch": "Kontaktieren Sie uns",

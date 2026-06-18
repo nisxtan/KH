@@ -110,7 +110,10 @@
     "all": "全部",
     "recommendedTitle": "推荐大师作品",
     "suggestionsTitle": "搜索建议",
-    "noResultsText": "未找到匹配结果"
+    "noResultsText": "未找到匹配结果",
+    "sortNewest": "最新",
+    "priceLowHigh": "价格: 从低到高",
+    "priceHighLow": "价格: 从高到低"
   },
   "Contact": {
     "getInTouch": "与我们联络",

@@ -16,6 +16,7 @@ export const getAllProducts = async (req: Request, res: Response) => {
             search: req.query.search,
             page: req.query.page,
             limit: req.query.limit,
+            sort: req.query.sort,
         };
         const result = await productService.getAllProducts(filters);
         

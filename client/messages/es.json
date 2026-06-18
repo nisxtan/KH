@@ -110,7 +110,10 @@
     "all": "Todo",
     "recommendedTitle": "Obras Maestras Recomendadas",
     "suggestionsTitle": "Sugerencias",
-    "noResultsText": "No se encontraron coincidencias"
+    "noResultsText": "No se encontraron coincidencias",
+    "sortNewest": "Más Reciente",
+    "priceLowHigh": "Precio: Bajo a Alto",
+    "priceHighLow": "Precio: Alto a Bajo"
   },
   "Contact": {
     "getInTouch": "Ponerse en contacto",

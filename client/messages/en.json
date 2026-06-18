@@ -110,7 +110,10 @@
     "all": "All",
     "recommendedTitle": "Recommended Masterpieces",
     "suggestionsTitle": "Suggestions",
-    "noResultsText": "No matches found"
+    "noResultsText": "No matches found",
+    "sortNewest": "Newest",
+    "priceLowHigh": "Price: Low to High",
+    "priceHighLow": "Price: High to Low"
   },
   "Contact": {
     "getInTouch": "Get in Touch",

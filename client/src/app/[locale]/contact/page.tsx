@@ -24,10 +24,10 @@ export default function ContactPage() {
     return stripped.replace(/_([a-z0-9])/g, (_, g) => g.toUpperCase());
   };
 
-  const def = (s: Settings, key: string, fb: string) => {
+  const def = (s: Settings, key: string, fb: string, translate = true) => {
     const val = s[key];
     if (!val) {
-      if (locale !== 'en') {
+      if (locale !== 'en' && translate) {
         try {
           const tKey = toCamelCase(key);
           return t(tKey);
@@ -37,7 +37,7 @@ export default function ContactPage() {
       }
       return fb;
     }
-    if (locale !== 'en' && val === fb) {
+    if (locale !== 'en' && val === fb && translate) {
       try {
         const tKey = toCamelCase(key);
         return t(tKey);
@@ -68,15 +68,15 @@ export default function ContactPage() {
   };
 
   const contactItems = [
-    { icon: <MapPin size={20} />, label: t('showroom'), value: def(settings, 'contact_address', 'Bouddha, Kathmandu, Nepal'), href: 'https://maps.google.com/?q=Bouddha,Kathmandu' },
-    { icon: <Phone size={20} />, label: t('directLine'), value: def(settings, 'contact_phone', '+977 1234 567 890'), href: `tel:${def(settings, 'contact_phone', '')}` },
-    { icon: <Mail size={20} />, label: t('emailUs'), value: def(settings, 'contact_email', 'info@kiranhandicraft.com'), href: `mailto:${def(settings, 'contact_email', '')}` },
+    { icon: <MapPin size={20} />, label: t('showroom'), value: def(settings, 'contact_address', 'Bouddha, Kathmandu, Nepal', false), href: 'https://maps.google.com/?q=Bouddha,Kathmandu' },
+    { icon: <Phone size={20} />, label: t('directLine'), value: def(settings, 'contact_phone', '+977 1234 567 890', false), href: `tel:${def(settings, 'contact_phone', '', false)}` },
+    { icon: <Mail size={20} />, label: t('emailUs'), value: def(settings, 'contact_email', 'info@kiranhandicraft.com', false), href: `mailto:${def(settings, 'contact_email', '', false)}` },
   ];
 
   const socials = [
-    { icon: <FaFacebook size={20} />, label: 'Facebook', href: def(settings, 'contact_facebook', '#') },
-    { icon: <FaInstagram size={20} />, label: 'Instagram', href: def(settings, 'contact_instagram', '#') },
-    { icon: <MessageCircle size={20} />, label: 'WhatsApp', href: `https://wa.me/${def(settings, 'contact_whatsapp', '97798XXXXXXXX')}` },
+    { icon: <FaFacebook size={20} />, label: 'Facebook', href: def(settings, 'contact_facebook', '#', false) },
+    { icon: <FaInstagram size={20} />, label: 'Instagram', href: def(settings, 'contact_instagram', '#', false) },
+    { icon: <MessageCircle size={20} />, label: 'WhatsApp', href: `https://wa.me/${def(settings, 'contact_whatsapp', '97798XXXXXXXX', false)}` },
   ];
 
   return (
