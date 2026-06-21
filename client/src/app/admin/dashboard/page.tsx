@@ -183,7 +183,6 @@ export default function AdminDashboard() {
               <thead className="bg-espresso text-sacred">
                 <tr>
                   <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Product</th>
-                  <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Category</th>
                   <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Price</th>
                   <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Stock</th>
                   <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Status</th>
@@ -208,7 +207,6 @@ export default function AdminDashboard() {
                         </div>
                       </div>
                     </td>
-                    <td className="p-6 text-xs font-bold text-espresso/50 uppercase tracking-wider">{product.category?.name || 'Uncategorized'}</td>
                     <td className="p-6 font-black text-gold text-sm whitespace-nowrap">Rs. {Number(product.price).toLocaleString()}</td>
                     <td className="p-6 text-xs font-bold text-espresso/50 uppercase tracking-wider">{product.stock !== undefined ? product.stock : 0} units</td>
                     <td className="p-6">
@@ -256,8 +254,6 @@ export default function AdminDashboard() {
                   <div className="flex-1 min-w-0">
                     <p className="font-black text-espresso text-base truncate">{product.name}</p>
                     <div className="flex items-center gap-2 mt-1">
-                      <p className="text-[9px] text-espresso/50 font-bold uppercase tracking-widest truncate">{product.category?.name || 'Uncategorized'}</p>
-                      <span className="text-gold">•</span>
                       <p className="text-[9px] text-espresso/40 font-bold uppercase tracking-widest truncate">{product.size}</p>
                       <span className="text-gold">•</span>
                       <p className="text-[9px] text-espresso/50 font-bold uppercase tracking-widest truncate">Stock: {product.stock !== undefined ? product.stock : 0}</p>
