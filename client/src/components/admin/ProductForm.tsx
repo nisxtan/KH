@@ -10,6 +10,7 @@ interface ProductFormProps {
   initialData?: any;
   onSuccess: () => void;
   onCancel: () => void;
+  className?: string;
 }
 
 interface Category {
@@ -17,7 +18,12 @@ interface Category {
   name: string;
 }
 
-export default function ProductForm({ initialData, onSuccess, onCancel }: ProductFormProps) {
+export default function ProductForm({ 
+  initialData, 
+  onSuccess, 
+  onCancel,
+  className = "bg-sacred p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-divine border border-gold/10"
+}: ProductFormProps) {
   const [formData, setFormData] = useState(() => {
     const base = initialData || {
       name: '',
@@ -119,7 +125,7 @@ export default function ProductForm({ initialData, onSuccess, onCancel }: Produc
   const selectedCategoryName = categories.find(c => c.id === Number(formData.categoryId))?.name || 'Select Category';
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8 md:space-y-12 bg-sacred p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-divine border border-gold/10">
+    <form onSubmit={handleSubmit} className={`space-y-8 md:space-y-12 ${className}`}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
         
         {/* Name */}

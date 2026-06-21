@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { RootState } from '@/store';
@@ -10,6 +10,7 @@ import { toast } from 'react-hot-toast';
 import { Plus, Edit, Trash2, LogOut, Package, Image as ImageIcon, Settings, LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 import ProductForm from '@/components/admin/ProductForm';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AdminDashboard() {
   const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
@@ -19,6 +20,17 @@ export default function AdminDashboard() {
   const [editingProduct, setEditingProduct] = useState<any>(null);
   const router = useRouter();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (showForm) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showForm]);
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -116,146 +128,174 @@ export default function AdminDashboard() {
         </div>
 
         {/* Form Modal/Overlay */}
-        {showForm && (
-          <div className="mb-12">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-premium text-dark">{editingProduct ? 'Edit Product' : 'Add New Product'}</h2>
-              <button onClick={() => setShowForm(false)} className="text-dark/40 hover:text-red-500"><Plus size={32} className="rotate-45" /></button>
-            </div>
-            <ProductForm
-              initialData={editingProduct}
-              onSuccess={() => {
-                setShowForm(false);
-                fetchProducts();
-              }}
-              onCancel={() => setShowForm(false)}
-            />
-          </div>
-        )}
+        <AnimatePresence>
+          {showForm && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-espresso/80 backdrop-blur-sm overflow-y-auto"
+            >
+              <motion.div
+                initial={{ scale: 0.95, y: 15 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.95, y: 15 }}
+                className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto custom-scrollbar bg-sacred rounded-[2rem] md:rounded-[3rem] shadow-divine border border-gold/10"
+              >
+                {/* Close Button */}
+                <button 
+                  onClick={() => setShowForm(false)} 
+                  className="absolute top-6 right-6 md:top-8 md:right-8 z-10 text-espresso/40 hover:text-red-500 transition-colors p-2 bg-ivory/80 backdrop-blur-md rounded-full shadow-md border border-gold/15"
+                >
+                  <Plus size={24} className="rotate-45" />
+                </button>
+
+                <div className="p-6 md:p-10">
+                  <div className="mb-8 md:mb-12">
+                    <h2 className="text-2xl md:text-3xl font-black tracking-tight text-espresso uppercase">
+                      {editingProduct ? 'Edit Product' : 'Add New Product'}
+                    </h2>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-espresso/40 mt-1">
+                      {editingProduct ? 'Update current masterpiece details' : 'Register a new masterpiece'}
+                    </p>
+                  </div>
+
+                  <ProductForm
+                    initialData={editingProduct}
+                    className="space-y-8 md:space-y-12"
+                    onSuccess={() => {
+                      setShowForm(false);
+                      fetchProducts();
+                    }}
+                    onCancel={() => setShowForm(false)}
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Product List */}
-        {!showForm && (
-          <div className="bg-sacred rounded-3xl shadow-divine border border-gold/10 overflow-hidden">
-            {/* Desktop Table */}
-            <div className="hidden md:block overflow-x-auto">
-              <table className="w-full text-left">
-                <thead className="bg-espresso text-sacred">
-                  <tr>
-                    <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Product</th>
-                    <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Category</th>
-                    <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Price</th>
-                    <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Stock</th>
-                    <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Status</th>
-                    <th className="p-6 uppercase tracking-widest text-[9px] font-black text-right whitespace-nowrap">Actions</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gold/5">
-                  {products.map((product: any) => (
-                    <tr key={product.id} className="hover:bg-ivory transition-colors">
-                      <td className="p-6">
-                        <div className="flex items-center gap-4">
-                          <div className="w-14 h-14 rounded-2xl overflow-hidden bg-ivory border border-gold/10 shrink-0">
-                            {product.images[0] ? (
-                              <img src={product.images[0]} className="w-full h-full object-cover" />
-                            ) : (
-                              <div className="w-full h-full flex items-center justify-center text-espresso/20"><ImageIcon size={20} /></div>
-                            )}
-                          </div>
-                          <div>
-                            <p className="font-black text-espresso text-sm">{product.name}</p>
-                            <p className="text-[10px] text-espresso/40 font-bold uppercase tracking-wider">{product.size}</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="p-6 text-xs font-bold text-espresso/50 uppercase tracking-wider">{product.category?.name || 'Uncategorized'}</td>
-                      <td className="p-6 font-black text-gold text-sm whitespace-nowrap">Rs. {Number(product.price).toLocaleString()}</td>
-                      <td className="p-6 text-xs font-bold text-espresso/50 uppercase tracking-wider">{product.stock !== undefined ? product.stock : 0} units</td>
-                      <td className="p-6">
-                        <div className="flex flex-col gap-2">
-                          <span className={`text-[9px] uppercase font-black px-3 py-1 rounded-full inline-block w-fit ${product.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
-                            {product.available ? 'Available' : 'Unavailable'}
-                          </span>
-                          {product.featured && (
-                            <span className="text-[9px] uppercase font-black px-3 py-1 rounded-full bg-gold/15 text-bronze inline-block w-fit">
-                              Featured
-                            </span>
+        <div className="bg-sacred rounded-3xl shadow-divine border border-gold/10 overflow-hidden">
+          {/* Desktop Table */}
+          <div className="hidden md:block overflow-x-auto">
+            <table className="w-full text-left">
+              <thead className="bg-espresso text-sacred">
+                <tr>
+                  <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Product</th>
+                  <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Category</th>
+                  <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Price</th>
+                  <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Stock</th>
+                  <th className="p-6 uppercase tracking-widest text-[9px] font-black whitespace-nowrap">Status</th>
+                  <th className="p-6 uppercase tracking-widest text-[9px] font-black text-right whitespace-nowrap">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gold/5">
+                {products.map((product: any) => (
+                  <tr key={product.id} className="hover:bg-ivory transition-colors">
+                    <td className="p-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-14 h-14 rounded-2xl overflow-hidden bg-ivory border border-gold/10 shrink-0">
+                          {product.images[0] ? (
+                            <img src={product.images[0]} className="w-full h-full object-cover" />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center text-espresso/20"><ImageIcon size={20} /></div>
                           )}
                         </div>
-                      </td>
-                      <td className="p-6">
-                        <div className="flex justify-end gap-2">
-                          <button onClick={() => { setEditingProduct(product); setShowForm(true); }}
-                            className="p-3 rounded-2xl bg-ivory border border-gold/10 text-espresso/50 hover:text-espresso hover:border-gold/30 transition-all">
-                            <Edit size={16} />
-                          </button>
-                          <button onClick={() => handleDelete(product.id)}
-                            className="p-3 rounded-2xl bg-ivory border border-red-100 text-red-300 hover:text-red-500 hover:border-red-200 transition-all">
-                            <Trash2 size={16} />
-                          </button>
+                        <div>
+                          <p className="font-black text-espresso text-sm">{product.name}</p>
+                          <p className="text-[10px] text-espresso/40 font-bold uppercase tracking-wider">{product.size}</p>
                         </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Mobile Cards */}
-            <div className="md:hidden divide-y divide-gold/10">
-              {products.map((product: any) => (
-                <div key={product.id} className="p-5 space-y-4">
-                  <div className="flex gap-4">
-                    <div className="w-20 h-20 rounded-2xl overflow-hidden bg-ivory border border-gold/10 shrink-0">
-                      {product.images[0] ? (
-                        <img src={product.images[0]} className="w-full h-full object-cover" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-espresso/20"><ImageIcon size={20} /></div>
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="font-black text-espresso text-base truncate">{product.name}</p>
-                      <div className="flex items-center gap-2 mt-1">
-                        <p className="text-[9px] text-espresso/50 font-bold uppercase tracking-widest truncate">{product.category?.name || 'Uncategorized'}</p>
-                        <span className="text-gold">•</span>
-                        <p className="text-[9px] text-espresso/40 font-bold uppercase tracking-widest truncate">{product.size}</p>
-                        <span className="text-gold">•</span>
-                        <p className="text-[9px] text-espresso/50 font-bold uppercase tracking-widest truncate">Stock: {product.stock !== undefined ? product.stock : 0}</p>
                       </div>
-                      <p className="font-black text-gold text-sm mt-2">Rs. {Number(product.price).toLocaleString()}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center justify-between pt-2">
-                    <div className="flex flex-wrap gap-2">
-                      <span className={`text-[9px] uppercase font-black px-3 py-1 rounded-full ${product.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
-                        {product.available ? 'Available' : 'Unavailable'}
-                      </span>
-                      {product.featured && (
-                        <span className="text-[9px] uppercase font-black px-3 py-1 rounded-full bg-gold/15 text-bronze">
-                          Featured
+                    </td>
+                    <td className="p-6 text-xs font-bold text-espresso/50 uppercase tracking-wider">{product.category?.name || 'Uncategorized'}</td>
+                    <td className="p-6 font-black text-gold text-sm whitespace-nowrap">Rs. {Number(product.price).toLocaleString()}</td>
+                    <td className="p-6 text-xs font-bold text-espresso/50 uppercase tracking-wider">{product.stock !== undefined ? product.stock : 0} units</td>
+                    <td className="p-6">
+                      <div className="flex flex-col gap-2">
+                        <span className={`text-[9px] uppercase font-black px-3 py-1 rounded-full inline-block w-fit ${product.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
+                          {product.available ? 'Available' : 'Unavailable'}
                         </span>
-                      )}
+                        {product.featured && (
+                          <span className="text-[9px] uppercase font-black px-3 py-1 rounded-full bg-gold/15 text-bronze inline-block w-fit">
+                            Featured
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="p-6">
+                      <div className="flex justify-end gap-2">
+                        <button onClick={() => { setEditingProduct(product); setShowForm(true); }}
+                          className="p-3 rounded-2xl bg-ivory border border-gold/10 text-espresso/50 hover:text-espresso hover:border-gold/30 transition-all">
+                          <Edit size={16} />
+                        </button>
+                        <button onClick={() => handleDelete(product.id)}
+                          className="p-3 rounded-2xl bg-ivory border border-red-100 text-red-300 hover:text-red-500 hover:border-red-200 transition-all">
+                          <Trash2 size={16} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile Cards */}
+          <div className="md:hidden divide-y divide-gold/10">
+            {products.map((product: any) => (
+              <div key={product.id} className="p-5 space-y-4">
+                <div className="flex gap-4">
+                  <div className="w-20 h-20 rounded-2xl overflow-hidden bg-ivory border border-gold/10 shrink-0">
+                    {product.images[0] ? (
+                      <img src={product.images[0]} className="w-full h-full object-cover" />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-espresso/20"><ImageIcon size={20} /></div>
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-black text-espresso text-base truncate">{product.name}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <p className="text-[9px] text-espresso/50 font-bold uppercase tracking-widest truncate">{product.category?.name || 'Uncategorized'}</p>
+                      <span className="text-gold">•</span>
+                      <p className="text-[9px] text-espresso/40 font-bold uppercase tracking-widest truncate">{product.size}</p>
+                      <span className="text-gold">•</span>
+                      <p className="text-[9px] text-espresso/50 font-bold uppercase tracking-widest truncate">Stock: {product.stock !== undefined ? product.stock : 0}</p>
                     </div>
-                    <div className="flex gap-2">
-                      <button onClick={() => { setEditingProduct(product); setShowForm(true); }} className="p-2.5 rounded-xl bg-ivory border border-gold/10 text-espresso hover:bg-gold/20 transition-all">
-                        <Edit size={16} />
-                      </button>
-                      <button onClick={() => handleDelete(product.id)} className="p-2.5 rounded-xl bg-ivory border border-red-100 text-red-400 hover:bg-red-50 transition-all">
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
+                    <p className="font-black text-gold text-sm mt-2">Rs. {Number(product.price).toLocaleString()}</p>
                   </div>
                 </div>
-              ))}
-            </div>
-            {products.length === 0 && !loading && (
-              <div className="p-24 text-center">
-                <div className="flex justify-center text-espresso/10 mb-6"><LayoutGrid size={48} /></div>
-                <p className="text-espresso/30 font-black uppercase tracking-widest text-xs">No products found. Add your first masterpiece!</p>
+                
+                <div className="flex items-center justify-between pt-2">
+                  <div className="flex flex-wrap gap-2">
+                    <span className={`text-[9px] uppercase font-black px-3 py-1 rounded-full ${product.available ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-600'}`}>
+                      {product.available ? 'Available' : 'Unavailable'}
+                    </span>
+                    {product.featured && (
+                      <span className="text-[9px] uppercase font-black px-3 py-1 rounded-full bg-gold/15 text-bronze">
+                        Featured
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex gap-2">
+                    <button onClick={() => { setEditingProduct(product); setShowForm(true); }} className="p-2.5 rounded-xl bg-ivory border border-gold/10 text-espresso hover:bg-gold/20 transition-all">
+                      <Edit size={16} />
+                    </button>
+                    <button onClick={() => handleDelete(product.id)} className="p-2.5 rounded-xl bg-ivory border border-red-100 text-red-400 hover:bg-red-50 transition-all">
+                      <Trash2 size={16} />
+                    </button>
+                  </div>
+                </div>
               </div>
-            )}
+            ))}
           </div>
-        )}
+          {products.length === 0 && !loading && (
+            <div className="p-24 text-center">
+              <div className="flex justify-center text-espresso/10 mb-6"><LayoutGrid size={48} /></div>
+              <p className="text-espresso/30 font-black uppercase tracking-widest text-xs">No products found. Add your first masterpiece!</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
