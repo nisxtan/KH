@@ -33,8 +33,8 @@ export default function WhatsAppButton() {
           repeat: Infinity,
           ease: "easeInOut"
         },
-        scale: { duration: 0.5 },
-        opacity: { duration: 0.5 }
+        scale: { duration: 0.5, delay: 2 },
+        opacity: { duration: 0.5, delay: 2 }
       }}
       whileHover={{ scale: 1.08 }}
       className="fixed bottom-12 right-12 z-50 flex items-center gap-4 group cursor-pointer"
@@ -42,7 +42,7 @@ export default function WhatsAppButton() {
       <div className="bg-espresso text-sacred px-6 py-3 rounded-2xl text-[10px] uppercase tracking-[0.3em] font-black shadow-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0 border border-gold/20">
         Inquire Now
       </div>
-      <div className="bg-espresso text-gold p-5 rounded-full shadow-2xl border border-gold/20 group-hover:bg-gold-dark group-hover:text-espresso transition-all duration-500">
+      <div className="relative bg-espresso text-gold p-5 rounded-full shadow-2xl border border-gold/20 group-hover:bg-gold-dark group-hover:text-espresso transition-all duration-500 pulse-ring">
         <MessageCircle size={24} />
       </div>
     </motion.a>

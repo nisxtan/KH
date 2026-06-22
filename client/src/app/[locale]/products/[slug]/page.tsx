@@ -5,6 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import axiosInstance from '@/api/axios';
 import { motion } from 'framer-motion';
 import { MessageCircle, Ruler, Info, Box, ArrowLeft, Share2, Loader2, ChevronLeft, ChevronRight } from 'lucide-react';
+import toast from 'react-hot-toast';
 import { Link } from '@/i18n/routing';
 import { useLocale } from 'next-intl';
 import { useCurrency } from '@/context/CurrencyContext';
@@ -58,6 +59,40 @@ export default function ProductDetails() {
     fetchData();
   }, [slug, locale]);
 
+  // Keyboard navigation for lightbox
+  useEffect(() => {
+    if (!isLightboxOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsLightboxOpen(false);
+      if (e.key === 'ArrowLeft' && product?.images?.length > 1) {
+        setActivePhotoIndex((prev) => (prev === 0 ? product.images.length - 1 : prev - 1));
+      }
+      if (e.key === 'ArrowRight' && product?.images?.length > 1) {
+        setActivePhotoIndex((prev) => (prev === product.images.length - 1 ? 0 : prev + 1));
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, product]);
+
+  const handleShare = async () => {
+    const shareData = {
+      title: product?.name || 'Kiran Handicraft Masterpiece',
+      text: `Check out this handcrafted masterpiece: ${product?.name}`,
+      url: window.location.href,
+    };
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        toast.success('Link copied to clipboard!');
+      }
+    } catch {
+      // User cancelled or share failed
+    }
+  };
+
   if (loading) return (
     <div className="h-screen flex items-center justify-center bg-transparent">
       <div className="flex flex-col items-center gap-6">
@@ -90,10 +125,16 @@ export default function ProductDetails() {
       <div className="container mx-auto px-6 max-w-7xl relative z-10">
         
         {/* Back Button */}
-        <div className="flex justify-center lg:justify-start mb-12">
+        <div className="flex justify-center lg:justify-start gap-3 mb-12">
             <Link href="/products" className="inline-flex items-center gap-3 px-6 py-3 bg-black/40 backdrop-blur-md border border-gold/20 rounded-full text-[10px] font-black uppercase tracking-widest text-ivory/60 hover:text-ivory hover:border-gold/50 transition-all shadow-sm">
                 <ArrowLeft size={14} /> Back to Collection
             </Link>
+            <button
+              onClick={handleShare}
+              className="inline-flex items-center gap-3 px-6 py-3 bg-black/40 backdrop-blur-md border border-gold/20 rounded-full text-[10px] font-black uppercase tracking-widest text-ivory/60 hover:text-ivory hover:border-gold/50 transition-all shadow-sm cursor-pointer"
+            >
+              <Share2 size={14} /> Share
+            </button>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-16 xl:gap-24 items-start relative z-10">

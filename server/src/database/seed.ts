@@ -76,6 +76,32 @@ const defaultSettings = [
     { key: 'currency_eur_rate', value: '144.20', section: 'currency', label: 'EUR Exchange Rate (1 EUR = X NPR)', type: 'text' },
     { key: 'currency_aud_rate', value: '88.50', section: 'currency', label: 'AUD Exchange Rate (1 AUD = X NPR)', type: 'text' },
     { key: 'currency_gbp_rate', value: '168.10', section: 'currency', label: 'GBP Exchange Rate (1 GBP = X NPR)', type: 'text' },
+
+    // ─── Hero Carousel Slides ───
+    { key: 'carousel_slide1_image', value: '/golden_statue_bg.png', section: 'carousel', label: 'Slide 1 Image', type: 'image' },
+    { key: 'carousel_slide1_title', value: 'Shakyamuni Buddha', section: 'carousel', label: 'Slide 1 Title', type: 'text' },
+    { key: 'carousel_slide1_subtitle', value: 'Symbol of Enlightenment', section: 'carousel', label: 'Slide 1 Subtitle', type: 'text' },
+    { key: 'carousel_slide1_desc', value: 'Pure Copper gilding with 24K Gold Leaf. Master-crafted facial painting in gold dust.', section: 'carousel', label: 'Slide 1 Description', type: 'textarea' },
+
+    { key: 'carousel_slide2_image', value: '/green_tara.png', section: 'carousel', label: 'Slide 2 Image', type: 'image' },
+    { key: 'carousel_slide2_title', value: 'Arya Green Tara', section: 'carousel', label: 'Slide 2 Title', type: 'text' },
+    { key: 'carousel_slide2_subtitle', value: 'Mother of Liberation', section: 'carousel', label: 'Slide 2 Subtitle', type: 'text' },
+    { key: 'carousel_slide2_desc', value: 'Detailed lost-wax hand-casting. Features authentic hand-set coral and turquoise stones.', section: 'carousel', label: 'Slide 2 Description', type: 'textarea' },
+
+    { key: 'carousel_slide3_image', value: '/vajrasattva.png', section: 'carousel', label: 'Slide 3 Image', type: 'image' },
+    { key: 'carousel_slide3_title', value: 'Vajrasattva Deity', section: 'carousel', label: 'Slide 3 Title', type: 'text' },
+    { key: 'carousel_slide3_subtitle', value: 'The Great Purifier', section: 'carousel', label: 'Slide 3 Subtitle', type: 'text' },
+    { key: 'carousel_slide3_desc', value: 'Extraordinary filigree carvings. Masterfully carved vajra and bell accents.', section: 'carousel', label: 'Slide 3 Description', type: 'textarea' },
+
+    { key: 'carousel_slide4_image', value: '/chenrezig.png', section: 'carousel', label: 'Slide 4 Image', type: 'image' },
+    { key: 'carousel_slide4_title', value: 'Four-Armed Chenrezig', section: 'carousel', label: 'Slide 4 Title', type: 'text' },
+    { key: 'carousel_slide4_subtitle', value: 'Lord of Compassion', section: 'carousel', label: 'Slide 4 Subtitle', type: 'text' },
+    { key: 'carousel_slide4_desc', value: 'Full fire-gilded body. Intricate hand-etched robes depicting sacred mantras.', section: 'carousel', label: 'Slide 4 Description', type: 'textarea' },
+
+    { key: 'carousel_slide5_image', value: '/ganesh.png', section: 'carousel', label: 'Slide 5 Image', type: 'image' },
+    { key: 'carousel_slide5_title', value: 'Maharaja Ganesh', section: 'carousel', label: 'Slide 5 Title', type: 'text' },
+    { key: 'carousel_slide5_subtitle', value: 'Remover of Obstacles', section: 'carousel', label: 'Slide 5 Subtitle', type: 'text' },
+    { key: 'carousel_slide5_desc', value: 'Oxidized copper finish with fine 24K gold highlights. Captures cosmic power in heavy casting.', section: 'carousel', label: 'Slide 5 Description', type: 'textarea' },
 ];
 
 const seed = async () => {

@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Compass } from 'lucide-react';
-import { Link } from '@/i18n/routing';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import axiosInstance from '@/api/axios';
+import { useLocale } from 'next-intl';
 
 interface Slide {
   id: number;
@@ -13,7 +14,8 @@ interface Slide {
   image: string;
 }
 
-const slides: Slide[] = [
+// Fallback data used when settings haven't loaded yet
+const defaultSlides: Slide[] = [
   {
     id: 1,
     title: 'Shakyamuni Buddha',
@@ -51,9 +53,53 @@ const slides: Slide[] = [
   }
 ];
 
+/**
+ * Parses flat settings key-value map into Slide[] array.
+ * Keys follow pattern: carousel_slide{N}_{field}
+ * Falls back to default slides if settings are empty.
+ */
+function parseSlides(settings: Record<string, string>): Slide[] {
+  const slideMap = new Map<number, Partial<Slide>>();
+
+  for (const [key, value] of Object.entries(settings)) {
+    const match = key.match(/^carousel_slide(\d+)_(image|title|subtitle|desc)$/);
+    if (!match) continue;
+    
+    const num = parseInt(match[1], 10);
+    const field = match[2] as 'image' | 'title' | 'subtitle' | 'desc';
+    
+    if (!slideMap.has(num)) slideMap.set(num, { id: num });
+    const slide = slideMap.get(num)!;
+    slide[field] = value;
+  }
+
+  if (slideMap.size === 0) return defaultSlides;
+
+  // Sort by slide number and filter out slides missing an image
+  return Array.from(slideMap.entries())
+    .sort(([a], [b]) => a - b)
+    .map(([, slide]) => slide as Slide)
+    .filter((s) => s.image && s.title);
+}
+
 export default function ThreeDCarousel() {
+  const [slides, setSlides] = useState<Slide[]>(defaultSlides);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const locale = useLocale();
+
+  // Fetch carousel settings from API
+  useEffect(() => {
+    axiosInstance.get(`/settings?lang=${locale}`)
+      .then((res) => {
+        const parsed = parseSlides(res.data);
+        if (parsed.length > 0) setSlides(parsed);
+      })
+      .catch(() => {
+        // Silently fall back to hardcoded defaults
+      });
+  }, [locale]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,21 +110,22 @@ export default function ThreeDCarousel() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Autoplay
+  // Autoplay — uses functional update to avoid stale closure
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => {
-      handleNext();
+      setActiveIndex((prev) => (prev + 1) % slides.length);
     }, 6000);
     return () => clearInterval(timer);
-  }, [activeIndex]);
+  }, [isPaused, slides.length]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     setActiveIndex((prev) => (prev - 1 + slides.length) % slides.length);
-  };
+  }, [slides.length]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     setActiveIndex((prev) => (prev + 1) % slides.length);
-  };
+  }, [slides.length]);
 
   const getCardStyle = (index: number) => {
     const total = slides.length;
@@ -116,7 +163,11 @@ export default function ThreeDCarousel() {
   const activeSlide = slides[activeIndex];
 
   return (
-    <div className="flex flex-col items-center justify-center w-full py-2 select-none relative -top-6 md:-top-16">
+    <div 
+      className="flex flex-col items-center justify-center w-full py-2 select-none relative -top-6 md:-top-16"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
       {/* 3D Perspective Stage */}
       <div 
         className="relative w-full h-[360px] md:h-[560px] flex items-center justify-center overflow-visible"
@@ -203,6 +254,45 @@ export default function ThreeDCarousel() {
         </AnimatePresence>
       </div>
 
+      {/* ─── Active Slide Info Panel ─── */}
+      <div className="w-full max-w-md mx-auto text-center mt-2 md:mt-4 px-4 space-y-3">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeSlide.id}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="space-y-1.5"
+          >
+            <p className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] text-gold">
+              {activeSlide.subtitle}
+            </p>
+            <h3 className="text-lg md:text-2xl font-black text-ivory tracking-tight uppercase">
+              {activeSlide.title}
+            </h3>
+            <p className="text-ivory/40 text-[10px] md:text-xs font-medium leading-relaxed max-w-sm mx-auto">
+              {activeSlide.desc}
+            </p>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Dot Navigation */}
+        <div className="flex items-center justify-center gap-2 pt-2">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActiveIndex(i)}
+              className={`rounded-full transition-all duration-500 ${
+                i === activeIndex
+                  ? 'w-8 h-2 bg-gold shadow-[0_0_8px_rgba(212,175,55,0.4)]'
+                  : 'w-2 h-2 bg-ivory/20 hover:bg-ivory/40'
+              }`}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

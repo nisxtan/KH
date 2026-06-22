@@ -56,15 +56,9 @@ export default function StaggerContainer({
       {React.Children.map(children, (child) => {
         if (!React.isValidElement(child)) return child;
 
-        // If the child is a framer motion element, it will automatically receive
-        // the 'hidden' and 'visible' parent variants.
-        // For non-motion elements, we wrap them in a motion.div item wrapper.
-        const isMotionComponent = (child.type as any)?.name === 'motion.div' || (child.type as any)?.render?.name === 'motion.div';
-
-        if (isMotionComponent) {
-          return child;
-        }
-
+        // Always wrap children in a motion.div with stagger variants.
+        // Previous approach checked child.type?.name which is unreliable
+        // in production builds where minification strips function names.
         return (
           <motion.div
             variants={{

@@ -178,7 +178,7 @@ export default function ContactPage() {
                     type="text" required
                     value={form.name} onChange={e => setForm(p => ({ ...p, name: e.target.value }))}
                     placeholder="Nischal Tamang"
-                    className="w-full bg-white/10 border border-gold/20 focus:border-gold rounded-2xl px-5 py-4 text-ivory font-medium focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all placeholder:text-ivory/30 text-sm"
+                    className="w-full bg-white/10 border border-gold/20 focus:border-gold rounded-2xl px-5 py-4 text-ivory font-medium focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all placeholder:text-ivory/30 text-sm focus-glow"
                   />
                 </div>
                 <div className="space-y-2">
@@ -187,7 +187,7 @@ export default function ContactPage() {
                     type="email" required
                     value={form.email} onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
                     placeholder="you@example.com"
-                    className="w-full bg-white/10 border border-gold/20 focus:border-gold rounded-2xl px-5 py-4 text-ivory font-medium focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all placeholder:text-ivory/30 text-sm"
+                    className="w-full bg-white/10 border border-gold/20 focus:border-gold rounded-2xl px-5 py-4 text-ivory font-medium focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all placeholder:text-ivory/30 text-sm focus-glow"
                   />
                 </div>
               </div>
@@ -198,7 +198,7 @@ export default function ContactPage() {
                   type="text"
                   value={form.subject} onChange={e => setForm(p => ({ ...p, subject: e.target.value }))}
                   placeholder="Custom Commission / General Inquiry"
-                  className="w-full bg-white/10 border border-gold/20 focus:border-gold rounded-2xl px-5 py-4 text-ivory font-medium focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all placeholder:text-ivory/30 text-sm"
+                  className="w-full bg-white/10 border border-gold/20 focus:border-gold rounded-2xl px-5 py-4 text-ivory font-medium focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all placeholder:text-ivory/30 text-sm focus-glow"
                 />
               </div>
 
@@ -208,13 +208,13 @@ export default function ContactPage() {
                   rows={6} required
                   value={form.message} onChange={e => setForm(p => ({ ...p, message: e.target.value }))}
                   placeholder="Tell us about the statue you're looking for, your budget, and preferred dimensions..."
-                  className="w-full bg-white/10 border border-gold/20 focus:border-gold rounded-2xl px-5 py-4 text-ivory font-medium focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all resize-none placeholder:text-ivory/30 text-sm"
+                  className="w-full bg-white/10 border border-gold/20 focus:border-gold rounded-2xl px-5 py-4 text-ivory font-medium focus:outline-none focus:ring-2 focus:ring-gold/20 transition-all resize-none placeholder:text-ivory/30 text-sm focus-glow"
                 />
               </div>
 
               {/* Status Alert */}
               {status && (
-                <div className={`p-4 rounded-2xl text-[10px] md:text-sm font-bold uppercase tracking-wider leading-relaxed break-words ${status.type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                <div className={`p-4 rounded-2xl text-[10px] md:text-sm font-bold uppercase tracking-wider leading-relaxed break-words ${status.type === 'success' ? 'bg-green-900/40 text-green-300 border border-green-500/30' : 'bg-red-900/40 text-red-300 border border-red-500/30'}`}>
                   {status.msg}
                 </div>
               )}
@@ -227,7 +227,7 @@ export default function ContactPage() {
                 <Send size={16} />
                 {submitting ? t('sending') : t('submit')}
               </button>
-              <p className="text-center text-[9px] text-espresso/30 font-bold uppercase tracking-widest">
+              <p className="text-center text-[9px] text-ivory/30 font-bold uppercase tracking-widest">
                 {t('responseGrace')}
               </p>
             </form>

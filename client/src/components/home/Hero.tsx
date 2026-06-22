@@ -134,6 +134,25 @@ export default function Hero() {
               </Link>
             </motion.div>
 
+            {/* Trust Badges — critical for international buyer credibility */}
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-4 md:gap-6 pt-2"
+            >
+              {[
+                { value: '40+', label: 'Countries' },
+                { value: '1988', label: 'Established' },
+                { value: '100%', label: 'Handcrafted' },
+              ].map((badge) => (
+                <div key={badge.label} className="flex items-center gap-2 text-center">
+                  <span className="text-base md:text-lg font-black text-gold tracking-tight">{badge.value}</span>
+                  <span className="text-[8px] md:text-[9px] font-bold uppercase tracking-[0.15em] text-ivory/40">{badge.label}</span>
+                  {badge.label !== 'Handcrafted' && (
+                    <span className="w-px h-4 bg-ivory/10 ml-2" />
+                  )}
+                </div>
+              ))}
+            </motion.div>
 
           </motion.div>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axiosInstance from '@/api/axios';
 import { X, Menu, ChevronRight, Globe, Search, Loader2 } from 'lucide-react';
@@ -31,14 +31,19 @@ export default function Navbar() {
     { name: 'Commission a Piece', href: '/contact', type: 'page', desc: 'Start a custom order for a bespoke masterpiece' },
   ];
 
-  const filteredPages = staticPages.filter(p => 
+  const filteredPages = useMemo(() => staticPages.filter(p => 
     p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
     p.desc.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  ), [searchQuery]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setIsSearchOpen(false);
+      // Cmd+K / Ctrl+K to open search (industry standard)
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
@@ -158,10 +163,11 @@ export default function Navbar() {
             {/* Global Search Trigger Button */}
             <button
               onClick={() => setIsSearchOpen(true)}
-              className="flex items-center justify-center bg-gold/25 text-ivory p-3.5 rounded-xl border border-gold/35 hover:bg-gold-dark hover:text-espresso hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-md group"
-              title="Search Site"
+              className="flex items-center gap-2.5 bg-gold/25 text-ivory px-4 py-3 rounded-xl border border-gold/35 hover:bg-gold-dark hover:text-espresso hover:scale-105 active:scale-95 transition-all cursor-pointer shadow-md group"
+              title="Search Site (Ctrl+K)"
             >
               <Search size={14} className="text-gold group-hover:text-espresso" />
+              <span className="hidden md:inline text-[9px] font-bold text-ivory/40 group-hover:text-espresso/60 border border-ivory/15 rounded-md px-1.5 py-0.5 tracking-wider">⌘K</span>
             </button>
 
             {/* Language Switcher */}

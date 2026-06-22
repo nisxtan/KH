@@ -27,6 +27,7 @@ type GroupedSettings = Record<string, SettingField[]>;
 
 const sectionMeta: Record<string, { label: string; icon: any; color: string; desc: string }> = {
   hero:       { label: 'Hero Section',    icon: <Home size={28} />,    color: 'from-gold/20 to-gold/5', desc: 'Manage the main landing page headline, subtitle, and all 4 grid images.' },
+  carousel:   { label: 'Hero Carousel',   icon: <ImageIcon size={28} />, color: 'from-gold/20 to-gold/5', desc: 'Manage the 3D carousel slides — images, titles, subtitles, and descriptions for each statue.' },
   home:       { label: 'Home Page',      icon: <Globe size={28} />,   color: 'from-ivory-dark to-ivory', desc: 'Control the About Us section and the features strip below the hero.' },
   about:      { label: 'About Us',       icon: <BookOpen size={28} />, color: 'from-ivory-dark to-ivory', desc: 'Edit your brand story, legacy paragraphs, and the story hero image.' },
   contact:    { label: 'Contact',        icon: <Phone size={28} />,    color: 'from-gold/20 to-gold/5', desc: 'Update addresses, phones, emails, and all social media links.' },

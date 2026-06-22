@@ -34,7 +34,7 @@ export default function ProductCard({ product, hoverUp = false }: ProductCardPro
     >
       <Link href={`/products/${product.slug}`} className="flex flex-col h-full">
         {/* Image - Square on mobile, 4/3 on desktop */}
-        <div className="relative overflow-hidden bg-espresso/60 aspect-square md:aspect-[4/3]">
+        <div className="relative overflow-hidden bg-espresso/60 aspect-square md:aspect-[4/3] shimmer-hover">
           <img
             src={product.images[0] || 'https://images.unsplash.com/photo-1544111301-44754a01948d?q=80&w=400'}
             alt={product.name}
@@ -47,6 +47,11 @@ export default function ProductCard({ product, hoverUp = false }: ProductCardPro
             {product.featured && (
               <span className="bg-gold text-espresso text-[7px] md:text-[8px] font-black uppercase tracking-wider px-2 py-0.5 md:px-3 md:py-1 rounded-lg md:rounded-xl">
                 Elite Collection
+              </span>
+            )}
+            {product.category?.name && (
+              <span className="bg-black/60 backdrop-blur-sm text-ivory/90 text-[7px] md:text-[8px] font-bold uppercase tracking-wider px-2 py-0.5 md:px-3 md:py-1 rounded-lg md:rounded-xl border border-gold/15">
+                {product.category.name}
               </span>
             )}
           </div>
@@ -66,7 +71,7 @@ export default function ProductCard({ product, hoverUp = false }: ProductCardPro
             <span className="font-black text-gold text-[10px] md:text-sm">
               {formatPrice(product.price)}
             </span>
-            <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl bg-espresso text-sacred transition-all">
+            <div className="p-1.5 md:p-2 rounded-lg md:rounded-xl bg-espresso text-sacred group-hover:bg-gold group-hover:text-espresso transition-all duration-300">
               <ChevronRight size={10} className="md:w-4 md:h-4" />
             </div>
           </div>

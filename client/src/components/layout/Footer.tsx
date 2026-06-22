@@ -6,6 +6,7 @@ import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import axiosInstance from '@/api/axios';
 import { Link } from '@/i18n/routing';
 import { useTranslations, useLocale } from 'next-intl';
+import ScrollReveal from '@/components/ui/ScrollReveal';
 
 export default function Footer() {
   const t = useTranslations('Footer');
@@ -43,7 +44,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 pb-10 border-b border-gold/10">
 
           {/* Brand Column */}
-          <div className="md:col-span-4 space-y-5 text-center md:text-left">
+          <ScrollReveal direction="up" delay={0.1} className="md:col-span-4 space-y-5 text-center md:text-left">
             <Link href="/" className="flex items-center gap-3 group w-fit mx-auto md:mx-0">
               <div className="bg-espresso w-10 h-10 flex items-center justify-center rounded-xl shadow-xl group-hover:scale-110 transition-all overflow-hidden shrink-0">
                 <img src="/logo.png" alt="Kiran Handicraft Logo" className="w-full h-full object-cover" />
@@ -75,10 +76,10 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* Dynamic Gallery Links */}
-          <div className="md:col-span-3 md:text-left text-center">
+          <ScrollReveal direction="up" delay={0.2} className="md:col-span-3 md:text-left text-center">
             <h4 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gold mb-4 md:mb-5">{t('gallery')}</h4>
             <ul className="space-y-2 md:space-y-3">
               <li><Link href="/products" className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">{t('allStatues')}</Link></li>
@@ -90,10 +91,10 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </ScrollReveal>
 
           {/* Static Company Links */}
-          <div className="md:col-span-2 md:text-left text-center">
+          <ScrollReveal direction="up" delay={0.3} className="md:col-span-2 md:text-left text-center">
             <h4 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gold mb-4 md:mb-5">{t('company')}</h4>
             <ul className="space-y-2 md:space-y-3">
               <li><Link href="/about" className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">{t('about')}</Link></li>
@@ -101,10 +102,10 @@ export default function Footer() {
               <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">{t('commission')}</Link></li>
               <li><Link href="/contact" className="text-xs md:text-sm font-semibold text-ivory/50 hover:text-gold transition-colors">{t('showroom')}</Link></li>
             </ul>
-          </div>
+          </ScrollReveal>
 
           {/* Contact Details Column */}
-          <div className="md:col-span-3 md:text-left text-center">
+          <ScrollReveal direction="up" delay={0.4} className="md:col-span-3 md:text-left text-center">
             <h4 className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.25em] text-gold mb-4 md:mb-5">{tNav('contact')}</h4>
             <div className="space-y-2.5 max-w-md mx-auto md:mx-0">
               <a href={`https://maps.google.com/?q=${encodeURIComponent(address)}`} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center md:justify-start gap-3 text-ivory/60 hover:text-gold transition-colors group">
@@ -126,7 +127,7 @@ export default function Footer() {
                 <span className="text-xs md:text-sm font-semibold">{email}</span>
               </a>
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
 

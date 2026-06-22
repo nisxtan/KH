@@ -203,7 +203,7 @@ export default function Home() {
             </div>
             <Link
               href="/products"
-              className="flex items-center gap-3 group font-black uppercase tracking-widest text-[9px] md:text-[10px] text-espresso/40 hover:text-gold transition-colors"
+              className="flex items-center gap-3 group font-black uppercase tracking-widest text-[9px] md:text-[10px] text-ivory/40 hover:text-gold transition-colors"
             >
               {t('fullGallery')}
               <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />

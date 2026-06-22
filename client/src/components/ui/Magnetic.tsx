@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState, MouseEvent, ReactElement } from 'react';
+import React, { useRef, MouseEvent, ReactElement } from 'react';
 import { motion, useSpring } from 'framer-motion';
 
 export interface MagneticProps {
@@ -32,7 +32,6 @@ export default function Magnetic({
   scaleOnHover = false,
 }: MagneticProps) {
   const ref = useRef<HTMLElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
 
   // Spring values for smooth magnetic snapback
   const springConfig = { stiffness, damping, mass };
