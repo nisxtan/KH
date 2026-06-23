@@ -65,11 +65,11 @@ export default function ProductCard({ product, hoverUp = false }: ProductCardPro
           </h3>
 
           {/* Size & Material */}
-          <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-wider text-gold/70 mb-1 md:mb-2 line-clamp-1">
+          <p className="text-[9px] md:text-xs font-bold uppercase tracking-wider text-gold/70 mb-1 md:mb-2 line-clamp-1">
             {[product.size, product.material].filter(Boolean).join(' · ') || 'Handcrafted'}
           </p>
 
-          <p className="hidden md:block text-ivory/50 text-[11px] font-medium leading-relaxed line-clamp-1 mb-4 flex-1">
+          <p className="hidden md:block text-ivory/50 text-sm font-medium leading-relaxed line-clamp-2 mb-4 flex-1">
             {product.description || 'Handcrafted in Bouddha, Kathmandu'}
           </p>
 
