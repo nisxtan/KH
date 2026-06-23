@@ -31,9 +31,9 @@ export default function ProductCard({ product, hoverUp = false }: ProductCardPro
       whileHover={hoverUp ? { y: -6, transition: { type: 'spring', stiffness: 300, damping: 20 } } : {}}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="group bg-espresso/40 backdrop-blur-md rounded-3xl border border-gold/20 overflow-hidden hover:border-gold/50 hover:shadow-lg hover:shadow-gold/10 transition-[border-color,box-shadow] duration-300 flex flex-col h-full"
+      className="group bg-espresso/40 backdrop-blur-md rounded-3xl border border-gold/20 overflow-hidden hover:border-gold/50 hover:shadow-lg hover:shadow-gold/10 transition-[border-color,box-shadow] duration-300"
     >
-      <Link href={`/products/${product.slug}`} className="flex flex-col h-full">
+      <Link href={`/products/${product.slug}`} className="block">
         {/* Image - Square on mobile, 4/3 on desktop */}
         <div className="relative overflow-hidden bg-espresso/60 aspect-square md:aspect-[4/3] shimmer-hover">
           <img
@@ -59,21 +59,21 @@ export default function ProductCard({ product, hoverUp = false }: ProductCardPro
         </div>
 
         {/* Info */}
-        <div className="flex flex-col flex-1 p-3 md:p-6">
-          <h3 className="font-black tracking-tight text-ivory group-hover:text-gold transition-colors leading-tight mb-1 text-xs md:text-lg line-clamp-1 md:line-clamp-2">
+        <div className="p-3 md:p-5">
+          <h3 className="font-black tracking-tight text-ivory group-hover:text-gold transition-colors leading-tight mb-1 text-xs md:text-base line-clamp-1">
             {product.name}
           </h3>
 
           {/* Size & Material */}
-          <p className="text-[9px] md:text-xs font-bold uppercase tracking-wider text-gold/70 mb-1 md:mb-2 line-clamp-1">
+          <p className="text-[9px] md:text-[11px] font-bold uppercase tracking-wider text-gold/70 mb-2 line-clamp-1">
             {[product.size, product.material].filter(Boolean).join(' · ') || 'Handcrafted'}
           </p>
 
-          <p className="hidden md:block text-ivory/50 text-sm font-medium leading-relaxed line-clamp-2 mb-4 flex-1">
+          <p className="hidden md:block text-ivory/50 text-xs font-medium leading-relaxed mb-3" style={{ display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
             {product.description || 'Handcrafted in Bouddha, Kathmandu'}
           </p>
 
-          <div className="flex items-center justify-between mt-auto pt-2 md:pt-4 border-t border-gold/20">
+          <div className="flex items-center justify-between pt-2 md:pt-3 border-t border-gold/20">
             <span className="font-black text-gold text-[10px] md:text-sm">
               {formatPrice(product.price)}
             </span>
