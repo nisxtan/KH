@@ -189,11 +189,48 @@ export class ProductService {
     }
 
     async createProduct(data: any) {
+        // Check for duplicate product name
+        if (data.name) {
+            const slug = require('slugify')(data.name, { lower: true, strict: true });
+            const existing = await this.productRepository.findOne({ where: { slug } });
+            if (existing) {
+                throw new Error(`A product with the name "${data.name}" already exists. Please use a different name.`);
+            }
+        }
+
+        if (!data.name || !data.name.trim()) {
+            throw new Error('Product name is required.');
+        }
+        if (!data.description || !data.description.trim()) {
+            throw new Error('Product description is required.');
+        }
+        if (data.price === undefined || data.price === null || data.price === '' || Number(data.price) < 0) {
+            throw new Error('A valid price is required.');
+        }
+        if (!data.size || !data.size.trim()) {
+            throw new Error('Product size is required.');
+        }
+        if (!data.material || !data.material.trim()) {
+            throw new Error('Product material is required.');
+        }
+        if (!data.images || data.images.length === 0) {
+            throw new Error('At least one product image is required.');
+        }
+
         const product = this.productRepository.create(data);
         return await this.productRepository.save(product);
     }
 
     async updateProduct(id: number, data: any) {
+        // Check for duplicate product name (excluding current product)
+        if (data.name) {
+            const slug = require('slugify')(data.name, { lower: true, strict: true });
+            const existing = await this.productRepository.findOne({ where: { slug } });
+            if (existing && existing.id !== id) {
+                throw new Error(`A product with the name "${data.name}" already exists. Please use a different name.`);
+            }
+        }
+
         await this.productRepository.update(id, data);
         return await this.productRepository.findOne({ where: { id }, relations: ['category'] });
     }

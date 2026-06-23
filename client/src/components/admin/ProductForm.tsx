@@ -56,8 +56,9 @@ export default function ProductForm({
       });
       setFormData({ ...formData, images: [...formData.images, ...response.data.images] });
       toast.success('Images uploaded');
-    } catch (error) {
-      toast.error('Image upload failed');
+    } catch (error: any) {
+      const message = error?.response?.data?.message || 'Image upload failed. Please try again.';
+      toast.error(message);
     } finally {
       setUploading(false);
     }
@@ -80,8 +81,9 @@ export default function ProductForm({
         toast.success('Product created');
       }
       onSuccess();
-    } catch (error) {
-      toast.error('Operation failed');
+    } catch (error: any) {
+      const message = error?.response?.data?.message || 'Operation failed. Please try again.';
+      toast.error(message);
     }
   };
 
