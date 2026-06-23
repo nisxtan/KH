@@ -76,7 +76,7 @@ export default function ContactPage() {
   const socials = [
     { icon: <FaFacebook size={20} />, label: 'Facebook', href: def(settings, 'contact_facebook', '#', false) },
     { icon: <FaInstagram size={20} />, label: 'Instagram', href: def(settings, 'contact_instagram', '#', false) },
-    { icon: <MessageCircle size={20} />, label: 'WhatsApp', href: `https://wa.me/${def(settings, 'contact_whatsapp', '97798XXXXXXXX', false)}` },
+    { icon: <MessageCircle size={20} />, label: 'WhatsApp', href: `https://wa.me/${def(settings, 'contact_whatsapp', '9779849532402', false)}` },
   ];
 
   return (
