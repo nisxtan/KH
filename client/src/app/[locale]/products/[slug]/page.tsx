@@ -26,9 +26,9 @@ const getWatermarkedUrl = (url: string) => {
     return url.replace(
       '/image/upload/',
       '/image/upload/' +
-        'l_text:Arial_28_bold:Copyright%20Kiran%20Handicrafts,co_rgb:FFFFFFAA,o_40/fl_layer_apply,g_north,y_80/' +
-        'l_text:Arial_28_bold:Copyright%20Kiran%20Handicrafts,co_rgb:FFFFFFAA,o_40/fl_layer_apply,g_center/' +
-        'l_text:Arial_28_bold:Copyright%20Kiran%20Handicrafts,co_rgb:FFFFFFAA,o_40/fl_layer_apply,g_south,y_80/'
+        'l_text:Arial_42_bold:Copyright%20Kiran%20Handicrafts,co_rgb:FFFFFF,o_65,a_-15/fl_layer_apply,g_north,y_100/' +
+        'l_text:Arial_42_bold:Copyright%20Kiran%20Handicrafts,co_rgb:FFFFFF,o_65,a_-15/fl_layer_apply,g_center/' +
+        'l_text:Arial_42_bold:Copyright%20Kiran%20Handicrafts,co_rgb:FFFFFF,o_65,a_-15/fl_layer_apply,g_south,y_100/'
     );
   }
   return url;
