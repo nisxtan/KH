@@ -22,9 +22,13 @@ import 'swiper/css/effect-fade';
 
 const getWatermarkedUrl = (url: string) => {
   if (url && url.includes('res.cloudinary.com') && url.includes('/image/upload/')) {
+    // 3 transparent watermarks: top, center, bottom — no background box
     return url.replace(
       '/image/upload/',
-      '/image/upload/l_text:Arial_24_bold:Copyright%20Kiran%20Handicrafts%2Cco_white%2Cb_rgb:00000030%2Ca_-30/fl_layer_apply%2Cg_center/l_text:Arial_18_bold:Copyright%20Kiran%20Handicrafts%2Cco_white%2Cb_rgb:00000030%2Ca_-30/fl_layer_apply%2Cg_north_west%2Cx_50%2Cy_100/l_text:Arial_18_bold:Copyright%20Kiran%20Handicrafts%2Cco_white%2Cb_rgb:00000030%2Ca_-30/fl_layer_apply%2Cg_south_east%2Cx_50%2Cy_100/'
+      '/image/upload/' +
+        'l_text:Arial_28_bold:Copyright%20Kiran%20Handicrafts,co_rgb:FFFFFFAA,o_40/fl_layer_apply,g_north,y_80/' +
+        'l_text:Arial_28_bold:Copyright%20Kiran%20Handicrafts,co_rgb:FFFFFFAA,o_40/fl_layer_apply,g_center/' +
+        'l_text:Arial_28_bold:Copyright%20Kiran%20Handicrafts,co_rgb:FFFFFFAA,o_40/fl_layer_apply,g_south,y_80/'
     );
   }
   return url;

@@ -34,6 +34,8 @@
     "uuid": "^14.0.0"
   },
   "devDependencies": {
+    "@swc/core": "^1.15.43",
+    "@swc/helpers": "^0.5.23",
     "@types/bcryptjs": "^2.4.6",
     "@types/cookie-parser": "^1.4.10",
     "@types/cors": "^2.8.19",
