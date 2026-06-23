@@ -12,6 +12,7 @@ interface ProductCardProps {
     slug: string;
     price: number;
     size: string;
+    material?: string;
     images: string[];
     category?: { name: string } | null;
     featured: boolean;
@@ -59,11 +60,16 @@ export default function ProductCard({ product, hoverUp = false }: ProductCardPro
 
         {/* Info */}
         <div className="flex flex-col flex-1 p-3 md:p-6">
-          <h3 className="font-black tracking-tight text-ivory group-hover:text-gold transition-colors leading-tight mb-1 md:mb-2 text-xs md:text-lg line-clamp-1 md:line-clamp-2">
+          <h3 className="font-black tracking-tight text-ivory group-hover:text-gold transition-colors leading-tight mb-1 text-xs md:text-lg line-clamp-1 md:line-clamp-2">
             {product.name}
           </h3>
 
-          <p className="hidden md:block text-ivory/50 text-xs font-medium leading-relaxed line-clamp-2 mb-4 flex-1">
+          {/* Size & Material */}
+          <p className="text-[8px] md:text-[10px] font-bold uppercase tracking-wider text-gold/70 mb-1 md:mb-2 line-clamp-1">
+            {[product.size, product.material].filter(Boolean).join(' · ') || 'Handcrafted'}
+          </p>
+
+          <p className="hidden md:block text-ivory/50 text-[11px] font-medium leading-relaxed line-clamp-1 mb-4 flex-1">
             {product.description || 'Handcrafted in Bouddha, Kathmandu'}
           </p>
 
