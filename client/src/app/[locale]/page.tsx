@@ -131,7 +131,7 @@ export default function Home() {
             <ScrollReveal direction="left" className="w-full lg:w-1/2 relative order-2 lg:order-1">
               <div className="relative rounded-[2rem] md:rounded-[3.5rem] overflow-hidden border border-gold/10 shadow-divine aspect-square max-w-xl mx-auto lg:mx-0 bg-ivory-dark">
                 <img
-                  src="https://images.unsplash.com/photo-1544111301-44754a01948d?q=80&w=1200"
+                  src={def(settings, 'philosophy_img', 'https://images.unsplash.com/photo-1544111301-44754a01948d?q=80&w=1200')}
                   alt="Master Artisan"
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000"
                 />

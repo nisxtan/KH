@@ -45,6 +45,7 @@ const defaultSettings = [
     { key: 'philosophy_title_line2', value: 'Meets', section: 'home', label: 'Philosophy Title Line 2', type: 'text' },
     { key: 'philosophy_title_line3', value: 'the Chisel', section: 'home', label: 'Philosophy Title Line 3', type: 'text' },
     { key: 'philosophy_desc', value: 'In the sacred air of Boudha, our artisans don\'t just carve metal—they transmit devotion into physical form. Every statue begins with a day of meditation.', section: 'home', label: 'Philosophy Description', type: 'textarea' },
+    { key: 'philosophy_img', value: 'https://images.unsplash.com/photo-1544111301-44754a01948d?q=80&w=1200', section: 'home', label: 'Philosophy Hero Image', type: 'image' },
     { key: 'cta_badge', value: 'Commission a Masterpiece', section: 'home', label: 'CTA Badge', type: 'text' },
     { key: 'cta_title_line1', value: 'Bring a God', section: 'home', label: 'CTA Title Line 1', type: 'text' },
     { key: 'cta_title_line2', value: 'Into Your Home', section: 'home', label: 'CTA Title Line 2', type: 'text' },
