@@ -131,9 +131,14 @@ export default function Footer() {
 
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 text-[8px] md:text-[10px] font-black uppercase tracking-widest text-ivory/30 text-center">
-          <p>&copy; {new Date().getFullYear()} {siteName}. {t('rights')}</p>
-          <p>{t('devotion')} · {settings['general_location'] || 'Boudha, Kathmandu'}</p>
+        <div className="flex flex-col gap-4 pt-8 text-[8px] md:text-[10px] font-black uppercase tracking-widest text-ivory/30 text-center">
+          <div className="flex flex-col md:flex-row items-center justify-between w-full gap-4">
+            <p>&copy; {new Date().getFullYear()} {siteName}. {t('rights')}</p>
+            <p>{t('devotion')} · {settings['general_location'] || 'Boudha, Kathmandu'}</p>
+          </div>
+          <p className="text-[7px] md:text-[8px] tracking-widest text-ivory/20">
+            Website created by <a href="https://nischaltandukar.com.np" target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">Nischal Tandukar</a>
+          </p>
         </div>
       </div>
     </footer>
