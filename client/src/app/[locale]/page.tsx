@@ -98,6 +98,35 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      {/* ─── SEO STRUCTURED DATA (JSON-LD) ─── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Kiran Handicraft Enterprises",
+            "image": "https://kiranhandicraftenterprises.com.np/logo.png",
+            "description": "Leading wholesaler and manufacturer of elite hand-carved metal statues and Buddhist crafts.",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Boudha-6, Stupa",
+              "addressLocality": "Kathmandu",
+              "addressRegion": "Bagmati",
+              "postalCode": "44600",
+              "addressCountry": "NP"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 27.7215,
+              "longitude": 85.3620
+            },
+            "url": "https://kiranhandicraftenterprises.com.np",
+            "telephone": "01-4916351",
+            "priceRange": "$$$"
+          })
+        }}
+      />
       <div className="relative z-10">
         {/* ─── HERO ─── */}
         <Hero />
