@@ -121,16 +121,13 @@ const seed = async () => {
             await userRepo.save(admin);
             console.log('✅ Admin user created (username: admin, password: admin123)');
         } else {
-            admin.password = hashedPassword;
-            await userRepo.save(admin);
-            console.log('✅ Admin password reset to default: admin123');
+            console.log('✅ Admin user already exists (password preserved)');
         }
 
         // 2. Site Settings (Force update)
         for (const setting of defaultSettings) {
             const existing = await settingsRepo.findOne({ where: { key: setting.key } });
             if (existing) {
-                existing.value = setting.value;
                 existing.type = setting.type;
                 existing.label = setting.label;
                 existing.section = setting.section;
